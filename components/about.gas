@@ -1,0 +1,68 @@
+<template>
+    <div id="about" class="centerizeContent boxShadow page">
+        <div g-html="this.Get(`readMe`).(string)"></div>
+    </div>
+</template>
+
+<script>
+package components
+
+import (
+    r "github.com/gascore/std/router"
+    "github.com/gascore/gas"
+    . "github.com/gascore/example/store"
+	//"gitlab.com/golang-commonmark/markdown"
+)
+
+func About(info r.RouteInfo) *gas.Component {
+    return S.RC(gas.NC(
+        &gas.C{
+            Data: map[string]interface{} {
+                "readMe": "Loading...",
+            },
+			Hooks: gas.Hooks{
+				Created: func(this *gas.Component) error {    
+                    /*req, err := http.NewRequest("GET", "https://raw.githubusercontent.com/gascore/gas/master/README.md", nil)
+                    req.Header.Add("js.fetch:mode", "cors")
+                    if err != nil {
+                      return err
+                    }
+                    resp, err := http.DefaultClient.Do(req)
+                    if err != nil {
+                      return err
+                    }
+                    defer resp.Body.Close()
+
+                    data, err := ioutil.ReadAll(resp.Body)
+                    if err != nil {
+                        return err
+                    }*/
+
+                    /*source := `# Gas - golang frontend framework
+
+![Gas logo](https://raw.githubusercontent.com/gascore/gas/master/logo.png)
+
+## More information in [gascore.github.io](https://gascore.github.io)
+
+### Structure:
+
+0. [gas](https://github.com/gascore/gas) - gas framework core
+1. [gas/web](https://github.com/gascore/gas/blob/master/web) - wasm/gojs backend
+2. [gas/gasx](https://github.com/gascore/gas/blob/master/gasx) - project manager for gas applications
+3. [gas/std/router](https://github.com/gascore/gas/blob/master/std/router) - web router
+4. [gas/std/store](https://github.com/gascore/gas/blob/master/std/store) - redux-like store
+
+### Roadmap:
+
+1. [Trello](https://trello.com/invite/b/vB6waN51/993a187d5dd168a9a3a05093c42ed63e/gasgasgas) - all tasks to do
+`
+                    this.SetValue("readMe", markdown.New(markdown.XHTMLOutput(true)).RenderToString([]byte(source)))*/
+                    return nil
+				},
+			},
+        },
+        aboutT,), nil)
+}
+
+var aboutT gas.GetComponentChildes
+</script>

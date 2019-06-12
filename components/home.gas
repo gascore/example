@@ -1,0 +1,35 @@
+<template>
+    <div id="home" class="centerizeContent boxShadow page">
+        <h1>
+            {{ this.Get("hello").(string) }}
+        </h1>
+        <e run="i.LinkStatic(`/examples`, false)">
+            Basic examples
+        </e>
+        <e run="i.LinkStatic(`/components`, false)">
+            Standard components examples
+        </e>
+    </div>
+</template>
+
+<script>
+package components
+
+import (
+    . "github.com/gascore/example/store"
+    "github.com/gascore/gas"
+    r "github.com/gascore/std/router"
+)
+
+func Home(i r.RouteInfo) *gas.Component {
+    return S.RC(gas.NC(
+        &gas.C{
+            Data: map[string]interface{} {
+                "hello": "Hello world!",
+            },
+        },
+        homeT,), nil)
+}
+
+var homeT gas.GetComponentChildes
+</script>

@@ -1,0 +1,143 @@
+<template>
+	<div id="examples"  class="centerizeContent">
+	    <div class="wrap" id="hello-world">
+	        <header class="wrap-title">
+                Hello world
+            </header>
+            <div class="wrap-body">
+                <e run="examples.HelloWorld()"></e>
+            </div>
+	    </div>
+	    <div class="wrap">
+            <header class="wrap-title">
+                Clicker and props
+            </header>
+            <div class="wrap-body">
+                <e run="examples.ClickerAndProps()"></e>
+            </div>
+        </div>
+	    <div class="wrap">
+            <header class="wrap-title">
+                If directive
+            </header>
+            <div class="wrap-body">
+                <e run="examples.IfDirective()"></e>
+            </div>
+        </div>
+	    <div class="wrap">
+            <header class="wrap-title">
+                For directive
+            </header>
+            <div class="wrap-body">
+                <e run="examples.ForDirective()"></e>
+            </div>
+        </div>
+	    <div class="wrap">
+            <header class="wrap-title">
+                Methods
+            </header>
+            <div class="wrap-body">
+                <e run="examples.Methods()"></e>
+            </div>
+        </div>
+	    <div class="wrap">
+            <header class="wrap-title">
+                Model directive
+            </header>
+            <div class="wrap-body">
+                <e run="examples.ModelDirective()"></e>
+            </div>
+        </div>
+	    <div class="wrap">
+            <header class="wrap-title">
+                HTML directive
+            </header>
+            <div class="wrap-body">
+                <e run="examples.HTMLDirective()"></e>
+            </div>
+        </div>
+	    <div class="wrap">
+            <header class="wrap-title">
+                Watchers
+            </header>
+            <div class="wrap-body">
+                <e run="examples.Watchers()"></e>
+            </div>
+        </div>
+	    <div class="wrap">
+            <header class="wrap-title">
+                Hooks
+            </header>
+            <div class="wrap-body">
+                <e run="examples.Hooks()"></e>
+            </div>
+        </div>
+	    <div class="wrap">
+            <header class="wrap-title">
+                Binds
+            </header>
+            <div class="wrap-body">
+                <e run="examples.Binds()"></e>
+            </div>
+        </div>
+	    <div class="wrap">
+            <header class="wrap-title">
+                TODO list
+            </header>
+            <div class="wrap-body">
+                <e run="examples.TODO()"></e>
+            </div>
+        </div>
+	</div>
+</template>
+
+<style type="text/scss">
+#examples {
+    #hello-world {
+            .greeting {
+                color: #00cc99;
+            }
+            h1 {
+                font-size: 32px;
+                .greeting {
+                    border-bottom: 1px solid #dedede;
+                }
+            }
+    }
+    .wrap {
+        border: 1px solid rgba(0,0,0,.03);
+        box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
+        margin: 1.2em 0.2em;
+
+        .wrap-title {
+            padding: 8px 20px;
+            color: rgba(0,0,0,.54);
+            background: rgba(0,0,0,.03);
+            font-size: 1rem;
+        }
+
+        .wrap-body {
+            padding: 30px;
+        }
+    }
+}
+</style>
+
+<script>
+package components
+
+import (
+    r "github.com/gascore/std/router"
+    "github.com/gascore/gas"
+    "github.com/gascore/example/components/examples"
+    . "github.com/gascore/example/store"
+)
+
+func Examples(info r.RouteInfo) *gas.Component {
+    return S.RC(gas.NC(
+        &gas.C{},
+        examplesT,), nil)
+}
+
+var examplesT gas.GetComponentChildes
+</script>
