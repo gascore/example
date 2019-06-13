@@ -36,13 +36,13 @@ var ctx = &r.Ctx{
 			Exact:          true,
 			Path:           "/todo",
 			Redirect:       "todo-list",
-			RedirectParams: map[string]string{"type": "all"},
+			RedirectParams: map[string]string{"type": "active"},
 		},
 		{
 			Name:     "todo-redirect",
 			Exact:    true,
 			Path:     "/todo/",
-			Redirect: "/todo/all",
+			Redirect: "/todo/active",
 		},
 		{
 			Name:      "todo-list",

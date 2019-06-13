@@ -25,7 +25,7 @@ func InitStore() error {
 	S, err = store.New(&store.Store{
 		Data: map[string]interface{}{
 			"count":     0,
-			"all":       []interface{}{},
+			"active":    []interface{}{},
 			"completed": []interface{}{},
 			"deleted":   []interface{}{},
 		},

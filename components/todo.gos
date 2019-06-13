@@ -12,19 +12,19 @@ import (
 func nameByI(i string) string {
 	switch i {
 	case "0":
-		return "all"
+		return "active"
 	case "1":
 		return "completed"
 	case "2":
 		return "deleted"
 	default:
-		return "all"
+		return "active"
 	}
 }
 
 func iByName(name string) string {
 	switch name {
-	case "all":
+	case "active":
 		return "0"
 	case "completed":
 		return "1"
@@ -58,12 +58,6 @@ func TodoList(i r.RouteInfo) *gas.Component {
 						return nil, errors.New("invalid index")
 					}
 
-					e, ok := values[1].(gas.Object)
-					if !ok {
-						return nil, errors.New("invalid preventDefault()")
-					}
-					e.Call("preventDefault")
-
 					this.SetValue(`currentList`, el)
 
 					i.ChangeRoute("/todo/"+nameByI(el), false)
@@ -76,13 +70,13 @@ func TodoList(i r.RouteInfo) *gas.Component {
 						return nil, nil
 					}
 
-					err := S.Emit("appendToList", "all", currentText)
+					err := S.Emit("appendToList", "active", currentText)
 					if err != nil {
 						return nil, err
 					}
 
 					this.SetValue("currentText", "")
-
+					this.Method(`changeList`, `0`)
 					return nil, nil
 				},
 				"delete": func(this *gas.Component, values ...interface{}) (interface{}, error) {
@@ -96,7 +90,7 @@ func TodoList(i r.RouteInfo) *gas.Component {
 						return nil, errors.New("invalid appendToDeleted")
 					}
 
-					err := S.Emit("deleteFromAll", i, appendToDeleted)
+					err := S.Emit("deleteFromActive", i, appendToDeleted)
 					if err != nil {
 						return nil, err
 					}
@@ -111,7 +105,7 @@ func TodoList(i r.RouteInfo) *gas.Component {
 						return nil, errors.New("invalid index")
 					}
 
-					err := S.Emit("completeInAll", i)
+					err := S.Emit("completeInActive", i)
 					if err != nil {
 						return nil, err
 					}
@@ -129,7 +123,7 @@ func TodoList(i r.RouteInfo) *gas.Component {
 						return nil, errors.New("invalid new value")
 					}
 
-					err := S.Emit("editAll", i, newValue)
+					err := S.Emit("editActive", i, newValue)
 					if err != nil {
 						return nil, err
 					}

@@ -1,49 +1,67 @@
 <template>
-    <div>
-        <header class="navbar bdb(1px,solid,#dedede) mb(12px)">
-            <section class="navbar-section">
-                <span class="btn btn-link">
-                    <e run="ctx.LinkStatic(`/examples`, true)">
-                        Examples
+    <div id="app-wrap">
+        <header id="main-header" class="navbar bdb(1px,solid,#dedede) mb(12px) centerizeContent-wrapper">
+            <div class="centerizeContent">
+                <section class="navbar-section">
+                    <span class="btn btn-link">
+                        <e run="ctx.LinkStatic(`/examples`, true)">
+                            Examples
+                        </e>
+                    </span>
+                    <span class="btn btn-link">
+                        <e run="ctx.LinkStatic(`/todo/active`, true)">
+                            TODO
+                        </e>
+                    </span>
+                    <span class="btn btn-link">
+                        <e run="ctx.LinkStatic(`/links`, true)">
+                            Links
+                        </e>
+                    </span>
+                    <span class="btn btn-link">
+                        <e run="ctx.LinkStatic(`/components`, true)">
+                            Components
+                        </e>
+                    </span>
+                </section>
+                <section class="navbar-section">
+                    <e run="ctx.LinkStatic(`/about`, true)" class="btn btn-link">
+                        About
                     </e>
-                </span>
-                <span class="btn btn-link">
-                    <e run="ctx.LinkStatic(`/todo/all`, true)">
-                        TODO
-                    </e>
-                </span>
-                <span class="btn btn-link">
-                    <e run="ctx.LinkStatic(`/links`, true)">
-                        Links
-                    </e>
-                </span>
-                <span class="btn btn-link">
-                    <e run="ctx.LinkStatic(`/components`, true)">
-                        Components
-                    </e>
-                </span>
-            </section>
-            <section class="navbar-section">
-                <e run="ctx.LinkStatic(`/about`, true)" class="btn btn-link">
-                    About
-                </e>
-            </section>
+                </section>
+            </div>
         </header>
 
         <div>
             <e run="r.InitRouter(ctx)"></e>
         </div>
 
-        <footer>
-            Created by
-            <a href="https://noartem.github.io/" target="_blank">
-                Noskov Atrem
-            </a>
-            with
-            <a href="https://github.com/gascore/gas" target="_blank">
-                gas
-            </a>
-            and love
+        <footer id="main-footer">
+            <div class="centerizeContent d(flex)">
+                <div>
+                    <div id="main-footer_createdBy">
+                        Created by
+                        <a href="https://noartem.github.io/" target="_blank">
+                            Noskov Atrem
+                        </a>
+                    </div>
+                    <div id="main-footer_createdWith">
+                        With
+                        <a href="https://github.com/gascore/gas" target="_blank" class="c(#00cc99) td(underline)">
+                            GAS
+                        </a>
+                        and 
+                        <span g-html="heartSvg" id="main-footer_createdWith-love"></span>
+                    </div>
+                </div>
+                <div class="ml(auto) fz(14px)">
+                    <span>Released under the MIT License</span>
+                    <br>
+                    <span>Copyright © 2019</span>
+                    <br>
+                    <span>Noskov Artem and Gas framework contibutors</span>
+                </div>
+            </div>
         </footer>
 </template>
 
@@ -57,6 +75,8 @@ import (
 
     . "github.com/gascore/example/store"
 )
+
+const heartSvg = `<svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" viewBox="0 0 24 24"><g data-name="Layer 2"><g data-name="heart"><rect width="24" height="24" opacity="0"/><path d="M12 21a1 1 0 0 1-.71-.29l-7.77-7.78a5.26 5.26 0 0 1 0-7.4 5.24 5.24 0 0 1 7.4 0L12 6.61l1.08-1.08a5.24 5.24 0 0 1 7.4 0 5.26 5.26 0 0 1 0 7.4l-7.77 7.78A1 1 0 0 1 12 21z"/></g></g></svg>`
 
 func main() {
     err := InitStore()
@@ -85,100 +105,69 @@ var mainT gas.GetComponentChildes
 </script>
 
 <style>
-a {
-  display: inline-block;
-  color: #00CC99;
-
-  &:hover, &:focus {
-    color: #009966;
-  }
-}
-
-html {
-  height: 100%;
-  box-sizing: border-box;
-}
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
-  font-family: 'Roboto', sans-serif;
+    box-sizing: inherit;
+    font-family: 'Roboto', sans-serif;
 }
 
+html,
 body {
-  position: relative;
-  margin: 0;
-  padding-bottom: 3rem;
-  min-height: 100%;
+    height: 100%;
 }
 
-header {
+#app {
+    height: 100%;
+    background-image: linear-gradient(180deg, #F0F8FF 0%, #fff 50%);
+}
+#app-wrap {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+  display: inline-block;
+}
+
+#app-wrap {
+    display: flex;
+}
+
+header#main-header {
     padding: 4px 8px;
+    border-bottom: 1px solid #e7e9f5;
+    background: inherit;
+    a {
+        color: #2969b9;
+    }
 }
 
 main {
+    background: inherit;
     padding: 0 8px;
 }
 
-footer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 6px;
-    background-color: #efefef;
-    text-align: center;
-}
+footer#main-footer {
+    margin-top: auto;
+    border-top: 1px solid #e7e9f5;
+    padding: .2rem 0;
+    background: inherit;
+    color: rgba(0, 0, 0, 0.54);
 
-.td-list_wrap {
-  padding: 0 16px;
-  margin: 12px 0;
-}
+    background-image: linear-gradient(0deg, #DFF8FF 0%, #fff 65%);
 
-.td-list {
-  list-style-type: none;
-  padding-left: 0;
-
-  li #li-body {
-    display: flex;
-    padding: 4px 8px;
-    border-bottom: 1px solid #dedede;
-    font-size: 18px;
-
-    button {
-      border: 0;
-      padding: 0;
-      background-color: inherit;
-      cursor: pointer;
-
-      &#submit {
-        margin-right: 8px;
-
-        &:hover {
-          color: #009966;
+    #main-footer_createdWith {
+        #main-footer_createdWith-love {
+            .svg-icon path,
+            .svg-icon polygon,
+            .svg-icon rect {
+                fill: #ff0033;
+            }
         }
-
-        i {
-          margin-left: 0;
-        }
-      }
-
-      &#delete {
-        &:hover, &:focus {
-          color: #ff0033;
-        }
-
-        margin: 0 0 0 auto;
-      }
     }
-  }
-}
-
-#new {
-  button {
-    margin-left: 8px;
-  }
 }
 
 button#submit:focus {
@@ -186,16 +175,13 @@ button#submit:focus {
 }
 
 .boxShadow {
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    border-radius: .6rem;
+    box-shadow: rgba(125, 128, 147, 0.23) 0px 3px 11px 0px;
+    transition: box-shadow .5s;
 }
 
-.boxShadow-hovering {
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    transition: all 0.3s ease-in-out;
-}
-
-.boxShadow-hovering:hover {
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+.boxShadow-hover:hover {
+    box-shadow: rgba(125, 128, 147, 0.46) 0px 3px 11px 0px;
 }
 
 .centerizeContent {
@@ -213,7 +199,7 @@ button#submit:focus {
     padding: 0;
 }
 
-.centerizeContent-header {
+.centerizeContent-wrapper {
     padding: .2rem 0;
     .centerizeContent {
         display: flex;
@@ -227,6 +213,7 @@ button#submit:focus {
 
 .page-label {
     h1 {
+        font-family: 'Poppins', sans-serif;
         font-size: 1.6rem;
         text-align: center;
         margin: 0;
@@ -247,5 +234,100 @@ button#submit:focus {
     }
     margin-left: auto;
     margin-right: auto;
+}
+.nano-block {
+    @media (min-width: 0px) {
+        width: 100%;
+    }
+    @media (min-width: 840px) {
+        width: 48%;
+    }
+    @media (min-width: 1400px) {
+        width: 32%;
+    }
+    margin-left: auto;
+    margin-right: auto;
+}
+.no-btn {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: inherit;
+    cursor: pointer;
+}
+
+.no-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
+    li {
+        padding-left: 0;
+    }
+}
+
+.pretty-btn {
+    a {
+        display: inline-block;
+        padding: 13px 19px;
+        border-radius: 30px;
+        background: #388ffe;
+        -webkit-box-shadow: 0 9px 12px -6px rgba(11,132,242,.78);
+        box-shadow: 0 9px 12px -6px rgba(11,132,242,.78);
+        font-size: 16px;
+        -webkit-transition: all .15s ease;
+        transition: all .15s ease;
+        will-change: background-color,box-shadow;
+
+        color: #fff;
+        &:hover {
+            text-decoration: none;
+            color: #fff;
+            background: #3684fe;
+            -webkit-box-shadow: 0 9px 16px -6px rgba(11,132,242,.78);
+            box-shadow: 0 9px 16px -6px rgba(11,132,242,.78);
+        }
+    }
+}
+
+.contentBlock {
+    border-radius: .4rem;
+    margin: 1.2em 0.2em;
+    border: 1px solid #388ffe;
+    background: #fff;
+
+    .contentBlock-title {
+        font-family: 'Poppins', sans-serif;
+        border-radius: .4rem .4rem 0 0;
+        padding: .4rem .6rem;
+        color: #388ffe;
+        font-size: 1rem;
+    }
+
+    .contentBlock-body {
+        background: inherit;
+        padding: .8rem 1rem;
+        border-radius: .4rem;
+    }
+}
+
+/* -----
+SVG Icons - svgicons.sparkk.fr
+----- */
+
+.svg-icon {
+  width: 1em;
+  height: 1em;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #4691f6;
+}
+
+.svg-icon circle {
+  stroke: #4691f6;
+  stroke-width: 1;
 }
 </style>

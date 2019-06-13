@@ -236,9 +236,10 @@ func Components(info r.RouteInfo) *gas.Component {
 
 				"vListConfig": func(this *gas.Component, values ...interface{}) (interface{}, error) {
 					config := &vlist.Config{
-						Direction:   true,
-						Items:       this.Get("vItems").([]interface{}),
-						ChildHeight: 64,
+						Direction:   	 true,
+						Items:       	 this.Get("vItems").([]interface{}),
+						ChildHeight: 	 64,
+						ItemsWrapperTag: "ul",
 						Change: func(start, end int) error {
 							// this.ConsoleLog(start, end)
 							return nil

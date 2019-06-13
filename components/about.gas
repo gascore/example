@@ -1,5 +1,5 @@
 <template>
-    <div id="about" class="centerizeContent boxShadow page">
+    <div id="about" class="centerizeContent boxShadow page bg(#fff)">
         <div g-html="this.Get(`readMe`).(string)"></div>
     </div>
 </template>

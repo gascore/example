@@ -1,54 +1,81 @@
 <script src="todo.gos"></script>
 
 <template>
-    <div id="todoList-wrap" class="centerizeContent">
-        <div id="todoList" class="bd(1px,solid,#dedede) bdrs(4px)">
-            <nav class="bdb(1px,solid,#dedede) p(4px,8px) fz(18px)">
-                <a @click="this.Method(`changeList`, `0`, e)" g-bind:class="this.Method(`isActive`, `0`).(string)" href="#all">
-                    All
+    <div id="todoList" class="boxShadow nano-block bg(#fff)">
+        <div id="new" class="w(100%) d(flex)">
+            <input 
+                g-model="currentText" 
+                @keyup.enter="this.Method(`createNewTask`)" 
+                id="new" 
+                placeholder="What needs to be done?" 
+                class="bd(none) w(90%) p(.8rem) bdrs(.4rem,0,0,0)" />
+            <button class="no-btn w(10%)" @click="this.Method(`createNewTask`)">
+                <icon class="icon icon-arrow-right fz(1.1rem) c(mainColor):h"></i>
+            </button>
+        </div>
+        <div g-for="x, listI in @listsList" g-if="this.Get(`currentList`) == listI" class="todo-list_wrap">
+            <ul class="todo-list">
+                <li g-for="y, el in @S.Get(nameByI(listI.(string))).([]interface{})" class="mt(0)">
+                    <e run="getLi(this, x, y, el)"></e>
+                </li>
+            </ul>
+        </div>
+        <div id="todo-footer" class="d(flex) p(.2rem,.6rem) fz(18px) bdt(1px,solid,#e6e6e6)">
+            <nav>
+                <a @click="this.Method(`changeList`, `0`)" g-bind:class="this.Method(`isActive`, `0`).(string)">
+                    Active
                 </a>
-                <a @click="this.Method(`changeList`, `1`, e)" g-bind:class="this.Method(`isActive`, `1`).(string)" href="#completed">
+                <a @click="this.Method(`changeList`, `1`)" g-bind:class="this.Method(`isActive`, `1`).(string)">
                     Completed
                 </a>
-                <a @click="this.Method(`changeList`, `2`, e)" g-bind:class="this.Method(`isActive`, `2`).(string)" href="#deleted">
+                <a @click="this.Method(`changeList`, `2`)" g-bind:class="this.Method(`isActive`, `2`).(string)">
                     Deleted
                 </a>
             </nav>
-            <div id="new" g-if="this.Get(`currentList`).(string) == `0`">
-                <input g-model="currentText" id="new" placeholder="New task" @keyup.enter="this.Method(`createNewTask`)" class="m(8px,0,0,12px)"/>
-                <button class="btn" @click="this.Method(`createNewTask`)">
-                    Create
-                </button>
-            </div>
-            <div>
-                <div g-for="x, listI in @listsList" g-if="this.Get(`currentList`) == listI" class="td-list_wrap">
-                    <ul class="td-list">
-                        <li g-for="y, el in @S.Get(nameByI(listI.(string))).([]interface{})">
-                            <e run="getLi(this, x, y, el)"></e>
-                        </li>
-                    </ul>
-                    <button g-if="len(S.Get(nameByI(listI.(string))).([]interface{})) != 0" @click="S.Emit(`clearList`, nameByI(listI.(string)))" class="btn">
-                        Clear
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div id="todoListFooter" class="m(8px) c(gray) fz(12px)" g-show="this.Get(`currentList`) == `0`">
-            <i>
-                Double-click to edit a task
-            </i>
+            <button @click="S.Emit(`clearList`, nameByI(this.Get(`currentList`).(string)))" class="btn btn-link ml(auto) fz(18px) p(4px)" id="todo-footer_clear">
+                Clear
+            </button>
         </div>
     </div>
+    <!--<div id="todoListFooter" class="m(8px) c(gray) fz(12px)" g-show="this.Get(`currentList`) == `0`">
+        <i>
+            Double-click to edit a task
+        </i>
+    </div>-->
 </template>
 
 <style>
-#todoList-wrap {
-    nav {
-        a {
-            margin: 0 .24em;
+#todoList {
+    .todo-list_wrap {
+        .todo-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
-        &:first-child {
-            margin: 0 .24em 0 0;
+    }
+
+    #todo-footer { 
+        nav {
+            a {
+                text-decoration: none;
+                cursor: pointer;
+                margin: 0 .24em;
+                
+                padding: 4px;
+            }
+            a:hover {
+                padding: 3px;
+                border: 1px solid #807FE2;
+                border-radius: .4rem;
+            }
+            a.active {
+                padding: 3px;
+                border: 1px solid #5755d9;
+                border-radius: .4rem;
+            }
+            &:first-child {
+                margin: 0 .24em 0 0;
+            }
         }
     }
 }

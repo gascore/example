@@ -2,11 +2,11 @@
 
 <template>
 	<div id="components"  class="centerizeContent">
-	    <div class="wrap">
-	        <header class="wrap-title">
+	    <div class="contentBlock">
+	        <header class="contentBlock-title">
                 Basic Drag and drop
             </header>
-            <div class="wrap-body dndFreeBoundary">
+            <div class="contentBlock-body dndFreeBoundary">
                 <e run="dndFree.DNDFree(this.Method(`dndFreeConfig1`).(dndFree.Config))">
                     Basic example
                 </e>
@@ -26,12 +26,12 @@
             </div>
 	    </div>
 
-        <div class="wrap">
-            <header class="wrap-title">
+        <div class="contentBlock">
+            <header class="contentBlock-title">
                 Modal
             </header>
 
-            <div class="wrap-body">
+            <div class="contentBlock-body">
                 <button class="h(2.4rem) w(6rem) btn" g-on:click="this.SetValue(`isActiveModal`, !this.Get(`isActiveModal`).(bool))">
                     <span g-if="this.Get(`isActiveModal`).(bool)">
                         Hide
@@ -58,13 +58,13 @@
             </div>
         </div>
 
-        <div class="wrap">
-            <header class="wrap-title">
+        <div class="contentBlock">
+            <header class="contentBlock-title">
                 Layout
             </header>
 
-            <div class="wrap-body">
-                <div id="layout-wrap">
+            <div class="contentBlock-body">
+                <div id="layout-contentBlock">
                     <e run="layout.Layout(this.Method(`layoutConfig`).(*layout.Config))">
                         <div class="layout-item-1">
                             GopherJS
@@ -83,25 +83,25 @@
             </div>
         </div>
 
-        <div class="wrap">
-            <header class="wrap-title">
+        <div class="contentBlock">
+            <header class="contentBlock-title">
                 Virtual list
             </header>
 
-            <div class="wrap-body">
-                <div class="vlist-wrap h(50vw) bd(b) mb(1em)">
+            <div class="contentBlock-body">
+                <div class="vlist-contentBlock h(70vw) h(50vw)--sm h(25vw)--md bd(1px,solid,#e9e9e9) mb(1em)">
                     <e run="vlist.List(this.Method(`vListConfig`).(*vlist.Config))">
                         <template name="item" types="i := values[0].(int); item := values[1].(string); start := values[2].(int)">
-                            <div class="p(.4em) bdt(b) bdb(b) w(100%)" :style="fmt.Sprintf(`height: %dpx;`, this.Get(`vItemsHeight`).([]int)[i+start])">
+                            <li class="p(.4em) bd(1px,solid,#e9e9e9) w(100%)" :style="fmt.Sprintf(`height: %dpx;`, this.Get(`vItemsHeight`).([]int)[i+start])">
                                 {{ item }}
-                            </div>
+                            </li>
                         </template>
                     </e>
                 </div>
-                <div class="vlist-wrap h(15vw) w(100%) bd(b)">
+                <div class="vlist-contentBlock h(25vw) h(15vw)--sm h(5vw)--md w(100%) bd(1px,solid,#e9e9e9)" id="vlist-vert">
                     <e run="vlist.List(this.Method(`vListConfig2`).(*vlist.Config))">
                         <template name="item" types="i := values[0].(int); item := values[1].(string); start := values[2].(int)">
-                            <li class="p(.4em) bdr(b) bdl(b) h(100%)" :style="fmt.Sprintf(`width: %dpx;`, this.Get(`vItemsHeight`).([]int)[i+start]*2)">
+                            <li class="p(.4em) bd(1px,solid,#e9e9e9) h(100%)" :style="fmt.Sprintf(`width: %dpx;`, this.Get(`vItemsHeight`).([]int)[i+start]*2)">
                                 {{ item }}
                             </li>
                         </template>
@@ -110,8 +110,8 @@
             </div>
         </div>
 
-	    <div class="wrap">
-	        <header class="wrap-title">
+	    <div class="contentBlock">
+	        <header class="contentBlock-title">
                 <div>
                     Drag and drop linked lists
                 </dvi>
@@ -120,7 +120,7 @@
                 </div>
             </header>
             
-            <div class="wrap-body">
+            <div class="contentBlock-body">
                 <div id="dnds" class="d(inline-block) p(0)">
                     <div id="dnd1">
                         <h3>
@@ -166,12 +166,12 @@
             </div>
 	    </div>
 
-        <div class="wrap">
-            <header class="wrap-title">
+        <div class="contentBlock">
+            <header class="contentBlock-title">
                 Tree
             </header>
             
-            <div class="wrap-body">
+            <div class="contentBlock-body">
                 <div id="trees">
                     <e run="tree.GetTree(this.Method(`getFirstTree`).(tree.Config))"></e>
                     <e run="tree.GetTree(this.Method(`getSecondTree`).(tree.Config))"></e>
@@ -179,8 +179,8 @@
             </div>
         </div>
 
-        <div class="wrap">
-            <header class="wrap-title">
+        <div class="contentBlock">
+            <header class="contentBlock-title">
                 Spectre css things
                 <small class="label ml(4px)">
                     <a href="https://picturepan2.github.io/spectre">
@@ -188,7 +188,7 @@
                     </a>
                 </small>
             </header>
-            <div class="wrap-body">
+            <div class="contentBlock-body">
                 <button class="btn m(8px)">default button</button>
                 <br>
                 <span class="label m(8px)">default label</span>
@@ -257,7 +257,6 @@
             width: 100%;
             border: 1px solid #dedede;
             border-radius: 0.12em;
-            box-shadow: 0px 0px 30px 5px rgba(209,209,209,0.27);
             padding: 4px 8px;
             padding: .5em .3em;
             overflow-x: hidden;
@@ -277,7 +276,6 @@
             height: 100%;
             border: 1px solid #ccc;
             border-radius: 0.12em;
-            box-shadow: 0px 0px 30px 5px rgba(209,209,209,0.27);
             padding: 4px 8px;
             padding: .5em .3em;
             overflow-x: hidden;
@@ -292,8 +290,14 @@
             list-style-type: none;
 
             li {
-                margin-top: 0;
+                padding: 0;
+                margin: 0;
             }
+        }
+    }
+    #vlist-vert {
+        ul {
+            display: flex;
         }
     }
 
@@ -362,7 +366,7 @@
         margin: 0;
         height: 100%;
     }
-    .dnd-group-wrap {
+    .dnd-group-contentBlock {
         height: 100%;
         width: 100%;
     }
@@ -433,23 +437,6 @@
         width: 100%;
         border-radius: 0.08em;
         margin-bottom: 8px;
-    }
-
-    .wrap {
-        border: 1px solid rgba(0,0,0,.03);
-        box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
-        margin: 1.2em 0.2em;
-
-        .wrap-title {
-            padding: 8px 20px;
-            color: rgba(0,0,0,.54);
-            background: rgba(0,0,0,.03);
-            font-size: 1rem;
-        }
-
-        .wrap-body {
-            padding: 30px;
-        }
     }
 }
 </style>

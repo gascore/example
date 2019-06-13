@@ -1,15 +1,30 @@
 <template>
-    <div id="li-body">
-        <button g-if="listType == 0" id="submit" @click="pThis.Method(`markAsCompleted`, i)">
-            <i class="icon icon-check"></i>
-        </button>
-        <i g-if="!this.Get(`isEditing`).(bool)" @dblclick="this.Method(`goEdit`)">
-            {{ el }}
-        </i>
-        <input g-if="this.Get(`isEditing`).(bool)" g-model="newValue" @keyup.enter="this.Method(`goCreate`)" />
-        <button g-if="listType == 0" @click="pThis.Method(`delete`, i, true)" id="delete">
-            <i class="icon icon-delete"></i>
-        </button>
+    <div class="li-body bdt(1px,solid,#e6e6e6) fz(18px)">
+        <div g-if="listType == 0" class="d(flex) p(.3rem,.6rem)">
+            <button @click="pThis.Method(`markAsCompleted`, i)" class="no-btn m(0,.4rem,0,0)">
+                <i class="icon icon-check c(#009966):h:f m(auto,0) h(2rem)"></i>
+            </button>
+            
+            <div class="li-body_data w(100%) m(auto,0)">
+                <span g-if="!this.Get(`isEditing`).(bool)" @dblclick="this.Method(`goEdit`)" class="w(100%)">
+                    {{ el }}
+                </span>
+                <input 
+                    g-else 
+                    g-model="newValue" 
+                    @keyup.enter="this.Method(`goCreate`)" 
+                    class="c(#3b4351) w(100%) h(100%)"/>
+            </div>
+
+            <button g-if="!this.Get(`isEditing`).(bool)" @click="pThis.Method(`delete`, i, true)" class="no-btn m(0,0,0,auto)">
+                <i class="icon icon-delete c(#ff0033):h:f m(auto,0)"></i>
+            </button>
+        </div>
+        <div g-else class="p(.6rem,1.2rem)">
+            <span class="w(100%)">
+                {{ el }}
+            </span>
+        </div>
     </div>
 </template>
 

@@ -1,3 +1,5 @@
+dist/
+
 .gaslock
 
 web_modules/**/dist/**

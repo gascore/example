@@ -1,32 +1,50 @@
 <template>
-    <div id="links" class="centerizeContent boxShadow page">
-        <h1>
-            {{ this.Get("links").(string) }}
+    <div id="links" class="nano-block">
+        <h1 class="m(auto,.6rem,auto,0)">
+            Links
         </h1>
-        <ul>
-            <li>
+        <ul class="no-list" id="links-list">
+            <li class="pretty-btn">
                 <e run="i.LinkDynamic(`link`, map[string]string{`name`: `gas`}, map[string]string{`main`: `true`}, false)">
-                    <i> gas </i> - <b> core </b>
+                    gas
                 </e>
             </li>
-            <li>
-                <e run="i.LinkDynamic(`link`, map[string]string{`name`: `gas-web`}, nil, false)">
-                    gas-web
+            <li class="pretty-btn">
+                <e run="i.LinkDynamic(`link`, map[string]string{`name`: `std`}, nil, false)">
+                    std
                 </e>
             </li>
-            <li>
+            <li class="pretty-btn">
                 <e run="i.LinkDynamic(`link`, map[string]string{`name`: `gasx`}, nil, false)">
                     gasx
                 </e>
             </li>
-            <li>
-                <e run="i.LinkDynamic(`link`, map[string]string{`name`: `gas-router`}, nil, false)">
-                    gas-router
+            <li class="pretty-btn">
+                <e run="i.LinkDynamic(`link`, map[string]string{`name`: `example`}, nil, false)">
+                    example
                 </e>
             </li>
         </ul>
     </div>
 </template>
+
+<style>
+#links {
+    h1 {
+        font-family: 'Poppins', sans-serif;
+    }
+    #links-list{
+        display: flex;
+        margin: 0;
+        padding: 0;
+        li {
+            margin: 0;
+            padding: 0;
+            margin-right: .4rem;
+        }
+    }
+}
+</style>
 
 <script>
 package components
@@ -39,11 +57,7 @@ import (
 
 func Links(i r.RouteInfo) *gas.Component {
     return S.RC(gas.NC(
-        &gas.C{
-            Data: map[string]interface{} {
-                "links": "some links here",
-            },
-        },
+        &gas.C{},
         linksT,), nil)
 }
 

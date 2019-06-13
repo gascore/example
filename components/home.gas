@@ -1,14 +1,18 @@
 <template>
-    <div id="home" class="centerizeContent boxShadow page">
+    <div id="home" class="centerizeContent boxShadow page boxShadow-hover bg(#fff)">
         <h1>
             {{ this.Get("hello").(string) }}
         </h1>
-        <e run="i.LinkStatic(`/examples`, false)">
-            Basic examples
-        </e>
-        <e run="i.LinkStatic(`/components`, false)">
-            Standard components examples
-        </e>
+        <div>
+          <e run="i.LinkStatic(`/examples`, false)">
+              Basic examples
+          </e>
+        </div>
+        <div>
+          <e run="i.LinkStatic(`/components`, false)">
+              Standard components examples
+          </e>
+        </div>
     </div>
 </template>
 

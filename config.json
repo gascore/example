@@ -7,11 +7,9 @@
       "md": "@media(min-width:1000px)",
       "sm": "@media(min-width:750px)"
     },
-    "exceptions": [
-      "db(foo)"
-    ],
+    "exceptions": null,
     "custom": {
-      "b": "1px solid #dedede"
+      "mainColor": "#00cc99"
     },
     "out": "css/a.scss"
   },
@@ -63,7 +61,7 @@
     "ignore_compiled": true
   },
   "build": {
-    "platform": "wasm",
+    "platform": "gopherjs",
     "sass": "sass INPUT OUTPUT",
     "scss": "scss INPUT OUTPUT",
     "less": "less INPUT OUTPUT",

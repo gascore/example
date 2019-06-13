@@ -44,19 +44,19 @@ var listsHandlers = map[string]store.Handler{
 			name: list,
 		}, nil
 	},
-	"editAll": func(s *store.Store, values ...interface{}) (map[string]interface{}, error) {
+	"editActive": func(s *store.Store, values ...interface{}) (map[string]interface{}, error) {
 		i := values[0].(int)
 		val := values[1].(string)
 
-		all := s.Get("all").([]interface{})
+		active := s.Get("active").([]interface{})
 
-		all[i] = val
+		active[i] = val
 
 		return map[string]interface{}{
-			"all": all,
+			"active": active,
 		}, nil
 	},
-	"deleteFromAll": func(s *store.Store, values ...interface{}) (map[string]interface{}, error) {
+	"deleteFromActive": func(s *store.Store, values ...interface{}) (map[string]interface{}, error) {
 		i, ok := values[0].(int)
 		if !ok {
 			return nil, errors.New("invalid index")
@@ -67,24 +67,24 @@ var listsHandlers = map[string]store.Handler{
 			return nil, errors.New("invalid appendToDeleted")
 		}
 
-		allUnTyped, err := s.GetSafely("all")
+		activeUnTyped, err := s.GetSafely("active")
 		if err != nil {
 			return nil, err
 		}
 
-		all, ok := allUnTyped.([]interface{})
+		active, ok := activeUnTyped.([]interface{})
 		if !ok {
-			return nil, fmt.Errorf("invalid '%s' type", "allUnTyped")
+			return nil, fmt.Errorf("invalid '%s' type", "activeUnTyped")
 		}
 
-		el := all[i]
+		el := active[i]
 
-		copy(all[i:], all[i+1:]) // Shift a[i+1:] left one index
-		all[len(all)-1] = ""     // Erase last element (write zero value)
-		all = all[:len(all)-1]   // Truncate slice
+		copy(active[i:], active[i+1:]) // Shift a[i+1:] left one index
+		active[len(active)-1] = ""     // Erase last element (write zero value)
+		active = active[:len(active)-1]   // Truncate slice
 
 		out := map[string]interface{}{
-			"all": all,
+			"active": active,
 		}
 
 		if appendToDeleted {
@@ -93,30 +93,30 @@ var listsHandlers = map[string]store.Handler{
 
 		return out, nil
 	},
-	"completeInAll": func(s *store.Store, values ...interface{}) (map[string]interface{}, error) {
+	"completeInActive": func(s *store.Store, values ...interface{}) (map[string]interface{}, error) {
 		i, ok := values[0].(int)
 		if !ok {
 			return nil, errors.New("invalid index")
 		}
 
-		allUnTyped, err := s.GetSafely("all")
+		activeUnTyped, err := s.GetSafely("active")
 		if err != nil {
 			return nil, err
 		}
 
-		all, ok := allUnTyped.([]interface{})
+		active, ok := activeUnTyped.([]interface{})
 		if !ok {
-			return nil, fmt.Errorf("invalid '%s' type", "allUnTyped")
+			return nil, fmt.Errorf("invalid '%s' type", "activeUnTyped")
 		}
 
-		el := all[i]
+		el := active[i]
 
-		copy(all[i:], all[i+1:]) // Shift a[i+1:] left one index
-		all[len(all)-1] = ""     // Erase last element (write zero value)
-		all = all[:len(all)-1]   // Truncate slice
+		copy(active[i:], active[i+1:]) // Shift a[i+1:] left one index
+		active[len(active)-1] = ""     // Erase last element (write zero value)
+		active = active[:len(active)-1]   // Truncate slice
 
 		out := map[string]interface{}{
-			"all": all,
+			"active": active,
 		}
 
 		out["completed"] = append(s.Get("completed").([]interface{}), el)
