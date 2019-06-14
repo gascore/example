@@ -64,7 +64,7 @@
     "platform": "gopherjs",
     "sass": "sass INPUT OUTPUT",
     "scss": "scss INPUT OUTPUT",
-    "less": "less INPUT OUTPUT",
+    "less": "",
     "files_deps": null
   },
   "serve": {

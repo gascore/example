@@ -1,16 +1,11 @@
 package store
 
-import (
-	"errors"
-	"github.com/gascore/std/store"
-	"github.com/gascore/gas/web"
-	webStore "github.com/gascore/std/localStorage"
-)
+import "github.com/gascore/std/store"
 
-var localStorage = webStore.NewDataStore(webStore.JSONEncoding, web.GetLocalStore)
-
+// S store instance
 var S *store.Store
 
+// InitStore init store
 func InitStore() error {
 	var err error
 
@@ -31,35 +26,10 @@ func InitStore() error {
 		},
 		Handlers: handlers,
 		OnCreate: []store.OnCreateHook{
-			func(s *store.Store) error {
-				var dataRaw interface{}
-				err := localStorage.Get("data", &dataRaw)
-				if err != nil && err != webStore.ErrNilValue {
-					return err
-				}
-
-				if dataRaw == nil {
-					return nil
-				}
-
-				data, ok := dataRaw.(map[string]interface{})
-				if !ok {
-					return errors.New("invalid data type")
-				}
-
-				s.Data = data
-				return nil
-			},
+			store.LSSyncOnCreate,
 		},
 		AfterEmit: []store.AfterEmitHook{
-			func(s *store.Store, eventName string, updatesMap map[string]interface{}, values []interface{}) error {
-				err := localStorage.Set("data", s.Data)
-				if err != nil {
-					return err
-				}
-
-				return nil
-			},
+			store.LSSyncAfterEmit,
 		},
 	})
 	if err != nil {
