@@ -4,12 +4,12 @@
             {{ this.Get("hello").(string) }}
         </h1>
         <div>
-          <e run="i.LinkStatic(`/examples`, false)">
+          <e run="i.Link(`/examples`, false)">
               Basic examples
           </e>
         </div>
         <div>
-          <e run="i.LinkStatic(`/components`, false)">
+          <e run="i.Link(`/components`, false)">
               Standard components examples
           </e>
         </div>

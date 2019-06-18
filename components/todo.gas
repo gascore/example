@@ -13,9 +13,17 @@
                 <icon class="icon icon-arrow-right fz(1.1rem) c(mainColor):h"></i>
             </button>
         </div>
-        <div g-for="x, listI in @listsList" g-if="this.Get(`currentList`) == listI" class="todo-list_wrap">
+        <div g-for="xRaw, listIRaw in @listsList" g-if="this.Get(`currentList`) == listI" class="todo-list_wrap">
+            <g-for-types>
+                x := xRaw.(int)
+                listI := listIRaw.(string)
+            </g-for-types>
             <ul class="todo-list">
-                <li g-for="y, el in @S.Get(nameByI(listI.(string))).([]interface{})" class="mt(0)">
+                <li g-for="yRaw, elRaw in @S.Get(nameByI(listI))" class="mt(0)">
+                    <g-for-types>
+                        y := yRaw.(int)
+                        el := elRaw.(string)
+                    </g-for-types>
                     <e run="getLi(this, x, y, el)"></e>
                 </li>
             </ul>

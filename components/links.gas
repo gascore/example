@@ -4,24 +4,12 @@
             Links
         </h1>
         <ul class="no-list" id="links-list">
-            <li class="pretty-btn">
-                <e run="i.LinkDynamic(`link`, map[string]string{`name`: `gas`}, map[string]string{`main`: `true`}, false)">
-                    gas
-                </e>
-            </li>
-            <li class="pretty-btn">
-                <e run="i.LinkDynamic(`link`, map[string]string{`name`: `std`}, nil, false)">
-                    std
-                </e>
-            </li>
-            <li class="pretty-btn">
-                <e run="i.LinkDynamic(`link`, map[string]string{`name`: `gasx`}, nil, false)">
-                    gasx
-                </e>
-            </li>
-            <li class="pretty-btn">
-                <e run="i.LinkDynamic(`link`, map[string]string{`name`: `example`}, nil, false)">
-                    example
+            <li g-for="index, linkRaw in `links`">
+                <g-for-types>
+                    link := linkRaw.(string)
+                </g-for-types>
+                <e run="i.LinkWithParams(`link`, map[string]string{`name`: link}, nil, false)" class="pretty-btn">
+                    {{ link }}
                 </e>
             </li>
         </ul>
@@ -57,7 +45,11 @@ import (
 
 func Links(i r.RouteInfo) *gas.Component {
     return S.RC(gas.NC(
-        &gas.C{},
+        &gas.C{
+            Data: map[string]interface{}{
+                "links": []interface{}{"gas","std","gasx","example"},
+            },
+        },
         linksT,), nil)
 }
 

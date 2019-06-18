@@ -4,14 +4,14 @@
             <div class="m(auto)">
                 {{ this.Method("text") }}
             </div>
-            <span class="pretty-btn m(0,.4rem)">
-                <a g-bind:href="fmt.Sprintf(`https://github.com/gascore/%s`, i.Params[`name`])">
+            <span class="m(0,.4rem)">
+                <a g-bind:href="fmt.Sprintf(`https://github.com/gascore/%s`, i.Params[`name`])" class="pretty-btn" target="_blank">
                     {{ i.Params["name"] }}
                 </a>
             </span>
         </div>
         <div class="c(dark-gray) fz(14px) m(.3rem,0,0,.4rem)">
-            <e run="i.LinkStatic(`/links`, false)">
+            <e run="i.Link(`/links`, false)">
                 Back to all links
             </e>
         </div>

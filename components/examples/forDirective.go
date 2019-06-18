@@ -26,7 +26,8 @@ func ForDirective() *gas.C {
 					&gas.C{
 						Tag: "ul",
 					},
-					gas.NewFor("arr", this, func(i int, el interface{}) interface{} {
+					gas.NewFor("arr", this, func(iRaw interface{}, el interface{}) interface{} {
+						i := iRaw.(int)
 						return gas.NE(
 							&gas.C{
 								Handlers: map[string]gas.Handler{

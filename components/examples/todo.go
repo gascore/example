@@ -204,7 +204,7 @@ func todoGetLi(pThis *gas.C, listType int) []interface{} {
 		listTypeS = "deleted"
 	}
 
-	return gas.NewFor(listTypeS, pThis, func(i int, el interface{}) interface{} {
+	return gas.NewFor(listTypeS, pThis, func(i interface{}, el interface{}) interface{} {
 		return gas.NC(
 			&gas.C{
 				Tag: "li",

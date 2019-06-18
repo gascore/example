@@ -4,28 +4,28 @@
             <div class="centerizeContent">
                 <section class="navbar-section">
                     <span class="btn btn-link">
-                        <e run="ctx.LinkStatic(`/examples`, true)">
+                        <e run="ctx.Link(`/examples`, true)">
                             Examples
                         </e>
                     </span>
                     <span class="btn btn-link">
-                        <e run="ctx.LinkStatic(`/todo/active`, true)">
+                        <e run="ctx.Link(`/todo/active`, true)">
                             TODO
                         </e>
                     </span>
                     <span class="btn btn-link">
-                        <e run="ctx.LinkStatic(`/links`, true)">
+                        <e run="ctx.Link(`/links`, true)">
                             Links
                         </e>
                     </span>
                     <span class="btn btn-link">
-                        <e run="ctx.LinkStatic(`/components`, true)">
+                        <e run="ctx.Link(`/components`, true)">
                             Components
                         </e>
                     </span>
                 </section>
                 <section class="navbar-section">
-                    <e run="ctx.LinkStatic(`/about`, true)" class="btn btn-link">
+                    <e run="ctx.Link(`/about`, true)" class="btn btn-link">
                         About
                     </e>
                 </section>
@@ -266,26 +266,28 @@ button#submit:focus {
 }
 
 .pretty-btn {
-    a {
-        display: inline-block;
-        padding: 13px 19px;
-        border-radius: 30px;
-        background: #388ffe;
-        -webkit-box-shadow: 0 9px 12px -6px rgba(11,132,242,.78);
-        box-shadow: 0 9px 12px -6px rgba(11,132,242,.78);
-        font-size: 16px;
-        -webkit-transition: all .15s ease;
-        transition: all .15s ease;
-        will-change: background-color,box-shadow;
+    display: inline-block;
+    padding: 13px 19px;
+    border-radius: 30px;
+    background: #388ffe;
+    -webkit-box-shadow: 0 9px 12px -6px rgba(11,132,242,.78);
+    box-shadow: 0 9px 12px -6px rgba(11,132,242,.78);
+    font-size: 16px;
+    -webkit-transition: all .15s ease;
+    transition: all .15s ease;
+    will-change: background-color,box-shadow;
 
+    color: #fff;
+    &:hover {
+        text-decoration: none;
         color: #fff;
-        &:hover {
-            text-decoration: none;
-            color: #fff;
-            background: #3684fe;
-            -webkit-box-shadow: 0 9px 16px -6px rgba(11,132,242,.78);
-            box-shadow: 0 9px 16px -6px rgba(11,132,242,.78);
-        }
+        background: #3684fe;
+        -webkit-box-shadow: 0 9px 16px -6px rgba(11,132,242,.78);
+        box-shadow: 0 9px 16px -6px rgba(11,132,242,.78);
+    }
+
+    &:visited {
+        color: #fff;
     }
 }
 

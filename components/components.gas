@@ -3,7 +3,7 @@
 <template>
 	<div id="components"  class="centerizeContent">
 	    <div class="contentBlock">
-	        <header class="contentBlock-title">
+            <header class="contentBlock-title">
                 Basic Drag and drop
             </header>
             <div class="contentBlock-body dndFreeBoundary">
@@ -24,7 +24,7 @@
                     <span>Xdispabled</span>
                 </e>
             </div>
-	    </div>
+        </div>
 
         <div class="contentBlock">
             <header class="contentBlock-title">
@@ -47,7 +47,6 @@
                                 Header inside modal window
                             </h3>
                             <button class="btn btn-clear ml(auto,!important) fz(22px,!important)" @click="this.SetValue(`isActiveModal`, !this.Get(`isActiveModal`).(bool))">
-                                <!-- Icon here -->
                             </button>
                         </header>
                         <div class="customModal-body">
@@ -110,8 +109,8 @@
             </div>
         </div>
 
-	    <div class="contentBlock">
-	        <header class="contentBlock-title">
+        <div class="contentBlock">
+            <header class="contentBlock-title">
                 <div>
                     Drag and drop linked lists
                 </dvi>
@@ -164,7 +163,7 @@
                     </div>
                 </div>
             </div>
-	    </div>
+        </div>
 
         <div class="contentBlock">
             <header class="contentBlock-title">

@@ -35,7 +35,7 @@ import (
     "github.com/gascore/gas"
 )
 
-func getLi(pThis *gas.Component, listType int, i int, el interface{}) interface{} {
+func getLi(pThis *gas.Component, listType int, i int, el string) interface{} {
     return gas.NewComponent(
         &gas.Component{
             Data: map[string]interface{}{
@@ -56,7 +56,7 @@ func getLi(pThis *gas.Component, listType int, i int, el interface{}) interface{
                     return nil, nil
                 },
                 "goCreate": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-                    newValue := this.Get("newValue")
+                    newValue := this.Get("newValue").(string)
 
                     this.SetValue("isEditing", false)
 

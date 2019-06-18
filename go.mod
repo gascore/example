@@ -3,8 +3,8 @@ module github.com/gascore/example
 go 1.12
 
 require (
-	github.com/gascore/gas v0.0.0-20190614064653-d535127f05a1
-	github.com/gascore/std v0.0.0-20190614100913-124d5bf89c92
+	github.com/gascore/gas v0.0.0-20190618062459-2475a5fc16b1
+	github.com/gascore/std v0.0.0-20190618063601-e7dee8fdb9e5
 	github.com/gopherjs/gopherjs v0.0.0-20190430165422-3e4dfb77656c // indirect
 	github.com/kisielk/gotool v1.0.0 // indirect
 	github.com/neelance/astrewrite v0.0.0-20160511093645-99348263ae86 // indirect
