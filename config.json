@@ -7,9 +7,11 @@
       "md": "@media(min-width:1000px)",
       "sm": "@media(min-width:750px)"
     },
-    "exceptions": null,
+    "exceptions": [
+      "db(foo)"
+    ],
     "custom": {
-      "mainColor": "#00cc99"
+      "b": "1px solid #dedede"
     },
     "out": "css/a.scss"
   },
@@ -17,7 +19,7 @@
     "supportStyles": true,
     "stylesOut": "css/main.scss",
     "suffix": "_gas",
-    "external_suffix": "_gas"
+    "external_suffix": "_gas_e"
   },
   "watch": {
     "init_tasks": [
@@ -61,10 +63,10 @@
     "ignore_compiled": true
   },
   "build": {
-    "platform": "gopherjs",
+    "platform": "wasm",
     "sass": "sass INPUT OUTPUT",
     "scss": "scss INPUT OUTPUT",
-    "less": "",
+    "less": "less INPUT OUTPUT",
     "files_deps": null
   },
   "serve": {

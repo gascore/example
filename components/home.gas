@@ -1,15 +1,15 @@
-<template>
+<template root="HomePage">
     <div id="home" class="centerizeContent boxShadow page boxShadow-hover bg(#fff)">
         <h1>
-            {{ this.Get("hello").(string) }}
+            {{ root.msg }}
         </h1>
         <div>
-          <e run="i.Link(`/examples`, false)">
+          <e run="root.i.Link(`/examples`, false)">
               Basic examples
           </e>
         </div>
         <div>
-          <e run="i.Link(`/components`, false)">
+          <e run="root.i.Link(`/components`, false)">
               Standard components examples
           </e>
         </div>
@@ -17,23 +17,32 @@
 </template>
 
 <script>
-package components
+    package components
 
-import (
-    . "github.com/gascore/example/store"
-    "github.com/gascore/gas"
-    r "github.com/gascore/std/router"
-)
+    import (
+        r "github.com/gascore/std/router"
+        "github.com/gascore/gas"
+        . "github.com/gascore/wow/store"
+    )
 
-func Home(i r.RouteInfo) *gas.Component {
-    return S.RC(gas.NC(
-        &gas.C{
-            Data: map[string]interface{} {
-                "hello": "Hello world!",
-            },
-        },
-        homeT,), nil)
-}
+    type HomePage struct {
+        c *gas.C
+        i r.RouteInfo
 
-var homeT gas.GetComponentChildes
+        msg string
+    }
+
+    func Home(info r.RouteInfo) *gas.E {
+        root := &HomePage{
+            i: info,
+            msg: "Hello world!",
+        }
+
+        c := S.RC(&gas.C{
+            Root: root,
+        })
+        root.c = c
+
+        return c.Init()
+    }
 </script>

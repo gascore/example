@@ -1,17 +1,20 @@
-dist/
 
 .gaslock
-
-web_modules/**/dist/**
-web_modules/
-web_modules/**
-
-css/a.scss
-css/main.scss
-
-# ignore generated .go files in examples
+web_modules
+dist
 *_gas.go
-*_gas_e.go
+.sass-cache
+
+*scss.css
+*sass.css
+
+css/s.scss
+css/s.css
+css/si.scss
+css/si.css
+css/se.scss
+css/se.css
+css/*.css.map
 
 # ignore app.js files
 *app.js*

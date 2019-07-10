@@ -1,287 +1,312 @@
 package components
 
 import (
-	"fmt"
-	"math/rand"
-	"time"
+    "fmt"
 
-	"github.com/gascore/std/components/layout"
+    "github.com/gascore/gas"
+    r "github.com/gascore/std/router"
+    . "github.com/gascore/wow/store"
 
-	. "github.com/gascore/example/store"
-	"github.com/gascore/gas"
-	dndFree "github.com/gascore/std/components/dnd/free"
-	dndLists "github.com/gascore/std/components/dnd/lists"
-	"github.com/gascore/std/components/modal"
-	"github.com/gascore/std/components/tree"
-	"github.com/gascore/std/components/vlist"
-	r "github.com/gascore/std/router"
+    "github.com/gascore/std/components/modal"
+    "github.com/gascore/std/components/tree"
+    "github.com/gascore/std/components/layout"
+    "github.com/gascore/std/components/vlist"
+    dndFree "github.com/gascore/std/components/dnd/free"
 )
 
-type FormStructure struct {
-	Name string
+type ComponentsPage struct {
+    c *gas.C
+    i r.RouteInfo
+
+    dndFree1 gas.DynamicElement
+    dndFree2 gas.DynamicElement
+    dndFree3 gas.DynamicElement
+    dndFree4 gas.DynamicElement
+    dndFree5 gas.DynamicElement
+
+    isActiveModal bool
+    modal         gas.DynamicElement
+
+    tree1 *gas.E
+    tree2 *gas.E
+
+    layout1 gas.DynamicElement
+    layout2 gas.DynamicElement
+    layout3 gas.DynamicElement
+
+    vItems []interface{}
+    vList1 *gas.E
+    vList2 *gas.E
 }
 
-func Components(info r.RouteInfo) *gas.Component {
-	return S.RC(gas.NC(
-		&gas.C{
-			Data: map[string]interface{}{
-				"isActiveModal": false,
-				"vItems":        generateItems(),
-				"vItemsHeight":  generateItemsHeights(),
+func (root *ComponentsPage) toggleModal() {
+    root.isActiveModal = !root.isActiveModal
+    go root.c.Update()
+}
 
-				"dndTodo":       []interface{}{"Pick up groceries", "Go home", "Fall asleep"},
-				"dndInprogress": []interface{}{"Get to work", "Check e-mail"},
-				"dndDone":       []interface{}{"Get up", "Brush teeth", "Take a shower", "Walk dog"},
+func Components(info r.RouteInfo) *gas.E {
+    root := &ComponentsPage{
+        i: info,
+        vItems: generateItems(),
+        //vItemsHeight:  generateItemsHeights(),
+    }
 
-				"lipsumTasks": []interface{}{"lorem", "ipsum", "dolore"},
-			},
-			Methods: map[string]gas.Method{
-				"dndFreeConfig1": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-					return dndFree.Config{
-						Class: "dndFree",
-						// XDisabled: true,
-						// YDisabled: true,
-						Boundary: "app",
-					}, nil
-				},
-				"dndFreeConfig2": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-					return dndFree.Config{
-						Class:    "dndFreeWithHandle",
-						Handle:   "dndFree-handle",
-						Boundary: "app",
-					}, nil
-				},
-				"dndFreeConfig3": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-					return dndFree.Config{
-						Class:    "dndFree",
-						Boundary: "dndFreeBoundary",
-					}, nil
-				},
-				"dndFreeConfig4": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-					return dndFree.Config{
-						Class:     "dndFree",
-						Boundary:  "app",
-						YDisabled: true,
-					}, nil
-				},
-				"dndFreeConfig5": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-					return dndFree.Config{
-						Class:     "dndFree",
-						Boundary:  "app",
-						XDisabled: true,
-					}, nil
-				},
+    root.dndFree1 = dndFree.GetDNDFree(&dndFree.Config{
+        Class:    "dndFree",
+        Boundary: "main-body",
+    })
+    root.dndFree2 = dndFree.GetDNDFree(&dndFree.Config{
+        Class:    "dndFreeWithHandle",
+        Handle:   "dndFree-handle",
+        Boundary: "main-body",
+    })
+    root.dndFree3 = dndFree.GetDNDFree(&dndFree.Config{
+        Class:    "dndFree",
+        Boundary: "dndFreeBoundary",
+    })
+    root.dndFree4 = dndFree.GetDNDFree(&dndFree.Config{
+        Class:     "dndFree",
+        Boundary:  "main-body",
+        YDisabled: true,
+    })
+    root.dndFree5 = dndFree.GetDNDFree(&dndFree.Config{
+        Class:     "dndFree",
+        Boundary: "main-body",
+        XDisabled: true,
+    })
 
-				"dndListsConfig": func(this *gas.C, values ...interface{}) (interface{}, error) {
-					return dndLists.Config{
-						This:             this,
-						Group:            "dnd",
-						FieldName:        "dndTodo",
-						GroupClass:       "dnd",
-						PreviewClass:     "dnd-preview",
-						PlaceholderClass: "dnd-placeholder",
-					}, nil
-				},
-				"dndListsConfig2": func(this *gas.C, values ...interface{}) (interface{}, error) {
-					return dndLists.Config{
-						This:             this,
-						Group:            "dnd",
-						FieldName:        "dndInprogress",
-						GroupClass:       "dnd",
-						PreviewClass:     "dnd-preview",
-						PlaceholderClass: "dnd-placeholder",
-					}, nil
-				},
-				"dndListsConfig3": func(this *gas.C, values ...interface{}) (interface{}, error) {
-					return dndLists.Config{
-						This:             this,
-						Group:            "dnd",
-						FieldName:        "dndDone",
-						GroupClass:       "dnd",
-						PreviewClass:     "dnd-preview",
-						PlaceholderClass: "dnd-placeholder",
-					}, nil
-				},
-				"dndListsConfigA": func(this *gas.C, values ...interface{}) (interface{}, error) {
-					return dndLists.Config{
-						This:             this,
-						Group:            "dnd",
-						FieldName:        "lipsumTasks",
-						GroupClass:       "dnd",
-						PreviewClass:     "dnd-preview",
-						PlaceholderClass: "dnd-placeholder",
+    root.modal = modal.GetModal(&modal.Config{
+        IsActive: func() bool {
+            return root.isActiveModal
+        },
+        Closer: func() {
+            root.toggleModal()
+        },
+        ClassName: "modal-window",
+    })
 
-						Events: dndLists.EventsHandlers{
-							Entered: func(event dndLists.EnteredEvent) (bool, error) {
-								return true, nil
-							},
-						},
-					}, nil
-				},
+    root.tree1 = tree.GetTree(&tree.Config{
+        Name:        "First",
+        CanBeHidden: true,
+        OnItemClick: func(item *tree.Item) error {
+            fmt.Println("item in first tree was clicked")
+            return nil
+        },
+        Items: []*tree.Item{
+            {
+                Name: "First element",
+            },
+            {
+                Name: "Second element",
+                IsDirectory: true,
+                Childes: []*tree.Item{
+                    {
+                        Name: "First child",
+                    },
+                    {
+                        Name: "Second child",
+                    },
+                },
+            },
+        },
+    })
+    root.tree2 = tree.GetTree(&tree.Config{
+        Name: "Second",
+        CanBeHidden: true,
+        OnItemClick: func(item *tree.Item) error {
+            fmt.Println("item clicked")
+            return nil
+        },
+        Items: []*tree.Item{
+            {
+                Name: "First element",
+                IsDirectory: true,
+                Childes: []*tree.Item{
+                    {
+                        Name: "First element",
+                        IsDirectory: true,
+                        Childes: []*tree.Item{
+                            {
+                                Name: "First element",
+                                IsDirectory: true,
+                                Childes: []*tree.Item{
+                                    {
+                                        Name: "First element",
+                                        IsDirectory: true,
+                                        Childes: []*tree.Item{
+                                            {
+                                                Name: "First element",
+                                                IsDirectory: true,
+                                                Childes: []*tree.Item{
+                                                    {
+                                                        Name: "First child",
+                                                    },
+                                                    {
+                                                        Name: "Second child",
+                                                    },
+                                                },
+                                            },
+                                            {
+                                                Name: "Second element",
+                                            },
+                                        },
+                                    },
+                                    {
+                                        Name: "Second element",
+                                    },
+                                },
+                            },
+                            {
+                                Name: "Second element",
+                            },
+                        },
+                    },
+                    {
+                        Name: "Second element",
+                    },
+                },
+            },
+            {
+                Name: "Second element",
+            },
+        },
+    })
 
-				"layoutConfig": func(this *gas.C, values ...interface{}) (interface{}, error) {
-					return &layout.Config{
-						Type:        true,
-						LayoutClass: "layout",
-						GutterSize:  12,
-						// DragInterval: 15,
-						Sizes: []layout.Size{
-							{
-								Min:   15,
-								Max:   80,
-								Start: 40,
-							},
-							{
-								Min:   10,
-								Max:   90,
-								Start: 60,
-							},
-						},
-					}, nil
-				},
-				"layoutConfig2": func(this *gas.C, values ...interface{}) (interface{}, error) {
-					return &layout.Config{
-						Type:        false,
-						LayoutClass: "layout2",
-						GutterSize:  12,
-						// DragInterval: 15,
-						Sizes: []layout.Size{
-							{
-								Min:   15,
-								Max:   80,
-								Start: 40,
-							},
-							{
-								Min:   10,
-								Max:   90,
-								Start: 60,
-							},
-						},
-					}, nil
-				},
+    root.layout1 = layout.GetLayout(&layout.Config{
+        Type:        false,
+        LayoutClass: "layout",
+        GutterSize:  9,
+        // DragInterval: 15,
+        Sizes: []layout.Size{
+            {
+                Min:   15,
+                Max:   80,
+                Start: 30,
+            },
+            {
+                Min:   20,
+                Max:   90,
+                Start: 40,
+            },
+            {
+                Min:   10,
+                Max:   90,
+                Start: 30,
+            },
+        },
+    })
+    root.layout2 = layout.GetLayout(&layout.Config{
+        Type:        true,
+        LayoutClass: "layout2",
+        GutterSize:  9,
+        // DragInterval: 15,
+        Sizes: []layout.Size{
+            {
+                Min:   15,
+                Max:   80,
+                Start: 40,
+            },
+            {
+                Min:   20,
+                Max:   90,
+                Start: 30,
+            },
+            {
+                Min:   10,
+                Max:   90,
+                Start: 30,
+            },
+        },
+    })
+    root.layout3 = layout.GetLayout(&layout.Config{
+        Type: false,
+        LayoutClass: "layout3",
+        GutterSize:  9,
+        Sizes: []layout.Size{
+            {
+                Min:   15,
+                Max:   80,
+                Start: 40,
+            },
+            {
+                Min:   10,
+                Max:   90,
+                Start: 60,
+            },
+        },
+    })
 
-				"getFirstTree": func(this *gas.C, values ...interface{}) (interface{}, error) {
-					return tree.Config{
-						Name:        "First",
-						CanBeHidden: true,
+    root.vList1 = vlist.GetList(&vlist.Config{
+        Direction:   	 true,
+        Items:       	 root.vItems,
+        ChildHeight: 	 64,
+        ItemsWrapperTag: "ul",
+        Change: func(start, end int) error {
+            // this.ConsoleLog(start, end)
+            return nil
+        },
+    }, root.vlistItem1)
+    root.vList2 = vlist.GetList(&vlist.Config{
+        Direction:       false,
+        Items:           root.vItems,
+        ChildWidth:      128,
+        ChildHeight: 	 32,
+        ItemsWrapperTag: "ul",
+        Change: func(start, end int) error {
+            // this.ConsoleLog(start, end)
+            return nil
+        },
+    }, root.vlistItem2)
 
-						Events: tree.Events{
-							ItemClick: func(item tree.Item) error {
-								this.ConsoleLog("item in first tree was clicked")
-								return nil
-							},
-						},
+    c := S.RC(&gas.C{
+        Root: root,
+    })
+    root.c = c
 
-						Items: []tree.Item{
-							{
-								Name: "First element",
-							},
-							{
-								Name:        "Second element",
-								IsDirectory: true,
-								Childes: []tree.Item{
-									{
-										Name: "First child",
-									},
-									{
-										Name: "Second child",
-									},
-								},
-							},
-						},
-					}, nil
-				},
-				"getSecondTree": func(this *gas.C, values ...interface{}) (interface{}, error) {
-					return tree.Config{
-						Name:        "Second",
-						CanBeHidden: true,
+    return c.Init()
+}
 
-						Events: tree.Events{
-							ItemClick: func(item tree.Item) error {
-								this.ConsoleLog("item clicked")
-								return nil
-							},
-						},
+func (root *ComponentsPage) vlistItem1(item interface{}, i, start int) *gas.E {
+    return gas.NE(
+        &gas.E{
+            Tag: "li",
+            Binds: map[string]gas.Bind{
+                "style": func() string {
+                    //return fmt.Sprintf(`height: %dpx;`, root.vItemsHeight[i+start])
+                    return `height: 64px;`
+                },
+            },
+        },
+        item)
+}
 
-						Items: []tree.Item{
-							{
-								Name:        "First element",
-								IsDirectory: true,
-								Childes: []tree.Item{
-									{
-										Name: "First child",
-									},
-									{
-										Name: "Second child",
-									},
-								},
-							},
-							{
-								Name: "Second element",
-							},
-						},
-					}, nil
-				},
-
-				"getModal": func(this *gas.C, values ...interface{}) (interface{}, error) {
-					return modal.Config{
-						IsActive: this.Get("isActiveModal").(bool),
-						Closer: func() error {
-							this.SetValue("isActiveModal", false)
-							return nil
-						},
-						ClassName: "customModal",
-					}, nil
-				},
-
-				"vListConfig": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-					config := &vlist.Config{
-						Direction:   	 true,
-						Items:       	 this.Get("vItems").([]interface{}),
-						ChildHeight: 	 64,
-						ItemsWrapperTag: "ul",
-						Change: func(start, end int) error {
-							// this.ConsoleLog(start, end)
-							return nil
-						},
-					}
-
-					return config, nil
-				},
-				"vListConfig2": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-					config := &vlist.Config{
-						Direction:       false,
-						Items:           this.Get("vItems").([]interface{}),
-						ChildWidth:      128,
-						ItemsWrapperTag: "ul",
-						Change: func(start, end int) error {
-							// this.ConsoleLog(start, end)
-							return nil
-						},
-					}
-
-					return config, nil
-				},
-			},
-		},
-		componentsT), nil)
+func (root *ComponentsPage) vlistItem2(item interface{}, i, start int) *gas.E {
+    return gas.NE(
+        &gas.E{
+            Tag: "li",
+            Binds: map[string]gas.Bind{
+                "style": func() string {
+                    //return fmt.Sprintf(`width: %dpx;`, root.vItemsHeight[i+start]*2)*/
+                    return `width: 128px`
+                },
+            },
+        },
+        item)
 }
 
 func generateItems() []interface{} {
-	var arr []interface{}
-	for i := 0; i < 1000; i++ {
-		arr = append(arr, fmt.Sprintf("item #%d", i))
-	}
-	return arr
+    var arr []interface{}
+    for i := 0; i < 1000; i++ {
+        arr = append(arr, fmt.Sprintf("item #%d", i+1))
+    }
+    return arr
 }
 
-func generateItemsHeights() []int {
-	var arr []int
-	for i := 0; i < 1000; i++ {
-		rand.Seed(time.Now().UnixNano())
-		arr = append(arr, rand.Intn(96-64)+64)
-	}
-	return arr
-}
-
-var componentsT gas.GetComponentChildes
+/*func generateItemsHeights() []int {
+    rand.Seed(time.Now().UnixNano())
+    var arr []int
+    for i := 0; i < 1000; i++ {
+        arr = append(arr, rand.Intn(96-64)+64)
+    }
+    return arr
+}*/

@@ -1,138 +1,95 @@
 package components
 
 import (
-	"errors"
-
 	"github.com/gascore/gas"
 	r "github.com/gascore/std/router"
 
-	. "github.com/gascore/example/store"
+	. "github.com/gascore/wow/store"
 )
 
-func nameByI(i string) string {
-	switch i {
-	case "0":
+func TodoList(info r.RouteInfo) *gas.E {
+	root := &TodoPage{
+		i: info,
+		currentList: iByName(info.Params["type"]),
+	}
+
+	c := S.RC(&gas.C{
+		Root: root,
+		Watchers: map[string]gas.Watcher{
+			"currentText": func(val interface{}, e gas.Object) (string, error) {
+				if val != nil {
+					root.currentText = val.(string)
+				}
+
+				return root.currentText, nil
+			},
+		},
+	})
+	root.c = c
+
+	return c.Init()
+}
+
+type TodoPage struct {
+	c *gas.C
+	i r.RouteInfo
+
+	currentList int
+	currentText string
+}
+
+func (root *TodoPage) list() []interface{} {
+	return S.Get(nameByI(root.currentList)).([]interface{})
+}
+
+func (root *TodoPage) createNewTask() {
+	err := S.Emit("appendToList", "active", root.currentText)
+	if err != nil {
+		root.c.WarnError(err)
+		return
+	}
+
+	root.currentText = ""
+	root.c.UpdateWatchersValues("currentText", "")
+	root.changeList(0)
+}
+
+func (root *TodoPage) changeList(i int) {
+	root.currentList = i
+	root.i.ChangeRoute("/todo/"+nameByI(i), false)
+	go root.c.Update()
+}
+
+func (root *TodoPage) isActive(i int) string {
+	if root.currentList == i {
 		return "active"
-	case "1":
+	} else {
+		return ""
+	}
+}
+
+func nameByI(i int) string {
+	switch i {
+	case 0:
+		return "active"
+	case 1:
 		return "completed"
-	case "2":
+	case 2:
 		return "deleted"
 	default:
 		return "active"
 	}
 }
 
-func iByName(name string) string {
+func iByName(name string) int {
 	switch name {
 	case "active":
-		return "0"
+		return 0
 	case "completed":
-		return "1"
+		return 1
 	case "deleted":
-		return "2"
+		return 2
 	default:
-		return "0"
+		return 0
 	}
 }
-
-var listsList = []interface{}{"0", "1", "2"}
-
-func TodoList(i r.RouteInfo) *gas.Component {
-	return S.RC(gas.NC(
-		&gas.C{
-			Data: map[string]interface{}{
-				"currentList": iByName(i.Params["type"]),
-				"currentText": "",
-			},
-			Methods: map[string]gas.Method{
-				"isActive": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-					if this.Get("currentList").(string) == values[0].(string) {
-						return "active", nil
-					} else {
-						return "", nil
-					}
-				},
-				"changeList": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-					el, ok := values[0].(string)
-					if !ok {
-						return nil, errors.New("invalid index")
-					}
-
-					this.SetValue(`currentList`, el)
-
-					i.ChangeRoute("/todo/"+nameByI(el), false)
-
-					return nil, nil
-				},
-				"createNewTask": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-					currentText := this.Get("currentText").(string)
-					if len(currentText) == 0 {
-						return nil, nil
-					}
-
-					err := S.Emit("appendToList", "active", currentText)
-					if err != nil {
-						return nil, err
-					}
-
-					this.SetValue("currentText", "")
-					this.Method(`changeList`, `0`)
-					return nil, nil
-				},
-				"delete": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-					i, ok := values[0].(int)
-					if !ok {
-						return nil, errors.New("invalid index")
-					}
-
-					appendToDeleted, ok := values[1].(bool)
-					if !ok {
-						return nil, errors.New("invalid appendToDeleted")
-					}
-
-					err := S.Emit("deleteFromActive", i, appendToDeleted)
-					if err != nil {
-						return nil, err
-					}
-
-					this.SetValue("currentText", "")
-
-					return nil, nil
-				},
-				"markAsCompleted": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-					i, ok := values[0].(int)
-					if !ok {
-						return nil, errors.New("invalid index")
-					}
-
-					err := S.Emit("completeInActive", i)
-					if err != nil {
-						return nil, err
-					}
-
-					return nil, nil
-				},
-				"edit": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-					i, ok := values[0].(int)
-					if !ok {
-						return nil, errors.New("invalid index")
-					}
-
-					newValue, ok := values[1].(string)
-					if !ok {
-						return nil, errors.New("invalid new value")
-					}
-
-					err := S.Emit("editActive", i, newValue)
-					if err != nil {
-						return nil, err
-					}
-
-					return nil, nil
-				},
-			},
-		},
-		todoT), nil)
-}
-
-var todoT gas.GetComponentChildes

@@ -1,127 +1,97 @@
-<template>
-	<div id="examples" class="centerizeContent">
-	    <div class="contentBlock" id="hello-world">
+<template root="ExamplesPage">
+    <div id="examples" class="mini-block">
+        <div class="contentBlock">
 	        <header class="contentBlock-title">
                 Hello world
             </header>
             <div class="contentBlock-body">
-                <e run="examples.HelloWorld()"></e>
+                <e run="examples.Hello()"></e>
             </div>
 	    </div>
-	    <div class="contentBlock">
-            <header class="contentBlock-title">
-                Clicker and props
+        <div class="contentBlock">
+	        <header class="contentBlock-title">
+                Clicker
             </header>
             <div class="contentBlock-body">
-                <e run="examples.ClickerAndProps()"></e>
+                <e run="examples.Clicker()"></e>
             </div>
-        </div>
-	    <div class="contentBlock">
-            <header class="contentBlock-title">
-                If directive
+	    </div>
+        <div class="contentBlock">
+	        <header class="contentBlock-title">
+                If and For
             </header>
             <div class="contentBlock-body">
-                <e run="examples.IfDirective()"></e>
+                <e run="examples.IfAndFor()"></e>
             </div>
-        </div>
-	    <div class="contentBlock">
-            <header class="contentBlock-title">
-                For directive
-            </header>
-            <div class="contentBlock-body">
-                <e run="examples.ForDirective()"></e>
-            </div>
-        </div>
-	    <div class="contentBlock">
-            <header class="contentBlock-title">
+	    </div>
+        <div class="contentBlock">
+	        <header class="contentBlock-title">
                 Methods
             </header>
             <div class="contentBlock-body">
                 <e run="examples.Methods()"></e>
             </div>
-        </div>
-	    <div class="contentBlock">
-            <header class="contentBlock-title">
-                Model directive
+	    </div>
+        <div class="contentBlock">
+	        <header class="contentBlock-title">
+                Watchers and Binds
             </header>
             <div class="contentBlock-body">
-                <e run="examples.ModelDirective()"></e>
+                <e run="examples.WatchersAndBinds()"></e>
             </div>
-        </div>
-	    <div class="contentBlock">
-            <header class="contentBlock-title">
+	    </div>
+        <div class="contentBlock">
+	        <header class="contentBlock-title">
                 HTML directive
             </header>
             <div class="contentBlock-body">
                 <e run="examples.HTMLDirective()"></e>
             </div>
-        </div>
-	    <div class="contentBlock">
-            <header class="contentBlock-title">
-                Watchers
-            </header>
-            <div class="contentBlock-body">
-                <e run="examples.Watchers()"></e>
-            </div>
-        </div>
-	    <div class="contentBlock">
-            <header class="contentBlock-title">
+	    </div>
+        <div class="contentBlock">
+	        <header class="contentBlock-title">
                 Hooks
             </header>
             <div class="contentBlock-body">
                 <e run="examples.Hooks()"></e>
             </div>
-        </div>
-	    <div class="contentBlock">
-            <header class="contentBlock-title">
-                Binds
+	    </div>
+        <div class="contentBlock">
+	        <header class="contentBlock-title">
+                TODO
             </header>
-            <div class="contentBlock-body">
-                <e run="examples.Binds()"></e>
-            </div>
-        </div>
-	    <div class="contentBlock">
-            <header class="contentBlock-title">
-                TODO list
-            </header>
-            <div class="contentBlock-body">
+            <div class="contentBlock-body" id="todo">
                 <e run="examples.TODO()"></e>
             </div>
-        </div>
-	</div>
+	    </div>
+    </div>
 </template>
 
-<style type="text/scss">
-#examples {
-    #hello-world {
-            .greeting {
-                color: #00cc99;
-            }
-            h1 {
-                font-size: 32px;
-                .greeting {
-                    border-bottom: 1px solid #dedede;
-                }
-            }
-    }
-}
-</style>
-
 <script>
-package components
+    package components
 
-import (
-    r "github.com/gascore/std/router"
-    "github.com/gascore/gas"
-    "github.com/gascore/example/components/examples"
-    . "github.com/gascore/example/store"
-)
+    import (
+        r "github.com/gascore/std/router"
+        "github.com/gascore/gas"
+        "github.com/gascore/wow/components/examples"
+        . "github.com/gascore/wow/store"
+    )
 
-func Examples(info r.RouteInfo) *gas.Component {
-    return S.RC(gas.NC(
-        &gas.C{},
-        examplesT,), nil)
-}
+    type ExamplesPage struct {
+        c *gas.C
+        i r.RouteInfo
+    }
 
-var examplesT gas.GetComponentChildes
+    func Examples(info r.RouteInfo) *gas.E {
+        root := &ExamplesPage{
+            i: info,
+        }
+
+        c := S.RC(&gas.C{
+            Root: root,
+        })
+        root.c = c
+
+        return c.Init()
+    }
 </script>

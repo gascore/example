@@ -6,56 +6,59 @@ import (
 	"github.com/gascore/gas"
 )
 
-// Methods Example application #5
+// Example application #4
 //
-// 'methods' shows how you can use component.Methods
-func Methods() *gas.C {
-	return gas.NC(
-		&gas.Component{
-			Data: map[string]interface{}{
-				"show":   true,
-				"number": 1,
-			},
-			// What the difference between Methods and Computed?
-			// Methods will do business things.
-			// Computed will return value from data, libraries, /dev/random, e.t.c. with some changes (or just raw)
-			Methods: map[string]gas.Method{
-				"toggle": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-					this.SetValue("show", !this.Get("show").(bool))
+// 'methods' shows how you can call methods from child components.
+// Just use interface{Functions} or pass function as argument
+func Methods() *gas.E {
+	root := &MethodsRoot{
+		Show:  false,
+		Count: 0,
+	}
+	c := &gas.C{Root: root}
+	root.c = c
 
-					if this.Get("show").(bool) {
-						this.SetValue("number", this.Get("number").(int)+1)
-					}
-
-					return nil, nil
-				},
-				"number": func(this *gas.Component, values ...interface{}) (interface{}, error) {
-					this.ConsoleLog(fmt.Sprintf("Some values: %s", values[0].(string)))
-
-					currentNumber, ok := this.Get("number").(int)
-					this.WarnIfNot(ok) // it's good practise to your data for valid type
-					explanation := fmt.Sprintf("You showed hidden text: %d times", currentNumber)
-					return explanation, nil
-				},
-			},
-			Attrs: map[string]string{
-				"id": "M&C",
-			},
-		},
-		func(this *gas.Component) []interface{} {
-			return gas.CL(
-				methodsGetButton(this.Get("show").(bool), this.PocketMethod("toggle")),
-				methodsGetHiddenText(this.Get("show").(bool), this.PocketMethod("number")))
-		})
+	return c.Init()
 }
 
-func methodsGetButton(show bool, toggleMethod gas.PocketMethod) *gas.Component {
+type MethodsRoot struct {
+	c *gas.C
+
+	Show  bool
+	Count int
+}
+
+func (root *MethodsRoot) Toggle() {
+	root.Show = !root.Show
+	if root.Show {
+		root.Count++
+	}
+	root.c.Update()
+}
+
+func (root *MethodsRoot) Render() []interface{} {
+	return gas.CL(
+		getButton(root.Show, root), // with interface{}
+		func() interface{} {
+			if root.Show {
+				return getHiddenText(
+					root.Show,
+					func(text string) string { // with function as argument
+						fmt.Println("Some text from child component: ", text)
+						return fmt.Sprintf("You showed hidden text: %d times", root.Count)
+					})
+			}
+			return nil // nil will be ignored while rendering
+		}(),
+	)
+}
+
+func getButton(show bool, root interface{ Toggle() }) *gas.Element {
 	return gas.NE(
-		&gas.Component{
+		&gas.E{
 			Handlers: map[string]gas.Handler{
-				"click": func(this *gas.Component, e gas.Object) {
-					_, err := toggleMethod()
-					this.WarnError(err)
+				"click": func(e gas.Object) {
+					root.Toggle()
 				},
 			},
 			Tag: "button",
@@ -63,38 +66,22 @@ func methodsGetButton(show bool, toggleMethod gas.PocketMethod) *gas.Component {
 				"id": "M&C__button",
 			},
 		},
-		gas.NE(
-			&gas.C{
-				If: func(p *gas.C) bool {
-					return show
-				},
-			},
-			"Show text"),
-		gas.NE(
-			&gas.C{
-				If: func(p *gas.C) bool {
-					return !show
-				},
-			},
-			"Hide text"))
+		func() interface{} {
+			if show {
+				return "Show text"
+			} else {
+				return "Hide text"
+			}
+		}(),
+	)
 }
 
-func methodsGetHiddenText(show bool, getNumber gas.PocketMethod) *gas.Component {
-	return gas.NC(
-		&gas.Component{
-			If: func(c *gas.Component) bool {
-				return !show
-			},
+func getHiddenText(show bool, getNumber func(string) string) *gas.Element {
+	return gas.NE(
+		&gas.E{
 			Tag: "i",
 		},
-		func(this *gas.Component) []interface{} {
-			n, err := getNumber("something for computed")
-			this.WarnError(err)
-
-			return []interface{}{
-				"Hidden text",
-				fmt.Sprintf("  (%s)", n),
-			}
-		},
+		"Hidden text",
+		"  (", getNumber("something for method"), ")",
 	)
 }

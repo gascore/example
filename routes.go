@@ -1,79 +1,57 @@
 package main
 
 import (
-	c "github.com/gascore/example/components"
 	r "github.com/gascore/std/router"
+	c "github.com/gascore/wow/components"
 )
 
 var ctx = &r.Ctx{
-
 	Routes: []r.Route{
 		{
 			Name:      "home",
-			Component: c.Home,
+			Element:   c.Home,
 			Path:      "/",
 			Exact:     true,
 		},
 		{
-			Name:     "links-redirect",
-			Exact:    true,
-			Path:     "/link",
-			Redirect: "/links",
-		},
-		{
-			Name:     "link-redirect",
-			Exact:    true,
-			Path:     "/links/",
-			Redirect: "/links",
-		},
-		{
-			Name:      "link",
-			Component: c.Link,
-			Path:      "/links/:name",
-		},
-		{
-			Name:           "todo-redirect",
-			Exact:          true,
-			Path:           "/todo",
-			Redirect:       "todo-list",
-			RedirectParams: map[string]string{"type": "active"},
-		},
-		{
-			Name:     "todo-redirect",
-			Exact:    true,
-			Path:     "/todo/",
-			Redirect: "/todo/active",
-		},
-		{
-			Name:      "todo-list",
-			Component: c.TodoList,
-			Path:      "/todo/:type",
-		},
-		{
-			Name:      "links",
-			Component: c.Links,
-			Path:      "/links",
+			Name:      "about",
+			Element:   c.About,
+			Path:      "/about",
 			Exact:     true,
 		},
 		{
 			Name:      "components",
-			Component: c.Components,
+			Element:   c.Components,
 			Path:      "/components",
+			Exact:     true,
 		},
 		{
 			Name:      "examples",
-			Component: c.Examples,
+			Element:   c.Examples,
 			Path:      "/examples",
+			Exact:     true,
 		},
+		// {
+		// 	Name:           "todo-redirect",
+		// 	Exact:          true,
+		// 	Path:           "/todo",
+		// 	Redirect:       "todo-list",
+		// 	RedirectParams: map[string]string{"type": "active"},
+		// },
+		// {
+		// 	Name:     "todo-redirect",
+		// 	Exact:    true,
+		// 	Path:     "/todo/",
+		// 	Redirect: "/todo/active",
+		// },
 		{
-			Name:      "about",
-			Component: c.About,
-			Path:      "/about",
+			Name:    "todo-list",
+			Element: c.TodoList,
+			Path:    "/todo/:type",
 		},
 	},
 
 	Settings: r.Settings{
-		// BaseName: "/router",
 		HashMode: true,
 		GetUserConfirmation: func() bool {
 			return false
