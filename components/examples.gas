@@ -1,69 +1,69 @@
 <template root="ExamplesPage">
     <div id="examples" class="mini-block">
-        <div class="contentBlock">
+        <section class="contentBlock">
 	        <header class="contentBlock-title">
                 Hello world
             </header>
-            <div class="contentBlock-body">
+            <section class="contentBlock-body">
                 <e run="examples.Hello()"></e>
-            </div>
-	    </div>
-        <div class="contentBlock">
+            </section>
+	    </section>
+        <section class="contentBlock">
 	        <header class="contentBlock-title">
                 Clicker
             </header>
-            <div class="contentBlock-body">
+            <section class="contentBlock-body">
                 <e run="examples.Clicker()"></e>
-            </div>
-	    </div>
-        <div class="contentBlock">
+            </section>
+	    </section>
+        <section class="contentBlock">
 	        <header class="contentBlock-title">
                 If and For
             </header>
-            <div class="contentBlock-body">
+            <section class="contentBlock-body">
                 <e run="examples.IfAndFor()"></e>
-            </div>
-	    </div>
-        <div class="contentBlock">
+            </section>
+	    </section>
+        <section class="contentBlock">
 	        <header class="contentBlock-title">
                 Methods
             </header>
-            <div class="contentBlock-body">
+            <section class="contentBlock-body">
                 <e run="examples.Methods()"></e>
-            </div>
-	    </div>
-        <div class="contentBlock">
+            </section>
+	    </section>
+        <section class="contentBlock">
 	        <header class="contentBlock-title">
                 Watchers and Binds
             </header>
-            <div class="contentBlock-body">
+            <section class="contentBlock-body">
                 <e run="examples.WatchersAndBinds()"></e>
-            </div>
-	    </div>
-        <div class="contentBlock">
+            </section>
+	    </section>
+        <section class="contentBlock">
 	        <header class="contentBlock-title">
                 HTML directive
             </header>
-            <div class="contentBlock-body">
+            <section class="contentBlock-body">
                 <e run="examples.HTMLDirective()"></e>
-            </div>
-	    </div>
-        <div class="contentBlock">
+            </section>
+	    </section>
+        <section class="contentBlock">
 	        <header class="contentBlock-title">
                 Hooks
             </header>
-            <div class="contentBlock-body">
+            <section class="contentBlock-body">
                 <e run="examples.Hooks()"></e>
-            </div>
-	    </div>
-        <div class="contentBlock">
+            </section>
+	    </section>
+        <section class="contentBlock">
 	        <header class="contentBlock-title">
                 TODO
             </header>
-            <div class="contentBlock-body" id="todo">
+            <section class="contentBlock-body" id="todo">
                 <e run="examples.TODO()"></e>
-            </div>
-	    </div>
+            </section>
+	    </section>
     </div>
 </template>
 
@@ -73,8 +73,8 @@
     import (
         r "github.com/gascore/std/router"
         "github.com/gascore/gas"
-        "github.com/gascore/wow/components/examples"
-        . "github.com/gascore/wow/store"
+        "github.com/gascore/example/components/examples"
+        . "github.com/gascore/example/store"
     )
 
     type ExamplesPage struct {

@@ -1,16 +1,23 @@
 <template root="HomePage">
-    <div id="home" class="centerizeContent boxShadow page boxShadow-hover bg(#fff)">
-        <h1>
+    <div id="home" class="mini-block">
+        <h1 class="mb(0)">
             {{ root.msg }}
         </h1>
-        <div>
-          <e run="root.i.Link(`/examples`, false)">
+        <div class="d(flex) fxw(wrap)">
+          <e run="root.i.Link(`/examples`, false)" class="pretty-btn">
               Basic examples
           </e>
-        </div>
-        <div>
-          <e run="root.i.Link(`/components`, false)">
-              Standard components examples
+          <e run="root.i.Link(`/components`, false)" class="pretty-btn">
+              Components examples
+          </e>
+          <e run="root.i.Link(`/links`, false)" class="pretty-btn">
+              Links
+          </e>
+          <e run="root.i.Link(`/todo`, false)" class="pretty-btn">
+              TodoMVC
+          </e>
+          <e run="root.i.Link(`/about`, false)" class="pretty-btn">
+              About
           </e>
         </div>
     </div>
@@ -22,7 +29,6 @@
     import (
         r "github.com/gascore/std/router"
         "github.com/gascore/gas"
-        . "github.com/gascore/wow/store"
     )
 
     type HomePage struct {
@@ -35,14 +41,22 @@
     func Home(info r.RouteInfo) *gas.E {
         root := &HomePage{
             i: info,
-            msg: "Hello world!",
+            msg: "Hello from gas framework!",
         }
 
-        c := S.RC(&gas.C{
+        c := &gas.C{
             Root: root,
-        })
+        }
         root.c = c
 
         return c.Init()
     }
 </script>
+
+<style>
+    #home {
+        a {
+            margin: .8rem .8rem 0 0;
+        }
+    }
+</style>

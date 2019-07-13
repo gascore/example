@@ -1,0 +1,66 @@
+<template root="LinkPage">
+    <div id="link" class="nano-block">
+        <div class="boxShadow page fz(22px) p(.8rem,1.2rem) d(flex) bg(#fff)">
+            <div class="m(auto)">
+                {{ root.text }}
+            </div>
+            <span class="m(0,.4rem)">
+                <a g-bind:href="fmt.Sprintf(`https://github.com/gascore/%s`, root.name)" class="pretty-btn" target="_blank">
+                    {{ root.name }}
+                </a>
+            </span>
+        </div>
+        <div class="c(dark-gray) fz(14px) m(.3rem,0,0,.4rem)">
+            <e run="root.i.Link(`/links`, false)" class="d(flex)">
+                <i class="icon icon-back m(auto,.4em,auto,0) fz(12px)"></i>
+                <span class="fz(16px) d(block)">
+                    Back to all links
+                </span>
+            </e>
+        </div>
+    </div>
+</template>
+
+<script>
+    package components
+
+    import (
+        "fmt"
+        r "github.com/gascore/std/router"
+        "github.com/gascore/gas"
+        . "github.com/gascore/example/store"
+    )
+
+    type LinkPage struct {
+        c *gas.C
+        i r.RouteInfo
+
+        name string
+        text string
+    }
+
+    func Link(info r.RouteInfo) *gas.E {
+        root := &LinkPage{
+            i: info,
+            name: info.Params["name"],
+        }
+
+        switch root.name {
+        case "gas":
+            root.text = "Gas - frontend golang framework"
+        case "example":
+            root.text = "Gas framework example application"
+        case "gasx":
+            root.text = "CLI for gas apps"
+        case "std":
+            root.text = "Gas framework standard library"
+        }
+
+        c := S.RC(&gas.C{
+            Root: root,
+        })
+        root.c = c
+
+        return c.Init()
+    }
+</script>

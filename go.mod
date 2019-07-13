@@ -1,10 +1,10 @@
-module github.com/gascore/wow
+module github.com/gascore/example
 
 go 1.12
 
 require (
-	github.com/gascore/gas v0.0.0-20190710122019-c34dbff8668b
-	github.com/gascore/std v0.0.0-20190710121949-716c0962f387
+	github.com/gascore/gas v0.0.0-20190713061103-ac55a14c37f7
+	github.com/gascore/std v0.0.0-20190713060925-326bf866a8df
 	gitlab.com/golang-commonmark/html v0.0.0-20180917080848-cfaf75183c4a // indirect
 	gitlab.com/golang-commonmark/linkify v0.0.0-20180917065525-c22b7bdb1179 // indirect
 	gitlab.com/golang-commonmark/markdown v0.0.0-20181102083822-772775880e1f

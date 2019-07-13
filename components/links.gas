@@ -1,0 +1,63 @@
+<template root="LinksPage">
+    <div id="links" class="nano-block">
+        <h1 class="m(auto,.6rem,auto,0)">
+            Links
+        </h1>
+        <ul class="no-list" id="links-list">
+            <li g-for="_, link := range root.links">
+                <e run="root.i.LinkWithParams(`link`, map[string]string{`name`: link}, nil, false)" class="pretty-btn">
+                    {{ link }}
+                </e>
+            </li>
+        </ul>
+    </div>
+</template>
+
+<script>
+    package components
+
+    import (
+        r "github.com/gascore/std/router"
+        "github.com/gascore/gas"
+        . "github.com/gascore/example/store"
+    )
+
+    type LinksPage struct {
+        c *gas.C
+        i r.RouteInfo
+
+        links []string
+    }
+
+    func Links(info r.RouteInfo) *gas.E {
+        root := &LinksPage{
+            i: info,
+            links: []string{"gas","std","gasx","example"},
+        }
+
+        c := S.RC(&gas.C{
+            Root: root,
+        })
+        root.c = c
+
+        return c.Init()
+    }
+</script>
+
+<style>
+    #links {
+        h1 {
+            font-family: 'Poppins', sans-serif;
+        }
+        #links-list{
+            display: flex;
+            margin: 0;
+            padding: 0;
+            li {
+                margin: 0;
+                padding: 0;
+                margin-right: .4rem;
+            }
+        }
+    }
+</style>

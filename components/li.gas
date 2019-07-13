@@ -33,7 +33,7 @@ package components
 
 import (
     "github.com/gascore/gas"
-	. "github.com/gascore/wow/store"
+	. "github.com/gascore/example/store"
 )
 
 func getLi(i, listType int, el string) *gas.E {
@@ -73,6 +73,7 @@ type TodoLi struct {
 }
 
 func (root *TodoLi) goEdit() {
+    //return // TODO: remove it
     if root.listType != 0 {
         return
     }
@@ -83,15 +84,19 @@ func (root *TodoLi) goEdit() {
 }
 
 func (root *TodoLi) goCreate() {
-	err := S.Emit("editActive", root.i, root.newValue)
+	newValue := root.newValue
+    root.c.UpdateWatchersValues("newValue", "")
+
+    root.isEditing = false
+    root.newValue = ""
+
+    root.c.Update()
+
+    err := S.Emit("editActive", root.i, newValue)
     if err != nil {
         root.c.WarnError(err)
         return
     }
-    
-    //root.c.UpdateWatchersValues("newValue", "")
-    root.isEditing = false
-    root.newValue = ""
 }
 
 </script>

@@ -23,6 +23,10 @@ github.com/gascore/gas v0.0.0-20190706095709-0049cd98bea4 h1:4t5SbAv6hwC2HbOM53O
 github.com/gascore/gas v0.0.0-20190706095709-0049cd98bea4/go.mod h1:VIJq6dMrwKffC7Arrft9KPY6f3SPCK1FN08l07RBgAw=
 github.com/gascore/gas v0.0.0-20190710122019-c34dbff8668b h1:a8JHZA7vMk0Am6ppvsA3loAYmPrmX+Uv58Rp5o+bzBc=
 github.com/gascore/gas v0.0.0-20190710122019-c34dbff8668b/go.mod h1:VIJq6dMrwKffC7Arrft9KPY6f3SPCK1FN08l07RBgAw=
+github.com/gascore/gas v0.0.0-20190712065822-f56f1412e91e h1:y8HvwznCXYTvoT30obK6yF25MlZiT4Rs8dv0RN4vGnk=
+github.com/gascore/gas v0.0.0-20190712065822-f56f1412e91e/go.mod h1:VIJq6dMrwKffC7Arrft9KPY6f3SPCK1FN08l07RBgAw=
+github.com/gascore/gas v0.0.0-20190713061103-ac55a14c37f7 h1:ozMayfnSwQEJIsYm8GtJL/WLiIAqDyg6Yo17Om1e6OA=
+github.com/gascore/gas v0.0.0-20190713061103-ac55a14c37f7/go.mod h1:VIJq6dMrwKffC7Arrft9KPY6f3SPCK1FN08l07RBgAw=
 github.com/gascore/std v0.0.0-20190618063601-e7dee8fdb9e5/go.mod h1:HqD+yvU3BCT7kl6NHSe9wu/XhzSP7+hCeTsZrdcDqvE=
 github.com/gascore/std v0.0.0-20190702074601-22232cfa07a3 h1:d0AW3r82lHxBHBj3Xx5Xq7TeZxqlMdL5GQXyVjemrB0=
 github.com/gascore/std v0.0.0-20190702074601-22232cfa07a3/go.mod h1:wrowFAdlFnDb/F/llWjAxVM6oTXLd62zjtjRF5uRy2E=
@@ -30,6 +34,10 @@ github.com/gascore/std v0.0.0-20190706095637-c76dd41eb02a h1:EgFI/xrKIovdUikMTYc
 github.com/gascore/std v0.0.0-20190706095637-c76dd41eb02a/go.mod h1:wrowFAdlFnDb/F/llWjAxVM6oTXLd62zjtjRF5uRy2E=
 github.com/gascore/std v0.0.0-20190710121949-716c0962f387 h1:gmTEBl1il3CAipRiUttqPcZDSUr5kpWLMfER7kQSCM0=
 github.com/gascore/std v0.0.0-20190710121949-716c0962f387/go.mod h1:wrowFAdlFnDb/F/llWjAxVM6oTXLd62zjtjRF5uRy2E=
+github.com/gascore/std v0.0.0-20190712065847-95b681fe16a6 h1:Q7zJcoj84IP2H0R3qq7HBvhbhF/cHNb6YM7yisPgO7w=
+github.com/gascore/std v0.0.0-20190712065847-95b681fe16a6/go.mod h1:wrowFAdlFnDb/F/llWjAxVM6oTXLd62zjtjRF5uRy2E=
+github.com/gascore/std v0.0.0-20190713060925-326bf866a8df h1:Jo9829/Soh5RoprHE4D4HlT7bBp9SSVxAU0aTJDwN3w=
+github.com/gascore/std v0.0.0-20190713060925-326bf866a8df/go.mod h1:edSpPBqEPaE7AFQrcczG694NHQmGDiWEOLw6KSgs6LA=
 github.com/gopherjs/gopherjs v0.0.0-20190430165422-3e4dfb77656c/go.mod h1:wJfORRmW1u3UXTncJ5qlYoELFm8eSnnEO6hX4iZ3EWY=
 github.com/gorilla/websocket v1.4.0/go.mod h1:E7qHFY5m1UJ88s3WnNqhKjPHQ0heANvMoAMk2YaljkQ=
 github.com/hashicorp/hcl v1.0.0/go.mod h1:E5yfLk+7swimpb2L/Alb/PJmXilQ/rhwaUYs4T20WEQ=

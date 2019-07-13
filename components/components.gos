@@ -5,7 +5,6 @@ import (
 
     "github.com/gascore/gas"
     r "github.com/gascore/std/router"
-    . "github.com/gascore/wow/store"
 
     "github.com/gascore/std/components/modal"
     "github.com/gascore/std/components/tree"
@@ -258,9 +257,9 @@ func Components(info r.RouteInfo) *gas.E {
         },
     }, root.vlistItem2)
 
-    c := S.RC(&gas.C{
+    c := &gas.C{
         Root: root,
-    })
+    }
     root.c = c
 
     return c.Init()

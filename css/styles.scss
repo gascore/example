@@ -68,7 +68,7 @@
 
 .mini-block {
     @media (min-width: 0px) {
-        width: 100%;
+        width: 94%;
     }
     @media (min-width: 840px) {
         width: 62%;
@@ -113,17 +113,19 @@
 }
 
 .pretty-btn {
+    border: none;
     display: inline-block;
     padding: 13px 19px;
     border-radius: 30px;
     background: #388ffe;
-    -webkit-box-shadow: 0 9px 12px -6px rgba(11, 132, 242, .78);
-    box-shadow: 0 9px 12px -6px rgba(11, 132, 242, .78);
+    cursor: pointer;
     font-size: 16px;
+    color: #fff;
     -webkit-transition: all .15s ease;
     transition: all .15s ease;
+    -webkit-box-shadow: 0 9px 12px -6px rgba(11, 132, 242, .78);
+    box-shadow: 0 9px 12px -6px rgba(11, 132, 242, .78);
     will-change: background-color, box-shadow;
-    color: #fff;
     &:hover {
         text-decoration: none;
         color: #fff;

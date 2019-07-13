@@ -2,11 +2,11 @@
 
 <template root="ComponentsPage">
     <div id="components" class="centerizeContent">
-        <div class="contentBlock">
+        <section class="contentBlock">
             <header class="contentBlock-title">
                 Basic Drag and drop
             </header>
-            <div class="contentBlock-body dndFreeBoundary">
+            <section class="contentBlock-body dndFreeBoundary">
                 <e run="root.dndFree1()">
                     Basic example
                 </e>
@@ -23,29 +23,29 @@
                 <e run="root.dndFree5()">
                     <span>Xdispabled</span>
                 </e>
-            </div>
-        </div>
+            </section>
+        </section>
 
-        <div class="contentBlock">
+        <section class="contentBlock">
             <header class="contentBlock-title">
                 Virtual list
             </header>
 
-            <div class="contentBlock-body">
+            <section class="contentBlock-body">
                 <div class="vlist-contentBlock h(70vw) h(50vw)--sm h(25vw)--md mb(1em)">
                     <e run="root.vList1"></e>
                 </div>
                 <div class="vlist-contentBlock h(25vw) h(15vw)--sm h(5vw)--md w(100%)" id="vlist-vert">
                     <e run="root.vList2"></e>
                 </div>
-            </div>
-        </div>
+            </section>
+        </section>
 
-        <div class="contentBlock">
+        <section class="contentBlock">
             <header class="contentBlock-title">
                 Layout
             </header>
-            <div class="contentBlock-body">
+            <section class="contentBlock-body">
                 <div id="layout-contentBlock">
                     <e run="root.layout1()">
                         <div class="layout-item-bd">
@@ -72,16 +72,16 @@
                         </div>
                     </e>
                 </div>
-            </div>
-        </div>
+            </section>
+        </section>
 
-        <div class="contentBlock">
+        <section class="contentBlock">
             <header class="contentBlock-title">
                 Modal
             </header>
 
-            <div class="contentBlock-body">
-                <button class="h(2.4rem) w(6rem) btn" @click="root.toggleModal()">
+            <section class="contentBlock-body">
+                <button class="h(2.4rem) w(6rem) pretty-btn" @click="root.toggleModal()">
                     <span g-if="root.isActiveModal">
                         Hide
                     </span>
@@ -103,20 +103,20 @@
                         </div>
                     </div>
                 </e>
-            </div>
-        </div>
+            </section>
+        </section>
 
-        <div class="contentBlock">
+        <section class="contentBlock">
             <header class="contentBlock-title">
                 Tree
             </header>
-            <div class="contentBlock-body">
+            <section class="contentBlock-body">
                 <div id="trees">
                     <e run="root.tree1"></e>
                     <e run="root.tree2"></e>
                 </div>
-            </div>
-        </div>
+            </section>
+        </section>
     </div>
 </template>
 
