@@ -10,12 +10,22 @@ import (
     "github.com/gascore/std/components/tree"
     "github.com/gascore/std/components/layout"
     "github.com/gascore/std/components/vlist"
-    dndFree "github.com/gascore/std/components/dnd/free"
+    dndFree  "github.com/gascore/std/components/dnd/free"
+    dndLists "github.com/gascore/std/components/dnd/lists"
 )
 
 type ComponentsPage struct {
     c *gas.C
     i r.RouteInfo
+
+    dndLists1 gas.DynamicElement
+    dndLists2 gas.DynamicElement
+    dndLists3 gas.DynamicElement
+    dndListsA gas.DynamicElement
+    dndTodo       []interface{}
+    dndInProgress []interface{}
+    dndDone       []interface{}
+    dndA          []interface{}
 
     dndFree1 gas.DynamicElement
     dndFree2 gas.DynamicElement
@@ -48,7 +58,45 @@ func Components(info r.RouteInfo) *gas.E {
         i: info,
         vItems: generateItems(),
         //vItemsHeight:  generateItemsHeights(),
+
+        dndTodo:       []interface{}{"Pick up groceries", "Go home", "Fall asleep"},
+        dndInProgress: []interface{}{"Get to work", "Check e-mail"},
+        dndDone:       []interface{}{"Get up", "Brush teeth", "Take a shower", "Walk dog"},
+        dndA:          []interface{}{"lorem", "ipsum", "dolore"},
     }
+
+    root.dndLists1 = dndLists.Lists(&dndLists.Config{
+        This:             root,
+        Group:            "dnd",
+        FieldName:        "dndTodo",
+        GroupClass:       "dnd",
+        PreviewClass:     "dnd-preview",
+        PlaceholderClass: "dnd-placeholder",
+    })
+    root.dndLists2 = dndLists.Lists(&dndLists.Config{
+        This:             root,
+        Group:            "dnd",
+        FieldName:        "dndInProgress",
+        GroupClass:       "dnd",
+        PreviewClass:     "dnd-preview",
+        PlaceholderClass: "dnd-placeholder",
+    })
+    root.dndLists3 = dndLists.Lists(&dndLists.Config{
+        This:             root,
+        Group:            "dnd",
+        FieldName:        "dndDone",
+        GroupClass:       "dnd",
+        PreviewClass:     "dnd-preview",
+        PlaceholderClass: "dnd-placeholder",
+    })
+    root.dndListsA = dndLists.Lists(&dndLists.Config{
+        This:             root,
+        Group:            "dnd",
+        FieldName:        "dndA",
+        GroupClass:       "dnd",
+        PreviewClass:     "dnd-preview",
+        PlaceholderClass: "dnd-placeholder",
+    })
 
     root.dndFree1 = dndFree.GetDNDFree(&dndFree.Config{
         Class:    "dndFree",
@@ -291,6 +339,41 @@ func (root *ComponentsPage) vlistItem2(item interface{}, i, start int) *gas.E {
             },
         },
         item)
+}
+
+func (root *ComponentsPage) DndListSet(listName string, arr []interface{}) {
+    switch listName {
+        case "dndTodo":
+            root.dndTodo = arr
+        case "dndInProgress":
+            root.dndInProgress = arr
+        case "dndDone":
+            root.dndDone = arr
+        case "dndA":
+            root.dndA = arr
+        default:
+            root.c.ConsoleError("invalid listName in Set")
+    }
+}
+
+func (root *ComponentsPage) DndListGet(listName string) []interface{} {
+    switch listName {
+        case "dndTodo":
+            return root.dndTodo
+        case "dndInProgress":
+            return root.dndInProgress
+        case "dndDone":
+            return root.dndDone
+        case "dndA":
+            return root.dndA
+        default:
+            root.c.ConsoleError("invalid listName in Set")
+            return []interface{}{}
+    }
+}
+
+func (root *ComponentsPage) DndListUpdate() {
+    root.c.Update()
 }
 
 func generateItems() []interface{} {

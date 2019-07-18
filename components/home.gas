@@ -1,8 +1,6 @@
 <template root="HomePage">
     <div id="home" class="mini-block">
-        <h1 class="mb(0)">
-            {{ root.msg }}
-        </h1>
+        <img src="/logo.svg" class="d-block m(0,auto) w(256px)--sm w(512px)--md" />
         <div class="d(flex) fxw(wrap)">
           <e run="root.i.Link(`/examples`, false)" class="pretty-btn">
               Basic examples
@@ -34,14 +32,11 @@
     type HomePage struct {
         c *gas.C
         i r.RouteInfo
-
-        msg string
     }
 
     func Home(info r.RouteInfo) *gas.E {
         root := &HomePage{
             i: info,
-            msg: "Hello from gas framework!",
         }
 
         c := &gas.C{

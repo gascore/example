@@ -108,6 +108,62 @@
 
         <section class="contentBlock">
             <header class="contentBlock-title">
+                <div>
+                    Drag and drop linked lists
+                </dvi>
+                <div class="c(#ff0033) fz(.8rem)">
+                    Broken. Will fix soon
+                </div>
+            </header>
+            
+            <section class="contentBlock-body">
+                <div id="dnds" class="d(flex) fxf(row,wrap) p(0)">
+                    <div id="dnd1">
+                        <h3>
+                            To do
+                        </h3>  
+                        <e run="root.dndLists1()">
+                            <div g-for="_, item := range root.dndTodo">
+                                {{ item }}
+                            </div>
+                        </e>
+                    </div>
+                    <div id="dnd2">
+                        <h3>
+                            In progress
+                        </h3>
+                        <e run="root.dndLists2()">
+                            <div g-for="_, item := range root.dndInProgress">
+                                {{ item }}
+                            </div>
+                        </e>
+                    </div>
+                    <div id="dnd3">
+                        <h3>
+                            Done
+                        </h3>
+                        <e run="root.dndLists3()">
+                            <div g-for="_, item := range root.dndDone">
+                                {{ item }}
+                            </div>
+                        </e>
+                    </div>
+                    <div id="dndA">
+                        <h3>
+                            Lipsum
+                        </h3>
+                        <e run="root.dndListsA()">
+                            <div g-for="_, item := range root.dndA">
+                                {{ item }}
+                            </div>
+                        </e>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section class="contentBlock">
+            <header class="contentBlock-title">
                 Tree
             </header>
             <section class="contentBlock-body">
@@ -186,6 +242,8 @@
                 margin-bottom: 8px;
             }
         }
+
+        // layout
         .layout {
             height: 50vh;
             @media(max-width:750px) {
@@ -228,6 +286,7 @@
             }
         }
 
+        // vlist
         .vlist {
             border-radius: 0.3rem;
             border: 1px solid #388ffe;
@@ -258,6 +317,80 @@
                     }
                 }
             }
+        }
+
+        // dnd-lists
+        .dnd-group {
+            min-height: 96px;
+            min-width: 192px;
+            list-style-type: none;
+            padding: 2px 4px 12px 4px;
+            margin: 0;
+            height: 100%;
+        }
+        .dnd-group-contentBlock {
+            height: 100%;
+            width: 100%;
+        }
+
+        .dnd {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 0;
+            list-style-type: none;
+
+            display: inline-block;
+            vertical-align: top;
+
+            min-height: 64px;
+            min-width: 148px;
+            max-width: 100%;
+            background: white;
+            overflow: hidden;
+            
+            .dnd-placeholder {
+                opacity: 0;
+            }
+
+            .dnd-item {
+                background: #ffffff;
+                border-bottom: 1px solid #ccc;
+                padding: .4em .8em .2em .8em;
+                min-height: 2.6rem;
+
+                &:last-child {
+                    border-bottom: 0;
+                }
+
+                .dnd-preview {
+                    //box-sizing: border-box;
+                    border-radius: 4px;
+                    border: 1px solid #ccc;
+                    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+                }
+            }
+        }
+        #dnds {
+            h3 {
+                font-size: 1.05rem;
+            }
+
+            #dndLipsum {
+                .dnd-item {
+                    color: #302ECD;
+                }
+            }
+
+            #dnd1, #dnd2, #dnd3, #dndA {
+                margin: 0 .2rem;
+                padding: 0;
+                display: inline-block;
+            }
+        }
+        .dnd-dragging .dnd:not(.dnd-placeholder) {
+            transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
         }
     }
 </style>
