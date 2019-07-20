@@ -11,7 +11,8 @@ func Clicker() *gas.E {
 	}
 
 	c := &gas.C{
-		Root: root,
+		NotPointer: true,
+		Root:       root,
 	}
 
 	root.c = c

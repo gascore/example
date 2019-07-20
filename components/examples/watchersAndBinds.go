@@ -18,7 +18,8 @@ func WatchersAndBinds() *gas.E {
 	}
 
 	c := &gas.C{
-		Root: root,
+		NotPointer: true,
+		Root:       root,
 		Watchers: map[string]gas.Watcher{
 			"text": func(val interface{}, e gas.Object) (string, error) {
 				if val == nil { // default value

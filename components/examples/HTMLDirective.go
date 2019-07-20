@@ -7,7 +7,7 @@ import "github.com/gascore/gas"
 // 'htmlDirective' shows how you can use component.Directive.HTML
 func HTMLDirective() *gas.E {
 	root := &HTMLRoot{}
-	c := &gas.C{Root: root}
+	c := &gas.C{NotPointer: true, Root: root}
 	root.c = c
 
 	return c.Init()

@@ -10,7 +10,7 @@ func IfAndFor() *gas.E {
 		Show: false,
 		Arr:  []string{"click", "here", "if you want to see some magic"},
 	}
-	c := &gas.C{Root: root}
+	c := &gas.C{NotPointer: true, Root: root}
 	root.c = c
 
 	return c.Init()

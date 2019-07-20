@@ -3,7 +3,7 @@ module github.com/gascore/example
 go 1.12
 
 require (
-	github.com/gascore/gas v0.0.0-20190718093852-c504dec168d6
+	github.com/gascore/gas v0.0.0-20190720095919-ef4be14becac
 	github.com/gascore/std v0.0.0-20190718094442-aefb12ea6c03
 	gitlab.com/golang-commonmark/html v0.0.0-20180917080848-cfaf75183c4a // indirect
 	gitlab.com/golang-commonmark/linkify v0.0.0-20180917065525-c22b7bdb1179 // indirect

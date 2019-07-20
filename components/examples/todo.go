@@ -17,7 +17,8 @@ func TODO() *gas.E {
 	}
 
 	c := &gas.C{
-		Root: root,
+		NotPointer: true,
+		Root:       root,
 		Watchers: map[string]gas.Watcher{
 			"newTask": func(val interface{}, e gas.Object) (string, error) {
 				if val != nil {

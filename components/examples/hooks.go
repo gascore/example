@@ -7,7 +7,7 @@ import "github.com/gascore/gas"
 // 'hooks' shows how you can use component.Hooks
 func Hooks() *gas.E {
 	root := &HooksRoot{}
-	c := &gas.C{Root: root}
+	c := &gas.C{NotPointer: true, Root: root}
 
 	return c.Init()
 }

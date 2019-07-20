@@ -15,7 +15,7 @@ func Methods() *gas.E {
 		Show:  false,
 		Count: 0,
 	}
-	c := &gas.C{Root: root}
+	c := &gas.C{NotPointer: true, Root: root}
 	root.c = c
 
 	return c.Init()

@@ -18,6 +18,14 @@
 	    </section>
         <section class="contentBlock">
 	        <header class="contentBlock-title">
+                FunctionalComponent
+            </header>
+            <section class="contentBlock-body">
+                <e run="examples.FunctionalExample()"></e>
+            </section>
+	    </section>
+        <section class="contentBlock">
+	        <header class="contentBlock-title">
                 If and For
             </header>
             <section class="contentBlock-body">

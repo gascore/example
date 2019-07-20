@@ -12,7 +12,8 @@ func getHooker() *gas.E {
 	}
 
 	c := &gas.C{
-		Root: root,
+		NotPointer: true,
+		Root:       root,
 		Hooks: gas.Hooks{
 			BeforeCreated: func() (bool, error) {
 				fmt.Println("BeforeCreated")

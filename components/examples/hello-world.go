@@ -37,10 +37,11 @@ func (root *HelloRoot) Render() []interface{} {
 // 'hello-world' shows how you can create components, component.Data and component.Attributes
 func Hello() *gas.E {
 	c := &gas.C{
+		NotPointer: true,
 		Root: &HelloRoot{
 			Hello: "Hello world!",
 		},
 	}
-	
+
 	return c.Init()
 }
