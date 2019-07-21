@@ -1,5 +1,7 @@
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/armon/consul-api v0.0.0-20180202201655-eb2c6b5be1b6/go.mod h1:grANhF5doyWs3UAsr3K4I6qtAmlQcZDesFNEHPZAzj8=
+github.com/cheekybits/genny v1.0.0 h1:uGGa4nei+j20rOSeDeP5Of12XVm7TGUd4dJA9RDitfE=
+github.com/cheekybits/genny v1.0.0/go.mod h1:+tQajlRqAUrPI7DOSpB0XAqZYtQakVtB7wXkRAgjxjQ=
 github.com/coreos/etcd v3.3.10+incompatible/go.mod h1:uF7uidLiAD3TWHmW31ZFd/JWoc32PjwdhPthX9715RE=
 github.com/coreos/go-etcd v2.0.0+incompatible/go.mod h1:Jez6KQU2B/sWsbdaef3ED8NzMklzPG4d5KIOhIy30Tk=
 github.com/coreos/go-semver v0.2.0/go.mod h1:nnelYz7RCh+5ahJtPPxZlU+153eP4D4r3EedlOD2RNk=
@@ -35,6 +37,10 @@ github.com/gascore/gas v0.0.0-20190720095540-2d02b2ea2118 h1:rQvMkq2SzuCW2cvlajf
 github.com/gascore/gas v0.0.0-20190720095540-2d02b2ea2118/go.mod h1:VIJq6dMrwKffC7Arrft9KPY6f3SPCK1FN08l07RBgAw=
 github.com/gascore/gas v0.0.0-20190720095919-ef4be14becac h1:36WjhDR5FMTKrguZhE9sFzZDAveNc4TGaFzV0honc2k=
 github.com/gascore/gas v0.0.0-20190720095919-ef4be14becac/go.mod h1:VIJq6dMrwKffC7Arrft9KPY6f3SPCK1FN08l07RBgAw=
+github.com/gascore/gas v0.0.0-20190720125416-69b32341d277 h1:n8/g65Xeuh4luuZBP6qBx7sm0+HXzJKhnWSGgVKhaYE=
+github.com/gascore/gas v0.0.0-20190720125416-69b32341d277/go.mod h1:VIJq6dMrwKffC7Arrft9KPY6f3SPCK1FN08l07RBgAw=
+github.com/gascore/gas v0.0.0-20190721153927-6c0bce5de61b h1:NXIYctdzkjRc6A0mGBe4h8t4Dtfvltj/6VDSxE0uIyY=
+github.com/gascore/gas v0.0.0-20190721153927-6c0bce5de61b/go.mod h1:BgWK0MU2H3HFRByBlwFEFJ1vXD1PZ95ker4bXyPLckI=
 github.com/gascore/std v0.0.0-20190618063601-e7dee8fdb9e5/go.mod h1:HqD+yvU3BCT7kl6NHSe9wu/XhzSP7+hCeTsZrdcDqvE=
 github.com/gascore/std v0.0.0-20190702074601-22232cfa07a3 h1:d0AW3r82lHxBHBj3Xx5Xq7TeZxqlMdL5GQXyVjemrB0=
 github.com/gascore/std v0.0.0-20190702074601-22232cfa07a3/go.mod h1:wrowFAdlFnDb/F/llWjAxVM6oTXLd62zjtjRF5uRy2E=
@@ -87,6 +93,8 @@ golang.org/x/crypto v0.0.0-20181203042331-505ab145d0a9/go.mod h1:6SG95UA2DQfeDnf
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/crypto v0.0.0-20190611184440-5c40567a22f8/go.mod h1:yigFU9vqHzYiE8UmvKecakEJjdnWj3jj499lnFckfCI=
 golang.org/x/net v0.0.0-20190404232315-eb5bcb51f2a3/go.mod h1:t9HGtf8HONx5eT2rtn7q6eTqICYqUVnKs3thJo3Qplg=
+golang.org/x/net v0.0.0-20190620200207-3b0461eec859/go.mod h1:z5CRVTTTmAJ677TzLLGU+0bjPO0LkuOLi4/5GtJWs/s=
+golang.org/x/sync v0.0.0-20190423024810-112230192c58/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
 golang.org/x/sys v0.0.0-20181205085412-a5c9d58dba9a/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/sys v0.0.0-20190215142949-d0b11bdaac8a/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/sys v0.0.0-20190412213103-97732733099d/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
@@ -95,5 +103,6 @@ golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.2 h1:tW2bmiBqwgJj/UpqtC8EpXEZVYOwU0yG4iWbprSVAcs=
 golang.org/x/text v0.3.2/go.mod h1:bEr9sfX3Q8Zfm5fL9x+3itogRgK3+ptLWKqgva+5dAk=
 golang.org/x/tools v0.0.0-20180917221912-90fa682c2a6e/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
+golang.org/x/tools v0.0.0-20190719005602-e377ae9d6386/go.mod h1:jcCCGcm9btYwXyDqrUWc6MKQKKGJCWEQ3AfLSRIbEuI=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
