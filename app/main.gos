@@ -3,7 +3,7 @@ package main
 import (
     "github.com/gascore/gas"
     "github.com/gascore/gas/web"
-    . "github.com/gascore/wow/app/store"
+    . "github.com/gascore/example/app/store"
 )
 
 func main() {

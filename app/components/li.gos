@@ -2,7 +2,7 @@ package components
 
 import (
     "github.com/gascore/gas"
-	. "github.com/gascore/wow/app/store"
+	. "github.com/gascore/example/app/store"
 )
 
 func getLi(i, listType int, el string) *gas.E {

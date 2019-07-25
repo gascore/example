@@ -1,4 +1,4 @@
-module github.com/gascore/wow/builder
+module github.com/gascore/example/builder
 
 go 1.12
 

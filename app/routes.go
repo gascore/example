@@ -2,7 +2,7 @@ package main
 
 import (
 	r "github.com/gascore/std/router"
-	c "github.com/gascore/wow/app/components"
+	c "github.com/gascore/example/app/components"
 )
 
 var ctx = &r.Ctx{

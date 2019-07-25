@@ -1,4 +1,4 @@
-module github.com/gascore/wow/app
+module github.com/gascore/example/app
 
 go 1.12
 

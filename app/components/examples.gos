@@ -3,7 +3,7 @@ package components
 import (
     r "github.com/gascore/std/router"
     "github.com/gascore/gas"
-    "github.com/gascore/wow/app/components/examples"
+    "github.com/gascore/example/app/components/examples"
 )
 
 type ExamplesPage struct {
