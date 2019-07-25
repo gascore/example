@@ -10,7 +10,7 @@
 ### Gettings started:
 
 ```bash
-go install github.com/gascore/gasx
-chmod 777 -R $GOPATH/pkg/mod
-gasx run
+go get github.com/gascore/example
+cd $GOPATH/src/github.com/gascore/example
+sh build.sh
 ```

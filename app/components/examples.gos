@@ -1,0 +1,44 @@
+package components
+
+import (
+    r "github.com/gascore/std/router"
+    "github.com/gascore/gas"
+    "github.com/gascore/wow/app/components/examples"
+)
+
+type ExamplesPage struct {
+    c *gas.C
+    i r.RouteInfo
+}
+
+func Examples(info r.RouteInfo) *gas.E {
+    return gas.NF(func(f *gas.F)[]interface{} {
+        examples := []struct{
+            name string
+            element *gas.E
+        }{
+            {"Hello world",examples.Hello()},
+            {"Clicker",examples.Clicker()},
+            {"FunctionalComponent",examples.FunctionalExample()},
+            {"If and For",examples.IfAndFor()},
+            {"Methods",examples.Methods()},
+            {"Watchers and Binds",examples.WatchersAndBinds()},
+            {"HTML directive",examples.HTMLDirective()},
+            {"Hooks",examples.Hooks()},
+            {"TODO",examples.TODO()},
+        }
+        
+        return $html{
+        <div id="examples" class="mini-block">
+            <section class="contentBlock" g-for="_, example := range examples">
+                <header class="contentBlock-title">
+                    {{ example.name }}
+                </header>
+                <section class="contentBlock-body">
+                    <e run="example.element"></e>
+                </section>
+            </section>
+        </div>
+        }$
+    }, false)
+}

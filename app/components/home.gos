@@ -1,0 +1,33 @@
+package components
+
+import (
+    r "github.com/gascore/std/router"
+    "github.com/gascore/gas"
+)
+
+func Home(i r.RouteInfo) *gas.E {
+    return gas.NF(func(f *gas.F) []interface{} {
+        return $html{
+            <div id="home" class="mini-block">
+                <img src="/logo.svg" class="d-block m(0,auto) w(256px)--sm w(512px)--md" />
+                <div class="d(flex) fxw(wrap)">
+                    <e run="i.Link(`/examples`, false)" class="pretty-btn">
+                        Basic examples
+                    </e>
+                    <e run="i.Link(`/components`, false)" class="pretty-btn">
+                        Components examples
+                    </e>
+                    <e run="i.Link(`/links`, false)" class="pretty-btn">
+                        Links
+                    </e>
+                    <e run="i.Link(`/todo`, false)" class="pretty-btn">
+                        TodoMVC
+                    </e>
+                    <e run="i.Link(`/about`, false)" class="pretty-btn">
+                        About
+                    </e>
+                </div>
+            </div>
+        }$
+    }, false)
+}

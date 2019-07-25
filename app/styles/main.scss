@@ -1,0 +1,70 @@
+@import "styles.scss";
+@import "pages.scss";
+@import "components.scss";
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    font-family: 'Roboto', sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+#app {
+    height: 100%;
+    background-image: linear-gradient(180deg, #F0F8FF 0%, #fff 50%);
+}
+
+#app-wrap {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+a,
+b,
+strong,
+i {
+    display: inline-block;
+}
+
+header#main-header {
+    background: inherit;
+    a {
+        color: #2969b9;
+    }
+}
+
+footer {
+    color: rgba(0, 0, 0, 0.54);
+    background-image: linear-gradient(0deg, #DFF8FF 0%, #fff 65%);
+    #main-footer_createdWith-love {
+        .svg-icon path,
+        .svg-icon polygon,
+        .svg-icon rect {
+            fill: #ff0033;
+        }
+    }
+}
+
+
+/* styles for svg icons */
+
+.svg-icon {
+    width: 1em;
+    height: 1em;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+    fill: #4691f6;
+}
+
+.svg-icon circle {
+    stroke: #4691f6;
+    stroke-width: 1;
+}

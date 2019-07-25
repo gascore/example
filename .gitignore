@@ -1,4 +1,7 @@
-
+clear.sh
+dist/
+log.txt
+build
 .gaslock
 web_modules
 dist

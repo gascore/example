@@ -1,0 +1,32 @@
+#todoList {
+    .todo-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #todo-footer { 
+        nav {
+            a {
+                text-decoration: none;
+                cursor: pointer;
+                margin: 0 .24em;
+                
+                padding: 4px;
+            }
+            a:hover {
+                padding: 3px;
+                border: 1px solid #807FE2;
+                border-radius: .4rem;
+            }
+            a.active {
+                padding: 3px;
+                border: 1px solid #5755d9;
+                border-radius: .4rem;
+            }
+            &:first-child {
+                margin: 0 .24em 0 0;
+            }
+        }
+    }
+}
