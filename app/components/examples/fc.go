@@ -7,15 +7,17 @@ import (
 )
 
 func FunctionalExample() *gas.E {
-	return gas.NF(func(f *gas.F) []interface{} {
-		counter, setCounter := f.UseStateInt(0)
-		msg, setMsg := f.UseStateString("")
+	f := &gas.F{}
 
-		f.UseEffect(func() error {
-			fmt.Println("UseEffect", counter(), msg())
-			return nil
-		})
+	counter, setCounter := f.UseStateInt(0)
+	msg, setMsg := f.UseStateString("")
 
+	f.UseEffect(func() error {
+		fmt.Println("UseEffect", counter(), msg())
+		return nil
+	})
+
+	return f.Init(false, func() []interface{} {
 		return gas.CL(
 			gas.NE(
 				&gas.E{},
@@ -31,5 +33,5 @@ func FunctionalExample() *gas.E {
 				msg(),
 			),
 		)
-	}, false)
+	})
 }

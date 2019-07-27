@@ -93,7 +93,7 @@ func Components(info r.RouteInfo) *gas.E {
         ClassName: "modal-window",
     })
 
-    root.tree1 = tree.GetTree(&tree.Config{
+    root.tree1 = tree.Config{
         Name:        "First",
         CanBeHidden: true,
         OnItemClick: func(item *tree.Item) error {
@@ -117,8 +117,8 @@ func Components(info r.RouteInfo) *gas.E {
                 },
             },
         },
-    })
-    root.tree2 = tree.GetTree(&tree.Config{
+    }.Init()
+    root.tree2 = tree.Config{
         Name: "Second",
         CanBeHidden: true,
         OnItemClick: func(item *tree.Item) error {
@@ -178,7 +178,7 @@ func Components(info r.RouteInfo) *gas.E {
                 Name: "Second element",
             },
         },
-    })
+    }.Init()
 
     root.layout1 = layout.GetLayout(&layout.Config{
         Type:        false,
@@ -310,7 +310,7 @@ type ComponentsPage struct {
 
 func (root *ComponentsPage) Render() []interface{} {
     return $html{
-    <div id="components" class="centerizeContent">
+    <div id="components" class="mini-block">
         <section class="contentBlock">
             <header class="contentBlock-title">
                 Basic Drag and drop
@@ -521,7 +521,6 @@ func (root *ComponentsPage) DndListSet(listName string, arr []interface{}) {
             root.c.ConsoleError("invalid listName in Set")
     }
 }
-
 func (root *ComponentsPage) DndListGet(listName string) []interface{} {
     switch listName {
         case "dndTodo":
@@ -537,7 +536,6 @@ func (root *ComponentsPage) DndListGet(listName string) []interface{} {
             return []interface{}{}
     }
 }
-
 func (root *ComponentsPage) DndListUpdate() {
     root.c.Update()
 }

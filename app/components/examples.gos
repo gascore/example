@@ -12,23 +12,24 @@ type ExamplesPage struct {
 }
 
 func Examples(info r.RouteInfo) *gas.E {
-    return gas.NF(func(f *gas.F)[]interface{} {
-        examples := []struct{
-            name string
-            element *gas.E
-        }{
-            {"Hello world",examples.Hello()},
-            {"Clicker",examples.Clicker()},
-            {"FunctionalComponent",examples.FunctionalExample()},
-            {"If and For",examples.IfAndFor()},
-            {"Methods",examples.Methods()},
-            {"Watchers and Binds",examples.WatchersAndBinds()},
-            {"HTML directive",examples.HTMLDirective()},
-            {"Hooks",examples.Hooks()},
-            {"TODO",examples.TODO()},
-        }
+    f := &gas.F{}
+    
+    examples := []struct{
+        name string
+        element *gas.E
+    }{
+        {"Hello world",examples.Hello()},
+        {"Clicker",examples.Clicker()},
+        {"FunctionalComponent",examples.FunctionalExample()},
+        {"If and For",examples.IfAndFor()},
+        {"Methods",examples.Methods()},
+        {"Watchers and Binds",examples.WatchersAndBinds()},
+        {"HTML directive",examples.HTMLDirective()},
+        {"Hooks",examples.Hooks()},
+        {"TODO",examples.TODO()},
+    }
         
-        return $html{
+    return f.Init(false, $htmlF{
         <div id="examples" class="mini-block">
             <section class="contentBlock" g-for="_, example := range examples">
                 <header class="contentBlock-title">
@@ -39,6 +40,5 @@ func Examples(info r.RouteInfo) *gas.E {
                 </section>
             </section>
         </div>
-        }$
-    }, false)
+    }$)
 }

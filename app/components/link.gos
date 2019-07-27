@@ -15,22 +15,23 @@ type LinkPage struct {
 }
 
 func Link(i r.RouteInfo) *gas.E {
-    return gas.NF(func(f *gas.F) []interface{} {
-        name := i.Params["name"]
+    f := &gas.F{}
 
-        var text string 
-        switch name {
-        case "gas":
-            text = "Gas - frontend golang framework"
-        case "example":
-            text = "Gas framework example application"
-        case "gasx":
-            text = "CLI for gas apps"
-        case "std":
-            text = "Gas framework standard library"
-        }
+    name := i.Params["name"]
 
-        return $html{
+    var text string 
+    switch name {
+    case "gas":
+        text = "Gas - frontend golang framework"
+    case "example":
+        text = "Gas framework example application"
+    case "gasx":
+        text = "CLI for gas apps"
+    case "std":
+        text = "Gas framework standard library"
+    }
+
+    return f.Init(false, $htmlF{
         <div id="link" class="nano-block">
             <div class="boxShadow page fz(22px) p(.8rem,1.2rem) d(flex) bg(#fff)">
                 <div class="m(auto)">
@@ -51,6 +52,5 @@ func Link(i r.RouteInfo) *gas.E {
                 </e>
             </div>
         </div>
-        }$
-    }, false)
+    }$)
 }

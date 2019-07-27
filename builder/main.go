@@ -67,7 +67,7 @@ func compileCode(builder *gasx.Builder, platform string) {
 	gasx.Log("Compiling code")
 	switch platform {
 	case "gopherjs":
-		builder.RunCommand(fmt.Sprintf("cd app; gopherjs build -o ../dist/index.js; cd .."))
+		builder.RunCommand(fmt.Sprintf("cd app; gopherjs build -m -o ../dist/index.js; cd .."))
 	case "wasm":
 		builder.RunCommand(fmt.Sprintf("cd app; GOOS=js GOARCH=wasm go build -o ../dist/main.wasm; cd .."))
 		builder.NewFile("dist/index.js", gasx.GetWASMExecScript())

@@ -26,8 +26,7 @@
                 touch-action: none;
                 border-radius: .6rem;
                 box-shadow: rgba(125, 128, 147, 0.23) 0px 3px 11px 0px;
-                transition: box-shadow .5s;
-                animatopn: slide-down .2s ease 1;
+                transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
                 &:hover,
                 &:focus {
                     box-shadow: rgba(125, 128, 147, 0.46) 0px 3px 11px 0px;
@@ -35,6 +34,8 @@
             }
             .dndFree-active,
             .dndFreeWithHandle-active {
+                touch-action: none;
+                user-select: none;
                 box-shadow: rgba(125, 128, 147, 0.46) 0px 3px 11px 0px;
             }
             .dndFreeWithHandle {
@@ -60,6 +61,18 @@
         }
     }
     // layout
+    .layout-item-bd {
+        border: 1px solid #388ffe;
+        border-radius: 0.3rem;
+        padding: 4px 8px;
+        padding: .5em .3em;
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 100%;
+        width: 100%;
+        font-size: 20px;
+        color: #2E75D6;
+    }
     .layout {
         height: 50vh;
         @media(max-width: 750px) {
@@ -76,18 +89,6 @@
         .layout2-item {
             height: 100%;
         }
-    }
-    .layout-item-bd {
-        border: 1px solid #388ffe;
-        border-radius: 0.3rem;
-        padding: 4px 8px;
-        padding: .5em .3em;
-        overflow-x: hidden;
-        overflow-y: auto;
-        height: 100%;
-        width: 100%;
-        font-size: 20px;
-        color: #2E75D6;
     }
     .layout3 {
         height: 100%;

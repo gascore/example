@@ -13,21 +13,21 @@ type LinksPage struct {
 }
 
 func Links(i r.RouteInfo) *gas.E {
-    return gas.NF(func(f *gas.F) []interface{} {
-        links := []string{"gas","std","gasx","example"}
-        return $html{
-            <div id="links" class="nano-block">
-                <h1 class="m(auto,.6rem,auto,0) ff('Poppins', sans-serif)">
-                    Links
-                </h1>
-                <ul class="no-list d(flex) m(0) p(0)" id="links-list">
-                    <li g-for="_, link := range links" class="m(0,.4rem,0,0) p(0)">
-                        <e run="i.LinkWithParams(`link`, map[string]string{`name`: link}, nil, false)" class="pretty-btn">
-                            {{ link }}
-                        </e>
-                    </li>
-                </ul>
-            </div>
-        }$
-    }, false)
+    f := &gas.F{}
+    links := []string{"gas","std","gasx","example"}
+    
+    return f.Init(false, $htmlF{
+        <div id="links" class="nano-block">
+            <h1 class="m(auto,.6rem,auto,0) ff('Poppins', sans-serif)">
+                Links
+            </h1>
+            <ul class="no-list d(flex) m(0) p(0)" id="links-list">
+                <li g-for="_, link := range links" class="m(0,.4rem,0,0) p(0)">
+                    <e run="i.LinkWithParams(`link`, map[string]string{`name`: link}, nil, false)" class="pretty-btn">
+                        {{ link }}
+                    </e>
+                </li>
+            </ul>
+        </div>
+    }$)
 }
