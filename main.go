@@ -10,7 +10,7 @@ import (
 
 const (
 	lockFileName   = ".gaslock"
-	platform       = "gopherjs"
+	platform       = "wasm"
 	ignoreExternal = true
 )
 
