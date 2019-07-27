@@ -12,5 +12,5 @@
 ```bash
 go get github.com/gascore/example
 cd $GOPATH/src/github.com/gascore/example
-sh build.sh
+go run main.go
 ```
