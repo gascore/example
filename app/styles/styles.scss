@@ -1,6 +1,5 @@
 .contentBlock {
     border-radius: .4rem;
-    margin: 1.2em 0.2em;
     border: 1px solid #388ffe;
     background: #fff;
     .contentBlock-title {
@@ -16,6 +15,10 @@
         padding: .8rem 1rem;
         border-radius: .4rem;
     }
+}
+
+.blocksList>*+* {
+    margin-top: 1rem;
 }
 
 .boxShadow {

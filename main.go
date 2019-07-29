@@ -50,7 +50,7 @@ func main() {
 			},
 			[]string{"_gas.go"}, 
 			[]string{}, 
-			[]string{"app/components", "app/static", "app/store", "app/styles"},
+			[]string{"app/"},
 		))
 	}
 }
@@ -120,5 +120,8 @@ func compileCode(builder *gasx.Builder, platform string) {
 }
 
 func serve() {
-	currentSrv = gasx.ServeDir(":8080", currentDir+"/dist")
+	currentSrv = &http.Server{Addr: ":8080", Handler: http.FileServer(http.Dir(currentDir+"/dist"))}
+	go func() {
+		currentSrv.ListenAndServe()
+	}()
 }

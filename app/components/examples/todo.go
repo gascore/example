@@ -90,89 +90,94 @@ func (root *TODORoot) Render() []interface{} {
 	return gas.CL(
 		gas.NE(
 			&gas.E{
-				Tag:   "style",
-				Attrs: map[string]string{"type": "text/css"},
-				HTML: gas.HTMLDirective{
-					Render: func() string {
-						return styles
-					},
-				},
-			},
-		),
-		gas.NE(
-			&gas.E{
 				Attrs: map[string]string{
-					"id": "todo-main",
+					"id": "todo-wrap",
 				},
 			},
 			gas.NE(
 				&gas.E{
-					Tag: "nav",
+					Tag:   "style",
+					Attrs: map[string]string{"type": "text/css"},
+					HTML: gas.HTMLDirective{
+						Render: func() string {
+							return styles
+						},
+					},
 				},
-				getNavEl(0, root.CurrentList, "Current", root),
-				getNavEl(1, root.CurrentList, "Completed", root),
-				getNavEl(2, root.CurrentList, "Deleted", root),
 			),
 			gas.NE(
 				&gas.E{
-					Watcher: "newTask",
-					Tag:     "input",
-					Handlers: map[string]gas.Handler{
-						"keyup.enter": func(e gas.Object) {
-							root.Add()
-						},
-					},
 					Attrs: map[string]string{
-						"id":          "todo-new",
-						"placeholder": "New task",
+						"id": "todo-main",
 					},
 				},
+				gas.NE(
+					&gas.E{
+						Tag: "nav",
+					},
+					getNavEl(0, root.CurrentList, "Current", root),
+					getNavEl(1, root.CurrentList, "Completed", root),
+					getNavEl(2, root.CurrentList, "Deleted", root),
+				),
+				gas.NE(
+					&gas.E{
+						Watcher: "newTask",
+						Tag:     "input",
+						Handlers: map[string]gas.Handler{
+							"keyup.enter": func(e gas.Object) {
+								root.Add()
+							},
+						},
+						Attrs: map[string]string{
+							"id":          "todo-new",
+							"placeholder": "New task",
+						},
+					},
+				),
+				func() interface{} {
+					switch root.CurrentList {
+					case 0:
+						return getList(0, root.current, root)
+					case 1:
+						return getList(1, root.done, root)
+					case 2:
+						return getList(2, root.deleted, root)
+					default:
+						return nil
+					}
+				}(),
 			),
-			func() interface{} {
-				switch root.CurrentList {
-				case 0:
-					return getList(0, root.current, root)
-				case 1:
-					return getList(1, root.done, root)
-				case 2:
-					return getList(2, root.deleted, root)
-				default:
-					return nil
-				}
-			}(),
-		),
-		gas.NE(
-			&gas.E{
-				Attrs: map[string]string{
-					"class": "footer",
+			gas.NE(
+				&gas.E{
+					Tag: "footer",
 				},
-			},
-			gas.NE(
-				&gas.E{},
-				"Double-click to edit a task"),
-			gas.NE(
-				&gas.E{},
-				"Created by",
 				gas.NE(
-					&gas.E{
-						Tag: "a",
-						Attrs: map[string]string{
-							"href":   "https://noartem.github.io/",
-							"target": "_blank",
-						},
-					},
-					"Noskov Artem"),
-				"with",
+					&gas.E{},
+					"Double-click to edit a task"),
 				gas.NE(
-					&gas.E{
-						Tag: "a",
-						Attrs: map[string]string{
-							"href":   "https://gascore.github.io",
-							"target": "_blank",
+					&gas.E{},
+					"Created by",
+					gas.NE(
+						&gas.E{
+							Tag: "a",
+							Attrs: map[string]string{
+								"href":   "https://noartem.github.io/",
+								"target": "_blank",
+							},
 						},
-					},
-					"GAS framework"),
-				"and love",
+						"Noskov Artem"),
+					"with",
+					gas.NE(
+						&gas.E{
+							Tag: "a",
+							Attrs: map[string]string{
+								"href":   "https://gascore.github.io",
+								"target": "_blank",
+							},
+						},
+						"GAS framework"),
+					"and love",
+				),
 			),
 		),
 	)

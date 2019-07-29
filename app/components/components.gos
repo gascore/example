@@ -14,7 +14,7 @@ import (
     dndLists "github.com/gascore/std/components/dnd/lists"
 )
 
-func Components(info r.RouteInfo) *gas.E {
+func Components(info *r.RouteInfo) *gas.E {
     root := &ComponentsPage{
         i: info,
         vItems: generateItems(),
@@ -120,7 +120,6 @@ func Components(info r.RouteInfo) *gas.E {
     }.Init()
     root.tree2 = tree.Config{
         Name: "Second",
-        CanBeHidden: true,
         OnItemClick: func(item *tree.Item) error {
             fmt.Println("item clicked")
             return nil
@@ -156,6 +155,51 @@ func Components(info r.RouteInfo) *gas.E {
                                             },
                                             {
                                                 Name: "Second element",
+                                                IsDirectory: true,
+                                                Childes: []*tree.Item{
+                                                    {
+                                                        Name: "First element",
+                                                        IsDirectory: true,
+                                                        Childes: []*tree.Item{
+                                                            {
+                                                                Name: "First element",
+                                                                IsDirectory: true,
+                                                                Childes: []*tree.Item{
+                                                                    {
+                                                                        Name: "First element",
+                                                                        IsDirectory: true,
+                                                                        Childes: []*tree.Item{
+                                                                            {
+                                                                                Name: "First element",
+                                                                                IsDirectory: true,
+                                                                                Childes: []*tree.Item{
+                                                                                    {
+                                                                                        Name: "First child",
+                                                                                    },
+                                                                                    {
+                                                                                        Name: "Second child",
+                                                                                    },
+                                                                                },
+                                                                            },
+                                                                            {
+                                                                                Name: "Second element",
+                                                                            },
+                                                                        },
+                                                                    },
+                                                                    {
+                                                                        Name: "Second element",
+                                                                    },
+                                                                },
+                                                            },
+                                                            {
+                                                                Name: "Second element",
+                                                            },
+                                                        },
+                                                    },
+                                                    {
+                                                        Name: "Second element",
+                                                    },
+                                                },
                                             },
                                         },
                                     },
@@ -276,7 +320,7 @@ func Components(info r.RouteInfo) *gas.E {
 
 type ComponentsPage struct {
     c *gas.C
-    i r.RouteInfo
+    i *r.RouteInfo
 
     dndLists1 gas.DynamicElement
     dndLists2 gas.DynamicElement
@@ -310,7 +354,7 @@ type ComponentsPage struct {
 
 func (root *ComponentsPage) Render() []interface{} {
     return $html{
-    <div id="components" class="mini-block">
+    <div id="components" class="mini-block blocksList">
         <section class="contentBlock">
             <header class="contentBlock-title">
                 Basic Drag and drop
@@ -334,7 +378,6 @@ func (root *ComponentsPage) Render() []interface{} {
                 </e>
             </section>
         </section>
-
         <section class="contentBlock">
             <header class="contentBlock-title">
                 Virtual list
@@ -349,7 +392,6 @@ func (root *ComponentsPage) Render() []interface{} {
                 </div>
             </section>
         </section>
-
         <section class="contentBlock">
             <header class="contentBlock-title">
                 Layout
@@ -383,7 +425,6 @@ func (root *ComponentsPage) Render() []interface{} {
                 </div>
             </section>
         </section>
-
         <section class="contentBlock">
             <header class="contentBlock-title">
                 Modal
@@ -414,7 +455,6 @@ func (root *ComponentsPage) Render() []interface{} {
                 </e>
             </section>
         </section>
-
         <section class="contentBlock">
             <header class="contentBlock-title">
                 <div>
@@ -470,7 +510,6 @@ func (root *ComponentsPage) Render() []interface{} {
                 </div>
             </section>
         </section>
-
         <section class="contentBlock">
             <header class="contentBlock-title">
                 Tree
@@ -482,6 +521,14 @@ func (root *ComponentsPage) Render() []interface{} {
                 </div>
             </section>
         </section>
+        <div class="d(flex)">
+            <e run="ctx.Link(`/examples`)" class="d(flex) m(0) pretty-btn">
+                <i class="icon icon-back m(auto,0,auto,.4em) fz(12px)"></i>
+                <span class="fz(16px) d(block)">
+                    Basic examples
+                </span>
+            </e>
+        </div>
     </div>
     }$
 }

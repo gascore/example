@@ -1,29 +1,37 @@
 package components
 
 import (
-    r "github.com/gascore/std/router"
     "github.com/gascore/gas"
+    r "github.com/gascore/std/router"
+
+    "github.com/gascore/example/app/router"
 )
 
-func Home(i r.RouteInfo) *gas.E {
+var ctx *r.Ctx
+
+func InitComponents() {
+    ctx = router.Ctx()
+}
+
+func Home(i *r.RouteInfo) *gas.E {
     f := &gas.F{}
     return f.Init(false, $htmlF{
         <div id="home" class="mini-block">
             <img src="/logo.svg" class="d-block m(0,auto) w(256px)--sm w(512px)--md" />
             <div class="d(flex) fxw(wrap)">
-                <e run="i.Link(`/examples`, false)" class="pretty-btn">
+                <e run="ctx.Link(`/examples`)" class="pretty-btn">
                     Basic examples
                 </e>
-                <e run="i.Link(`/components`, false)" class="pretty-btn">
+                <e run="ctx.Link(`/examples/components`)" class="pretty-btn">
                     Components examples
                 </e>
-                <e run="i.Link(`/links`, false)" class="pretty-btn">
+                <e run="ctx.Link(`/links`)" class="pretty-btn">
                     Links
                 </e>
-                <e run="i.Link(`/todo`, false)" class="pretty-btn">
+                <e run="ctx.Link(`/todo`)" class="pretty-btn">
                     TodoMVC
                 </e>
-                <e run="i.Link(`/about`, false)" class="pretty-btn">
+                <e run="ctx.Link(`/about`)" class="pretty-btn">
                     About
                 </e>
             </div>

@@ -32,13 +32,12 @@ i {
 }
 
 header#main-header {
-    background: inherit;
     a {
         color: #2969b9;
     }
 }
 
-footer {
+footer#main-footer {
     color: rgba(0, 0, 0, 0.54);
     background-image: linear-gradient(0deg, #DFF8FF 0%, #fff 65%);
     #main-footer_createdWith-love {

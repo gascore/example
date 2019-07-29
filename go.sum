@@ -1,10 +1,14 @@
 bou.ke/monkey v1.0.1/go.mod h1:FgHuK96Rv2Nlf+0u1OOVDpCMdsWyOFmeeketDHE7LIg=
 github.com/cheekybits/genny v1.0.0 h1:uGGa4nei+j20rOSeDeP5Of12XVm7TGUd4dJA9RDitfE=
 github.com/cheekybits/genny v1.0.0/go.mod h1:+tQajlRqAUrPI7DOSpB0XAqZYtQakVtB7wXkRAgjxjQ=
+github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/fatih/color v1.7.0 h1:DkWD4oS2D8LGGgTQ6IvwJJXSL5Vp2ffcQg58nFV38Ys=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/frankenbeanies/uuid4 v0.0.0-20180313125435-68b799ec299a h1:oxdqt7Y3J6/prhpMQ7msE7CanS51pzHb8NF44PCSoXY=
 github.com/frankenbeanies/uuid4 v0.0.0-20180313125435-68b799ec299a/go.mod h1:MmPmk1AfyaEzDM+9n93pi02xKEqUgZMj+AL/oX65TDE=
+github.com/gascore/dom v0.2.2-0.20190611062109-bf287aeb9be4/go.mod h1:/7ZercooCCuLkNI6Ef7z9iMGIY6pTaBS3BHjjctLQto=
+github.com/gascore/gas v0.0.0-20190729134409-88d0bb373830 h1:WX3aKgtS7C2olUMI2PCoPeOp4YrbNcTytmsT6XUCC28=
+github.com/gascore/gas v0.0.0-20190729134409-88d0bb373830/go.mod h1:Ie9T1NhbD719W7WdsLryTZiC/LBZ+o6e3vsy5r8GH54=
 github.com/gascore/gasx v0.0.0-20190722103050-029adec9f002 h1:u+ifxqxxVUqfFla/2QDXN/1JQfb0OZc5bqkNx8FNANc=
 github.com/gascore/gasx v0.0.0-20190722103050-029adec9f002/go.mod h1:7X4DTmys4yzrCL5C0CHsD7UEIWHUbbUKBTti371z0AU=
 github.com/gascore/gasx v0.0.0-20190722103916-a0424697ce21 h1:IgO2G5DbzWGWxtLVzQ6mw2q6S1oZmxJWXYrmri7RSMI=
@@ -17,6 +21,7 @@ github.com/gascore/gasx v0.0.0-20190727090641-179970be50c3 h1:CPi8zgWLF3P5Arc1rA
 github.com/gascore/gasx v0.0.0-20190727090641-179970be50c3/go.mod h1:nR4Ndm/WVJuHRyA31tV8cUNgrrY080UyZpKfSc2M8Co=
 github.com/gascore/gasx v0.0.0-20190727102359-70c0c86c27bd h1:JaFVIBmrCztguSfp4zqpG0k6SS/MRP/X6QBg9xttmL0=
 github.com/gascore/gasx v0.0.0-20190727102359-70c0c86c27bd/go.mod h1:WUCG5uRwVPRb8JHgmWrnvWRMVX4QoJ+3py7uBtIzHGw=
+github.com/gorilla/websocket v1.4.0/go.mod h1:E7qHFY5m1UJ88s3WnNqhKjPHQ0heANvMoAMk2YaljkQ=
 github.com/json-iterator/go v1.1.5 h1:gL2yXlmiIo4+t+y32d4WGwOjKGYcGOuyrg46vadswDE=
 github.com/json-iterator/go v1.1.5/go.mod h1:+SdeFBvtyEkXs7REEP0seUULqWtbJapLOCVDaaPEHmU=
 github.com/kouhin/envflag v0.0.0-20150818174321-0e9a86061649 h1:l95EUBxc0iMtMeam3pHFb9jko9ntaLYe2Nc+2evKElM=
@@ -34,8 +39,11 @@ github.com/modern-go/reflect2 v1.0.1/go.mod h1:bx2lNnkwVCuqBIxFjflWJWanXIb3Rllmb
 github.com/otiai10/copy v1.0.1 h1:gtBjD8aq4nychvRZ2CyJvFWAw0aja+VHazDdruZKGZA=
 github.com/otiai10/copy v1.0.1/go.mod h1:8bMCJrAqOtN/d9oyh5HR7HhLQMvcGMpGdwRDYsfOCHc=
 github.com/otiai10/mint v1.2.3/go.mod h1:YnfyPNhBvnY8bW4SGQHCs/aAFhkgySlMZbrF5U0bOVw=
+github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/radovskyb/watcher v1.0.6 h1:8WIQ9UxEYMZjem1OwU7dVH94DXXk9mAIE1i8eqHD+IY=
 github.com/radovskyb/watcher v1.0.6/go.mod h1:78okwvY5wPdzcb1UYnip1pvrZNIVEIh/Cm+ZuvsUYIg=
+github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
+github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UVUgZn+9EI=
 github.com/visualfc/fastmod v0.0.0-20190714050813-3600cbe34ad5 h1:FuGn4YpG80MHJ2F817yeZsSFMfnpXUYHJsuU5+W6AT8=
 github.com/visualfc/fastmod v0.0.0-20190714050813-3600cbe34ad5/go.mod h1:qklLSKOIVNIn5SdfGlics3Ljx4kOC29a2gwOS+NjDnQ=
 github.com/yosssi/goat v0.0.0-20190705092005-4e07e5bfb19f h1:lyeRH8Kfv4WfwV4EdwUw7x5xL4BHnTKnRe43z6vEy6s=

@@ -4,6 +4,8 @@ import (
     "github.com/gascore/gas"
     "github.com/gascore/gas/web"
     . "github.com/gascore/example/app/store"
+    "github.com/gascore/example/app/router"
+    "github.com/gascore/example/app/components"
 )
 
 func main() {
@@ -12,7 +14,8 @@ func main() {
         panic(err)
     }
     
-    ctx.Init()
+    InitRouter()
+    components.InitComponents()
 
     err = gas.Init(web.GetBackEnd(), "app", &gas.C{Root: &App{}})
     if err != nil {
@@ -25,25 +28,38 @@ func main() {
 type App struct {}
 
 func (root *App) Render() []interface{} {
+    ctx := router.Ctx()
     return $html{
         <div id="app-wrap">
-            <header id="main-header" class="navbar bdb(1px,solid,#e7e9f5) centerizeContent-wrapper">
+            <header 
+                id="main-header" 
+                class="navbar centerizeContent-wrapper bdb(1px,solid,#e7e9f5) mih(8vh) mih(6vh)--sm mih(5vh)--md ovy(none) ovx(auto) whs(nowrap) bg(inherit)">
                 <div class="centerizeContent">
                     <section class="navbar-section">
                         <span class="btn btn-link">
-                            <e run="ctx.Link(`/`, false)">
+                            <e run="ctx.Link(`/`)">
                                 Home
                             </e>
                         </span>
                         <span class="btn btn-link">
-                            <e run="ctx.Link(`/examples`, false)">
+                            <e run="ctx.Link(`/examples`)">
                                 Examples
+                            </e>
+                        </span>
+                        <span class="btn btn-link">
+                            <e run="ctx.Link(`/todo`)">
+                                TodoMVC
+                            </e>
+                        </span>
+                        <span class="btn btn-link">
+                            <e run="ctx.Link(`/links`)">
+                                Links
                             </e>
                         </span>
                     </section>
                     <section class="navbar-section">
                         <span class="btn btn-link">
-                            <e run="ctx.Link(`/about`, false)">
+                            <e run="ctx.Link(`/about`)">
                                 About
                             </e>
                         </span>
@@ -70,7 +86,16 @@ func (root *App) Render() []interface{} {
                                 GAS
                             </a>
                             and 
-                            <span g-html="heartSvg" id="main-footer_createdWith-love"></span>
+                            <span id="main-footer_createdWith-love">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" viewBox="0 0 24 24">
+                                    <g data-name="Layer 2">
+                                        <g data-name="heart">
+                                            <rect width="24" height="24" opacity="0"></rect>
+                                            <path d="M12 21a1 1 0 0 1-.71-.29l-7.77-7.78a5.26 5.26 0 0 1 0-7.4 5.24 5.24 0 0 1 7.4 0L12 6.61l1.08-1.08a5.24 5.24 0 0 1 7.4 0 5.26 5.26 0 0 1 0 7.4l-7.77 7.78A1 1 0 0 1 12 21z"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </span>
                         </div>
                     </div>
                     <div class="ml(auto) fz(14px)">
@@ -85,5 +110,3 @@ func (root *App) Render() []interface{} {
         </div>
     }$
 }
-
-const heartSvg = `<svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" viewBox="0 0 24 24"><g data-name="Layer 2"><g data-name="heart"><rect width="24" height="24" opacity="0"/><path d="M12 21a1 1 0 0 1-.71-.29l-7.77-7.78a5.26 5.26 0 0 1 0-7.4 5.24 5.24 0 0 1 7.4 0L12 6.61l1.08-1.08a5.24 5.24 0 0 1 7.4 0 5.26 5.26 0 0 1 0 7.4l-7.77 7.78A1 1 0 0 1 12 21z"/></g></g></svg>`
