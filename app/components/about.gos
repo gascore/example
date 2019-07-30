@@ -23,15 +23,6 @@ func About(info *r.RouteInfo) *gas.E {
                 return nil
             },
         },
-        Watchers: map[string]gas.Watcher {
-            "link": func(val interface{}, e gas.Object) (string, error) {
-                if e != nil {
-                    root.link = val.(string)
-                    go root.updateFile()
-                }
-                return root.link, nil
-            },
-        },
     }
     root.c = c
     
@@ -47,6 +38,11 @@ type AboutPage struct {
 }
 
 func (root *AboutPage) Render() []interface{} {
+    onChange := func(e gas.Event) {
+        root.link = e.Value()
+        go root.updateFile()
+    }
+
     return $html{
         <div id="about" class="centerizeContent mini-block m(auto)">
             <div class="contentBlock m(0) p(0)">
@@ -62,7 +58,7 @@ func (root *AboutPage) Render() []interface{} {
                             </g>
                         </svg>
                     </div>
-                    <input g-watch="link" class="w(92%) bd(none) p(.8rem) bdrs(.4rem,.4rem,0,0)" type="text">
+                    <input @input="onChange(e)" :value="root.link" class="w(92%) bd(none) p(.8rem) bdrs(.4rem,.4rem,0,0)" type="text">
                 </header>
                 <div class="contentBlock-body">
                     <div g-html="root.file"></div>

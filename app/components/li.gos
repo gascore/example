@@ -15,15 +15,6 @@ func getLi(i, listType int, el string) *gas.E {
     c := &gas.C{
         NotPointer: true,
         Root: root,
-        Watchers: map[string]gas.Watcher{
-			"newValue": func(val interface{}, e gas.Object) (string, error) {
-				if val != nil {
-					root.newValue = val.(string)
-				}
-
-				return root.newValue, nil
-			},
-		},
     }
     root.c = c
 
@@ -54,8 +45,9 @@ func (root *TodoLi) Render() []interface{} {
                     {{ root.el }}
                 </span>
                 <input 
-                    g-else 
-                    g-watch="newValue"
+                    g-else
+                    @input="root.newValue = e.Value()"
+                    :value="root.newValue"
                     @keyup.enter="root.goCreate()" 
                     class="c(#3b4351) w(100%) h(100%)"/>
             </div>
@@ -86,7 +78,6 @@ func (root *TodoLi) goEdit() {
 
 func (root *TodoLi) goCreate() {
 	newValue := root.newValue
-    root.c.UpdateWatchersValues("newValue", "")
 
     root.isEditing = false
     root.newValue = ""

@@ -18,15 +18,6 @@ func TODO() *gas.E {
 
 	c := &gas.C{
 		Root: root,
-		Watchers: map[string]gas.Watcher{
-			"newTask": func(val interface{}, e gas.Object) (string, error) {
-				if val != nil {
-					root.CurrentText = val.(string)
-				}
-
-				return root.CurrentText, nil
-			},
-		},
 	}
 	root.c = c
 
@@ -62,7 +53,6 @@ func (root *TODORoot) Add() {
 	root.CurrentList = 0
 
 	root.CurrentText = ""
-	root.c.UpdateWatchersValues("newTask", "")
 
 	go root.c.Update()
 }
@@ -90,14 +80,18 @@ func (root *TODORoot) Render() []interface{} {
 	return gas.CL(
 		gas.NE(
 			&gas.E{
-				Attrs: map[string]string{
-					"id": "todo-wrap",
+				Attrs: func() map[string]string {
+					return map[string]string{
+						"id": "todo-wrap",
+					}
 				},
 			},
 			gas.NE(
 				&gas.E{
-					Tag:   "style",
-					Attrs: map[string]string{"type": "text/css"},
+					Tag: "style",
+					Attrs: func() map[string]string {
+						return map[string]string{"type": "text/css"}
+					},
 					HTML: gas.HTMLDirective{
 						Render: func() string {
 							return styles
@@ -107,8 +101,10 @@ func (root *TODORoot) Render() []interface{} {
 			),
 			gas.NE(
 				&gas.E{
-					Attrs: map[string]string{
-						"id": "todo-main",
+					Attrs: func() map[string]string {
+						return map[string]string{
+							"id": "todo-main",
+						}
 					},
 				},
 				gas.NE(
@@ -120,19 +116,39 @@ func (root *TODORoot) Render() []interface{} {
 					getNavEl(2, root.CurrentList, "Deleted", root),
 				),
 				gas.NE(
-					&gas.E{
-						Watcher: "newTask",
-						Tag:     "input",
-						Handlers: map[string]gas.Handler{
-							"keyup.enter": func(e gas.Object) {
-								root.Add()
+					&gas.E{},
+					gas.NE(
+						&gas.E{
+							Tag: "input",
+							Handlers: map[string]gas.Handler{
+								"keyup.enter": func(event gas.Event) {
+									root.Add()
+								},
+								"input": func(event gas.Event) {
+									root.CurrentText = event.Value()
+									go root.c.Update()
+								},
+							},
+							Attrs: func() map[string]string {
+								return map[string]string{
+									"id":          "todo-new",
+									"placeholder": "New task",
+									"value": 	   root.CurrentText,
+								}
 							},
 						},
-						Attrs: map[string]string{
-							"id":          "todo-new",
-							"placeholder": "New task",
+					),
+					gas.NE(
+						&gas.E{
+							Tag: "button",
+							Handlers: map[string]gas.Handler{
+								"click": func(event gas.Event) {
+									root.Add()
+								},
+							},
 						},
-					},
+						"Add",
+					),
 				),
 				func() interface{} {
 					switch root.CurrentList {
@@ -160,9 +176,11 @@ func (root *TODORoot) Render() []interface{} {
 					gas.NE(
 						&gas.E{
 							Tag: "a",
-							Attrs: map[string]string{
-								"href":   "https://noartem.github.io/",
-								"target": "_blank",
+							Attrs: func() map[string]string {
+								return map[string]string{
+									"href":   "https://noartem.github.io/",
+									"target": "_blank",
+								}
 							},
 						},
 						"Noskov Artem"),
@@ -170,9 +188,11 @@ func (root *TODORoot) Render() []interface{} {
 					gas.NE(
 						&gas.E{
 							Tag: "a",
-							Attrs: map[string]string{
-								"href":   "https://gascore.github.io",
-								"target": "_blank",
+							Attrs: func() map[string]string {
+								return map[string]string{
+									"href":   "https://gascore.github.io",
+									"target": "_blank",
+								}
 							},
 						},
 						"GAS framework"),
@@ -187,8 +207,10 @@ func getList(index int, list []string, root dataForLi) interface{} {
 	return gas.NE(
 		&gas.E{
 			Tag: "ul",
-			Attrs: map[string]string{
-				"class": "list",
+			Attrs: func() map[string]string {
+				return map[string]string{
+					"class": "list",
+				}
 			},
 		},
 		func() []interface{} {
@@ -211,18 +233,20 @@ func getNavEl(index, current int, name string, root interface{ ChangeCurrent(int
 		&gas.E{
 			Tag: "button",
 			Handlers: map[string]gas.Handler{
-				"click": func(e gas.Object) {
+				"click": func(e gas.Event) {
 					fmt.Println(e.GetInt("x"), e.GetInt("y"))
 					root.ChangeCurrent(index)
 				},
 			},
-			Binds: map[string]gas.Bind{
-				"class": func() string {
-					if current == index {
-						return "active"
-					}
-					return ""
-				},
+			Attrs: func() map[string]string {
+				return map[string]string {
+					"class": func() string {
+						if current == index {
+							return "active"
+						}
+						return ""
+					}(),
+				}
 			},
 		},
 		name)

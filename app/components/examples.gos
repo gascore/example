@@ -23,7 +23,7 @@ func Examples(info *r.RouteInfo) *gas.E {
         {"FunctionalComponent",examples.FunctionalExample()},
         {"If and For",examples.IfAndFor()},
         {"Methods",examples.Methods()},
-        {"Watchers and Binds",examples.WatchersAndBinds()},
+        {"Input and Binds",examples.InputAndBinds()},
         {"HTML directive",examples.HTMLDirective()},
         {"Hooks",examples.Hooks()},
         {"TODO",examples.TODO()},

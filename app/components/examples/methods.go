@@ -57,13 +57,15 @@ func getButton(show bool, root interface{ Toggle() }) *gas.Element {
 	return gas.NE(
 		&gas.E{
 			Handlers: map[string]gas.Handler{
-				"click": func(e gas.Object) {
+				"click": func(e gas.Event) {
 					root.Toggle()
 				},
 			},
 			Tag: "button",
-			Attrs: map[string]string{
-				"id": "M&C__button",
+			Attrs: func() map[string]string {
+				return map[string]string{
+					"id": "M&C__button",
+				}
 			},
 		},
 		func() interface{} {

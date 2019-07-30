@@ -9,6 +9,8 @@ import (
 )
 
 func main() {
+    print("Hello stranger!👋\n")
+
     err := InitStore()
     if err != nil {
         panic(err)

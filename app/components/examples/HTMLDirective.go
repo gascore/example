@@ -23,7 +23,7 @@ func (root *HTMLRoot) Render() []interface{} {
 		gas.NE(
 			&gas.E{
 				Handlers: map[string]gas.Handler{
-					"click": func(e gas.Object) {
+					"click": func(e gas.Event) {
 						root.isArticleActive = !root.isArticleActive
 						root.c.Update()
 					},
@@ -50,9 +50,11 @@ func (root *HTMLRoot) Render() []interface{} {
 					},
 				},
 				Tag: "article",
-				Attrs: map[string]string{
-					"id":    "article",
-					"style": `border: 1px solid #dedede;padding: 2px 4px;margin-top:12px;`,
+				Attrs: func() map[string]string {
+					return map[string]string{
+						"id":    "article",
+						"style": `border: 1px solid #dedede;padding: 2px 4px;margin-top:12px;`,
+					}
 				},
 			}))
 }

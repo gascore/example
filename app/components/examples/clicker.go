@@ -34,28 +34,30 @@ func (root *ClickerRoot) Render() []interface{} {
 		gas.NE(
 			&gas.E{
 				Handlers: map[string]gas.Handler{
-					"click.left": func(e gas.Object) {
+					"click.left": func(e gas.Event) {
 						root.addClick()
 					},
-					"keyup.control": func(e gas.Object) {
+					"keyup.control": func(e gas.Event) {
 						root.addClick()
 					},
-					"keyup.a": func(e gas.Object) {
+					"keyup.a": func(e gas.Event) {
 						root.addClick()
 					},
-					"keyup.s": func(e gas.Object) {
+					"keyup.s": func(e gas.Event) {
 						root.addClick()
 					},
-					"keyup.d": func(e gas.Object) {
+					"keyup.d": func(e gas.Event) {
 						root.addClick()
 					},
-					"keyup.f": func(e gas.Object) {
+					"keyup.f": func(e gas.Event) {
 						root.addClick()
 					},
 				},
 				Tag: "button",
-				Attrs: map[string]string{
-					"id": "clicker__button", // I love BEM
+				Attrs: func() map[string]string {
+					return map[string]string{
+						"id": "clicker__button", // I love BEM
+					}
 				},
 			},
 			"Click me!"),

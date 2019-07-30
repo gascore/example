@@ -59,14 +59,16 @@ func (root *hooker) Render() []interface{} {
 		gas.NE(
 			&gas.E{
 				Handlers: map[string]gas.Handler{
-					"click": func(e gas.Object) {
+					"click": func(e gas.Event) {
 						root.Show = !root.Show
 						go root.c.Update()
 					},
 				},
 				Tag: "button",
-				Attrs: map[string]string{
-					"id": "hooks__button",
+				Attrs: func() map[string]string {
+					return map[string]string{
+						"id": "hooks__button",
+					}
 				},
 			},
 			func() interface{} {

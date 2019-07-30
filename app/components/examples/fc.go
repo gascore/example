@@ -21,13 +21,13 @@ func FunctionalExample() *gas.E {
 		return gas.CL(
 			gas.NE(
 				&gas.E{},
-				gas.NE(&gas.E{Tag: "button", Handlers: map[string]gas.Handler{"click": func(e gas.Object) { setCounter(counter() + 1) }}}, "+"),
+				gas.NE(&gas.E{Tag: "button", Handlers: map[string]gas.Handler{"click": func(e gas.Event) { setCounter(counter() + 1) }}}, "+"),
 				counter(),
-				gas.NE(&gas.E{Tag: "button", Handlers: map[string]gas.Handler{"click": func(e gas.Object) { setCounter(counter() - 1) }}}, "-"),
+				gas.NE(&gas.E{Tag: "button", Handlers: map[string]gas.Handler{"click": func(e gas.Event) { setCounter(counter() - 1) }}}, "-"),
 			),
 			gas.NE(
 				&gas.E{},
-				gas.NE(&gas.E{Tag: "button", Handlers: map[string]gas.Handler{"click": func(e gas.Object) {
+				gas.NE(&gas.E{Tag: "button", Handlers: map[string]gas.Handler{"click": func(e gas.Event) {
 					setMsg(msg() + fmt.Sprintf("%d", counter()))
 				}}}, "add"),
 				msg(),

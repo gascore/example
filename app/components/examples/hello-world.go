@@ -13,19 +13,23 @@ func (root *HelloRoot) Render() []interface{} {
 		gas.NE(
 			&gas.E{
 				Tag: "h1",
-				Attrs: map[string]string{
-					"id":    "hello-world",
-					"class": "greeting h1",
+				Attrs: func() map[string]string {
+					return map[string]string{
+						"id":    "hello-world",
+						"class": "greeting h1",
+					}
 				},
 			},
 			root.Hello),
 		gas.NE(
 			&gas.E{
 				Tag: "i",
-				Attrs: map[string]string{
-					"id":    "italiano",
-					"class": "greeting",
-					"style": "margin-right: 12px;",
+				Attrs: func() map[string]string {
+					return map[string]string{
+						"id":    "italiano",
+						"class": "greeting",
+						"style": "margin-right: 12px;",
+					}
 				},
 			},
 			"Ciao mondo!"),

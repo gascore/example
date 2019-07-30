@@ -31,19 +31,23 @@ func (root *listItem) Render() []interface{} {
 				&gas.E{
 					Tag: "button",
 					Handlers: map[string]gas.Handler{
-						"click": func(e gas.Object) {
+						"click": func(e gas.Event) {
 							root.data.MarkAsDone(root.index)
 						},
 					},
-					Attrs: map[string]string{
-						"id": "submit",
+					Attrs: func() map[string]string {
+						return map[string]string{
+							"id": "submit",
+						}
 					},
 				},
 				gas.NE(
 					&gas.E{
 						Tag: "i",
-						Attrs: map[string]string{
-							"class": "icon icon-check",
+						Attrs: func() map[string]string {
+							return map[string]string{
+								"class": "icon icon-check",
+							}
 						},
 					},
 				),
@@ -55,12 +59,18 @@ func (root *listItem) Render() []interface{} {
 				return gas.NE(
 					&gas.E{
 						Tag: "input",
-						Attrs: map[string]string{
-							"style": "margin-right: 8px",
+						Attrs: func() map[string]string {
+							return map[string]string{
+								"style": "margin-right: 8px",
+								"value": root.value,
+							}
 						},
-						Watcher: "newValue",
-						Handlers: map[string]gas.Handler{
-							"keyup.enter": func(gas.Object) {
+						Handlers: map[string]gas.Handler {
+							"input": func(event gas.Event) {
+								root.value = event.Value()
+								go root.c.Update()
+							},
+							"keyup.enter": func(e gas.Event) {
 								root.isEditing = false
 								root.data.Edit(root.index, root.value)
 							},
@@ -72,7 +82,7 @@ func (root *listItem) Render() []interface{} {
 					&gas.E{
 						Tag: "span",
 						Handlers: map[string]gas.Handler{
-							"dblclick": func(e gas.Object) {
+							"dblclick": func(e gas.Event) {
 								if root.listIndex != 0 {
 									return
 								}
@@ -95,19 +105,23 @@ func (root *listItem) Render() []interface{} {
 				&gas.E{
 					Tag: "button",
 					Handlers: map[string]gas.Handler{
-						"click": func(e gas.Object) {
+						"click": func(e gas.Event) {
 							root.data.Delete(root.index)
 						},
 					},
-					Attrs: map[string]string{
-						"id": "delete",
+					Attrs: func() map[string]string {
+						return map[string]string{
+							"id": "delete",
+						}
 					},
 				},
 				gas.NE(
 					&gas.E{
 						Tag: "i",
-						Attrs: map[string]string{
-							"class": "icon icon-delete",
+						Attrs: func() map[string]string {
+							return map[string]string{
+								"class": "icon icon-delete",
+							}
 						},
 					},
 				),
@@ -129,14 +143,6 @@ func getLi(listIndex, index int, el string, data dataForLi) *gas.E {
 	c := &gas.C{
 		Root:       root,
 		NotPointer: true,
-		Watchers: map[string]gas.Watcher{
-			"newValue": func(val interface{}, e gas.Object) (string, error) {
-				if e != nil {
-					root.value = val.(string)
-				}
-				return root.value, nil
-			},
-		},
 	}
 	root.c = c
 

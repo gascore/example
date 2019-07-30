@@ -31,21 +31,25 @@ func (root *IfAndForRoot) Render() []interface{} {
 	return gas.CL(
 		gas.NE(
 			&gas.E{
-				Attrs: map[string]string{
-					"id": "block-if",
+				Attrs: func() map[string]string {
+					return map[string]string{
+						"id": "block-if",
+					}
 				},
 			},
 			gas.NE(
 				&gas.E{
 					Handlers: map[string]gas.Handler{
-						"click": func(e gas.Object) {
+						"click": func(e gas.Event) {
 							root.Show = !root.Show
 							root.c.Update()
 						},
 					},
 					Tag: "button",
-					Attrs: map[string]string{
-						"id": "if__button",
+					Attrs: func() map[string]string {
+						return map[string]string{
+							"id": "if__button",
+						}
 					},
 				},
 				// here is how you can use IF
@@ -77,8 +81,10 @@ func (root *IfAndForRoot) Render() []interface{} {
 		),
 		gas.NE(
 			&gas.E{
-				Attrs: map[string]string{
-					"id": "block-for",
+				Attrs: func() map[string]string {
+					return map[string]string{
+						"id": "block-for",
+					}
 				},
 			},
 			gas.NE(
@@ -91,7 +97,7 @@ func (root *IfAndForRoot) Render() []interface{} {
 						arr = append(arr, gas.NE(
 							&gas.E{
 								Handlers: map[string]gas.Handler{
-									"click": func(e gas.Object) {
+									"click": func(e gas.Event) {
 										root.Add("Hello!") // hello, Annoy-o-Tron
 										root.c.Update()
 									},

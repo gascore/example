@@ -15,15 +15,6 @@ func TodoList(info *r.RouteInfo) *gas.E {
 
 	c := S.RC(&gas.C{
 		Root: root,
-		Watchers: map[string]gas.Watcher{
-			"currentText": func(val interface{}, e gas.Object) (string, error) {
-				if val != nil {
-					root.currentText = val.(string)
-				}
-
-				return root.currentText, nil
-			},
-		},
 	})
 	root.c = c
 
@@ -44,7 +35,8 @@ func (root *TodoPage) Render() []interface{} {
 		<div id="todoList" class="boxShadow bg(#fff)">
 			<div id="new" class="w(100%) d(flex)">
 				<input 
-					g-watch="currentText" 
+					@input="root.currentText = e.Value()"
+					:value="root.currentText"
 					@keyup.enter="root.createNewTask()" 
 					id="new"
 					placeholder="What needs to be done?" 
@@ -96,7 +88,6 @@ func (root *TodoPage) createNewTask() {
 	}
 
 	root.currentText = ""
-	root.c.UpdateWatchersValues("currentText", "")
 	root.changeList(0)
 }
 
