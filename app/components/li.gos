@@ -2,91 +2,59 @@ package components
 
 import (
     "github.com/gascore/gas"
-	. "github.com/gascore/example/app/store"
 )
 
-func getLi(i, listType int, el string) *gas.E {
-    root := &TodoLi {
-        i: i,
-        el: el,
-        listType: listType,
-    }
-
-    c := &gas.C{
-        NotPointer: true,
-        Root: root,
-    }
-    root.c = c
-
-    return c.Init()
+type dataForLi interface {
+	MarkAsDone(int)
+	Delete(int)
+	Edit(int, string)
 }
 
-type TodoLi struct {
-    c *gas.C
+func getLi(i int, listType string, el string, data dataForLi) *gas.E {
+    f := &gas.F{}
 
-    listType int
-    i        int
-    el       string
+    getValue, setValue := f.UseStateString("")
 
-    isEditing bool
-    newValue  string
-}
+    goEdit := func() {
+        if listType == "active" {
+            setValue(el)
+        }
+    }
 
-func (root *TodoLi) Render() []interface{} {
-    return $html{
-     <div class="li-body bdt(1px,solid,#e6e6e6) fz(18px)">
-        <div g-if="root.listType == 0" class="d(flex) p(.3rem,.6rem)">
-            <button @click="root.c.WarnError(S.Emit(`completeInActive`, root.i))" class="no-btn m(0,.4rem,0,0)">
+    goCreate := func() {
+        val := getValue()
+        setValue("")
+        data.Edit(i, val)
+    }
+
+    return f.Init(true, $htmlF{
+    <div class="li-body bdt(1px,solid,#e6e6e6) fz(18px)">
+        <div g-if="listType == `active`" class="d(flex) p(.3rem,.6rem)">
+            <button @click="data.MarkAsDone(i)" class="no-btn m(0,.4rem,0,0)">
                 <i class="icon icon-check c(#009966):h:f m(auto,0) h(2rem)"></i>
             </button>
             
             <div class="li-body_data w(100%) m(auto,0)">
-                <span g-if="!root.isEditing" @dblclick="root.goEdit()" class="w(100%)">
-                    {{ root.el }}
+                <span g-if="len(getValue()) == 0" @dblclick="goEdit()" class="w(100%)" id="some-lipsum">
+                    {{ el }}
                 </span>
-                <input 
+                <input
                     g-else
-                    @input="root.newValue = e.Value()"
-                    :value="root.newValue"
-                    @keyup.enter="root.goCreate()" 
+                    @input="setValue(e.Value())"
+                    :value="getValue()"
+                    @keyup.enter="goCreate()" 
                     class="c(#3b4351) w(100%) h(100%)"/>
             </div>
 
-            <button g-if="!root.isEditing" @click="root.c.WarnError(S.Emit(`deleteFromActive`, root.i))" class="no-btn m(0,0,0,auto)">
+            <button g-if="len(getValue()) == 0" @click="data.Delete(i)" class="no-btn m(0,0,0,auto)">
                 <i class="icon icon-delete c(#ff0033):h:f m(auto 0)"></i>
             </button>
         </div>
         <div g-else class="p(.6rem,1.2rem)">
             <span class="w(100%)">
-                {{ root.el }}
+                {{ el }}
             </span>
         </div>
     </div>
-    }$ 
-}
-
-func (root *TodoLi) goEdit() {
-    //return // TODO: remove it
-    if root.listType != 0 {
-        return
-    }
-
-    root.newValue = root.el
-    root.isEditing = true
-    go root.c.Update()
-}
-
-func (root *TodoLi) goCreate() {
-	newValue := root.newValue
-
-    root.isEditing = false
-    root.newValue = ""
-
-    root.c.Update()
-
-    err := S.Emit("editActive", root.i, newValue)
-    if err != nil {
-        root.c.WarnError(err)
-        return
-    }
+    }$)
 }

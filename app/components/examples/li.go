@@ -73,6 +73,7 @@ func (root *listItem) Render() []interface{} {
 							"keyup.enter": func(e gas.Event) {
 								root.isEditing = false
 								root.data.Edit(root.index, root.value)
+								go root.c.Update()
 							},
 						},
 					},

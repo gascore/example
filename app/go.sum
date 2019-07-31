@@ -49,6 +49,8 @@ github.com/gascore/gas v0.0.0-20190729134409-88d0bb373830 h1:WX3aKgtS7C2olUMI2PC
 github.com/gascore/gas v0.0.0-20190729134409-88d0bb373830/go.mod h1:Ie9T1NhbD719W7WdsLryTZiC/LBZ+o6e3vsy5r8GH54=
 github.com/gascore/gas v0.0.0-20190730170112-c1c949483d11 h1:tsFreLGnbVxO7VHdywPCmjpushZQ6FUKyX6joHLi/BU=
 github.com/gascore/gas v0.0.0-20190730170112-c1c949483d11/go.mod h1:Ie9T1NhbD719W7WdsLryTZiC/LBZ+o6e3vsy5r8GH54=
+github.com/gascore/gas v0.0.0-20190731094612-06228b435201 h1:hLISUmyIomwEU+W89QHh/Hiiw2EdFmTeJ4EIW7PO3jM=
+github.com/gascore/gas v0.0.0-20190731094612-06228b435201/go.mod h1:Ie9T1NhbD719W7WdsLryTZiC/LBZ+o6e3vsy5r8GH54=
 github.com/gascore/std v0.0.0-20190618063601-e7dee8fdb9e5/go.mod h1:HqD+yvU3BCT7kl6NHSe9wu/XhzSP7+hCeTsZrdcDqvE=
 github.com/gascore/std v0.0.0-20190702074601-22232cfa07a3 h1:d0AW3r82lHxBHBj3Xx5Xq7TeZxqlMdL5GQXyVjemrB0=
 github.com/gascore/std v0.0.0-20190702074601-22232cfa07a3/go.mod h1:wrowFAdlFnDb/F/llWjAxVM6oTXLd62zjtjRF5uRy2E=

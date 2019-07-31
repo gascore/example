@@ -1,25 +1,21 @@
 package main
 
 import (
+    "fmt"
+    
     "github.com/gascore/gas"
     "github.com/gascore/gas/web"
-    . "github.com/gascore/example/app/store"
     "github.com/gascore/example/app/router"
     "github.com/gascore/example/app/components"
 )
 
 func main() {
-    print("Hello stranger!👋\n")
-
-    err := InitStore()
-    if err != nil {
-        panic(err)
-    }
+    fmt.Println("Hello stranger!👋\n")
     
     InitRouter()
     components.InitComponents()
 
-    err = gas.Init(web.GetBackEnd(), "app", &gas.C{Root: &App{}})
+    err := gas.Init(web.GetBackEnd(), "app", &gas.C{Root: &App{}})
     if err != nil {
         panic(err)
     }

@@ -3,19 +3,17 @@ package components
 import (
 	"github.com/gascore/gas"
 	r "github.com/gascore/std/router"
-
-	. "github.com/gascore/example/app/store"
 )
 
 func TodoList(info *r.RouteInfo) *gas.E {
 	root := &TodoPage{
 		i: info,
-		currentList: iByName(info.Params["type"]),
+		currentList: info.Params["type"],
 	}
 
-	c := S.RC(&gas.C{
+	c := &gas.C{
 		Root: root,
-	})
+	}
 	root.c = c
 
 	return c.Init()
@@ -25,8 +23,12 @@ type TodoPage struct {
 	c *gas.C
 	i *r.RouteInfo
 
-	currentList int
+	currentList string
 	currentText string
+
+	active    []string
+	completed []string
+	deleted   []string
 }
 
 func (root *TodoPage) Render() []interface{} {
@@ -35,8 +37,8 @@ func (root *TodoPage) Render() []interface{} {
 		<div id="todoList" class="boxShadow bg(#fff)">
 			<div id="new" class="w(100%) d(flex)">
 				<input 
-					@input="root.currentText = e.Value()"
 					:value="root.currentText"
+					@input="root.currentText = e.Value(); go root.c.Update()"
 					@keyup.enter="root.createNewTask()" 
 					id="new"
 					placeholder="What needs to be done?" 
@@ -47,27 +49,27 @@ func (root *TodoPage) Render() []interface{} {
 			</div>
 			<ul class="todo-list" id="this-fucking-ul">
 				<li g-for="i, el := range root.list()" class="mt(0)">
-					<e run="getLi(i, root.currentList, el.(string))"></e>
+					<e run="getLi(i, root.currentList, el, root)"></e>
 				</li>
 			</ul>
 			<div id="todo-footer" class="d(flex) p(.2rem,.6rem) fz(18px) bdt(1px,solid,#e6e6e6)">
 				<nav>
-					<a @click="root.changeList(0)" g-bind:class="root.isActive(0)">
+					<a @click="root.changeList(`active`)" :class="root.isActive(`active`)">
 						Active
 					</a>
-					<a @click="root.changeList(1)" g-bind:class="root.isActive(1)">
+					<a @click="root.changeList(`completed`)" :class="root.isActive(`completed`)">
 						Completed
 					</a>
-					<a @click="root.changeList(2)" g-bind:class="root.isActive(2)">
+					<a @click="root.changeList(`deleted`)" :class="root.isActive(`deleted`)">
 						Deleted
 					</a>
 				</nav>
-				<button @click="S.Emit(`clearList`, nameByI(root.currentList))" class="btn btn-link ml(auto) fz(18px) p(4px)" id="todo-footer_clear">
+				<button @click="root.clear()" class="btn btn-link ml(auto) fz(18px) p(4px)" id="todo-footer_clear">
 					Clear
 				</button>
 			</div>
 		</div>
-		<div id="todoListFooter" class="m(8px) c(gray) fz(12px)" g-if="root.currentList == 0">
+		<div id="todoListFooter" class="m(8px) c(gray) fz(12px)" g-if="root.currentList == `active`">
 			<i>
 				Double-click to edit a task
 			</i>
@@ -76,57 +78,69 @@ func (root *TodoPage) Render() []interface{} {
 	}$
 }
 
-func (root *TodoPage) list() []interface{} {
-	return S.Get(nameByI(root.currentList)).([]interface{})
-}
-
-func (root *TodoPage) createNewTask() {
-	err := S.Emit("appendToList", "active", root.currentText)
-	if err != nil {
-		root.c.WarnError(err)
-		return
+func (root *TodoPage) list() []string {
+	switch root.currentList {
+	case "active":
+		return root.active
+	case "completed":
+		return root.completed
+	case "deleted":
+		return root.deleted
+	default:
+		return []string{}
 	}
-
-	root.currentText = ""
-	root.changeList(0)
 }
 
-func (root *TodoPage) changeList(i int) {
-	root.currentList = i
-	ctx.ChangeRoute("/todo/"+nameByI(i), false)
+func (root *TodoPage) clear() {
+	switch root.currentList {
+	case "active":
+		root.active = []string{}
+	case "completed":
+		root.completed = []string{}
+	case "deleted":
+		root.deleted = []string{}
+	}
 	go root.c.Update()
 }
 
-func (root *TodoPage) isActive(i int) string {
-	if root.currentList == i {
+func (root *TodoPage) createNewTask() {
+	root.active = append(root.active, root.currentText)
+	root.currentText = ""
+	root.changeList("active")
+	go root.c.Update()
+}
+
+func (root *TodoPage) Delete(i int) {
+	deletedItem := root.active[i]
+	root.active = append(root.active[:i], root.active[i+1:]...)
+	root.deleted = append(root.deleted, deletedItem)
+	go root.c.Update()
+}
+
+func (root *TodoPage) MarkAsDone(i int) {
+	doneItem := root.active[i]
+	root.active = append(root.active[:i], root.active[i+1:]...)
+
+	root.completed = append(root.completed, doneItem)
+
+	go root.c.Update()
+}
+
+func (root *TodoPage) Edit(i int, newValue string) {
+	root.active[i] = newValue
+	go root.c.Update()
+}
+
+func (root *TodoPage) changeList(name string) {
+	root.currentList = name
+	ctx.ChangeRoute("/todo/"+name, false)
+	go root.c.Update()
+}
+
+func (root *TodoPage) isActive(name string) string {
+	if root.currentList == name {
 		return "active"
 	} else {
 		return ""
-	}
-}
-
-func nameByI(i int) string {
-	switch i {
-	case 0:
-		return "active"
-	case 1:
-		return "completed"
-	case 2:
-		return "deleted"
-	default:
-		return "active"
-	}
-}
-
-func iByName(name string) int {
-	switch name {
-	case "active":
-		return 0
-	case "completed":
-		return 1
-	case "deleted":
-		return 2
-	default:
-		return 0
 	}
 }
