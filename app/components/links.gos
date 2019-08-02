@@ -5,13 +5,6 @@ import (
     "github.com/gascore/gas"
 )
 
-type LinksPage struct {
-    c *gas.C
-    i r.RouteInfo
-
-    links []string
-}
-
 func Links(i *r.RouteInfo) *gas.E {
     f := &gas.F{}
     links := []string{"gas","std","gasx","example"}

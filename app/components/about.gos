@@ -1,49 +1,46 @@
 package components
 
 import (
-    r "github.com/gascore/std/router"
-    "github.com/gascore/gas"
-    "gitlab.com/golang-commonmark/markdown"
+    "fmt"
     "net/http"
     "bytes"
+
+    "github.com/gascore/gas"
+    r "github.com/gascore/std/router"
+    
+    "gitlab.com/golang-commonmark/markdown"
 )
 
 func About(info *r.RouteInfo) *gas.E {
-    root := &AboutPage{
-        i: info,
-        link: "https://raw.githubusercontent.com/gascore/gas/master/README.md",
-        file: "Loading, please wait...",
+    f := &gas.F{}
+
+    link, setLink := f.UseStateString("gascore/gas/master/README.md")
+    file, setFile := f.UseStateString("Loading, please wait...")
+
+    updateFile := func() {
+        resp, err := http.Get("https://raw.githubusercontent.com/"+link())
+        if err != nil {
+            f.C.WarnError(err)
+            setFile(`<h1><span style="color: #ff0033">404</span> Page not found</h1>`)
+            return
+        }
+
+        defer resp.Body.Close()
+        buf := new(bytes.Buffer)
+        buf.ReadFrom(resp.Body)
+
+        md := markdown.New(markdown.XHTMLOutput(true))
+        setFile(md.RenderToString(buf.Bytes()))
     }
 
-    c := &gas.C{
-        Root: root,
-        Hooks: gas.Hooks {
-            Mounted: func() error {
-                go root.updateFile()
-                return nil
-            },
-        },
-    }
-    root.c = c
+    f.UseEffect(func() (func(), error) {
+        go updateFile()
+        return func() {
+            fmt.Println("Bye-bye((")
+        }, nil
+    })
     
-    return c.Init()
-}
-
-type AboutPage struct {
-    c *gas.C
-    i *r.RouteInfo
-
-    file string
-    link string
-}
-
-func (root *AboutPage) Render() []interface{} {
-    onChange := func(e gas.Event) {
-        root.link = e.Value()
-        go root.updateFile()
-    }
-
-    return $html{
+    return f.Init(false, $htmlF{
         <div id="about" class="centerizeContent mini-block m(auto)">
             <div class="contentBlock m(0) p(0)">
                 <header class="contentBlock-title p(0,!important) m(0) w(100%) d(flex)">
@@ -58,31 +55,12 @@ func (root *AboutPage) Render() []interface{} {
                             </g>
                         </svg>
                     </div>
-                    <input @input="onChange(e)" :value="root.link" class="w(92%) bd(none) p(.8rem) bdrs(.4rem,.4rem,0,0)" type="text">
+                    <input @input="setLink(e.Value())" :value="link()" class="w(92%) bd(none) p(.8rem) bdrs(.4rem,.4rem,0,0)" type="text">
                 </header>
-                <div class="contentBlock-body">
-                    <div g-html="root.file"></div>
+                <div class="contentBlock-body ovx(auto)">
+                    <div g-html="file()"></div>
                 </div>
             </div>
         </div>
-    }$
-}
-
-func (root *AboutPage) updateFile() {
-    resp, err := http.Get(root.link)
-    if err != nil {
-        root.file = `<h1><span style="color: #ff0033">404</span> Page not found</h1>`
-        root.c.WarnError(err)
-        root.c.Update()
-        return
-    }
-
-    defer resp.Body.Close()
-    buf := new(bytes.Buffer)
-    buf.ReadFrom(resp.Body)
-
-    md := markdown.New(markdown.XHTMLOutput(true))
-    root.file = md.RenderToString(buf.Bytes())
-    
-    root.c.Update()
+    }$)
 }

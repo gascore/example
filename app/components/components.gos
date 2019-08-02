@@ -521,7 +521,7 @@ func (root *ComponentsPage) Render() []interface{} {
                 </div>
             </section>
         </section>
-        <div class="d(flex)">
+        <div class="d(flex) mb(.7rem)">
             <e run="ctx.Link(`/examples`)" class="d(flex) m(0) pretty-btn">
                 <i class="icon icon-back m(auto,0,auto,.4em) fz(12px)"></i>
                 <span class="fz(16px) d(block)">

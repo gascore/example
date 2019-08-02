@@ -22,9 +22,8 @@ func getLi(i int, listType string, el string, data dataForLi) *gas.E {
     }
 
     goCreate := func() {
-        val := getValue()
+        data.Edit(i, getValue())
         setValue("")
-        data.Edit(i, val)
     }
 
     return f.Init(true, $htmlF{

@@ -6,14 +6,6 @@ import (
     "github.com/gascore/gas"
 )
 
-type LinkPage struct {
-    c *gas.C
-    i r.RouteInfo
-
-    name string
-    text string
-}
-
 func Link(i *r.RouteInfo) *gas.E {
     f := &gas.F{}
 

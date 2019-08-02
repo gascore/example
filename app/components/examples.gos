@@ -6,11 +6,6 @@ import (
     "github.com/gascore/example/app/components/examples"
 )
 
-type ExamplesPage struct {
-    c *gas.C
-    i r.RouteInfo
-}
-
 func Examples(info *r.RouteInfo) *gas.E {
     f := &gas.F{}
     
@@ -39,7 +34,7 @@ func Examples(info *r.RouteInfo) *gas.E {
                     <e run="example.element"></e>
                 </section>
             </section>
-            <div class="d(flex)">
+            <div class="d(flex) mb(.7rem)">
                 <e run="ctx.Link(`/examples/components`)" class="d(flex) ml(auto) pretty-btn">
                     <span class="fz(16px) d(block)">
                         Components examples

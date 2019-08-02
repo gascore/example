@@ -149,6 +149,23 @@ func (root *TODORoot) Render() []interface{} {
 						},
 						"Add",
 					),
+					func() interface{} {
+						if root.CurrentList == 0 {
+							return gas.NE(
+								&gas.E{
+									Tag: "i",
+									Attrs: func() map[string]string {
+										return map[string]string{
+											"style": "color: gray;font-size: 12px;margin-left:6px;",
+										}
+									},
+								},
+								"Double-click to edit a task",
+							)
+						}
+						
+						return nil
+					}(),
 				),
 				func() interface{} {
 					switch root.CurrentList {
@@ -167,9 +184,6 @@ func (root *TODORoot) Render() []interface{} {
 				&gas.E{
 					Tag: "footer",
 				},
-				gas.NE(
-					&gas.E{},
-					"Double-click to edit a task"),
 				gas.NE(
 					&gas.E{},
 					"Created by",
