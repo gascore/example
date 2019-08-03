@@ -1,0 +1,19 @@
+#notFound {
+    .notFoundPage {
+        overflow: hidden;
+    }
+    .notFoundPage>* {
+        display: flex;
+        flex-wrap: wrap;
+        margin: calc(16px / 2 * -1);
+    }
+    .notFoundPage>*>* {
+        margin: calc(16px / 2);
+        flex-grow: 1;
+    }
+    .notFoundPage>*> :last-child {
+        flex-basis: 0;
+        flex-grow: 999;
+        min-width: calc(50% - 16px);
+    }
+}

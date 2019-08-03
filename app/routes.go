@@ -101,6 +101,7 @@ func InitRouter() {
 		},
 	
 		Settings: router.Settings{
+			NotFound: c.NotFound,
 			HashMode: true,
 			GetUserConfirmation: func() bool {
 				return false

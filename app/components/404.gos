@@ -1,0 +1,34 @@
+package components
+
+import "github.com/gascore/gas"
+
+func NotFound() *gas.E {
+    f := &gas.F{}
+    return f.Init(false, $htmlF{
+        <div id="notFound" class="nano-block">
+            <h1>
+                <span class="td(underline)">Error 404</span>
+                Page not found
+            </h1>
+            <button class="pretty-btn" onclick="window.history.back()">
+                Go back
+            </button>
+            <!--<div class="notFoundPage">
+                <div>
+                    <h1>
+                        <span class="fz(10em) c(#004AB5)">
+                            404
+                        </span>
+                        Whoops..
+                    </h1>
+                </div>
+                <div>
+                    Something is wrong
+                    <button>
+                        Go back
+                    </button>
+                </div>
+            </div>-->
+        </div>
+    }$)
+}

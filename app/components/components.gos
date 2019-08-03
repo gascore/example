@@ -455,7 +455,7 @@ func (root *ComponentsPage) Render() []interface{} {
                 </e>
             </section>
         </section>
-        <section class="contentBlock">
+        <!--<section class="contentBlock">
             <header class="contentBlock-title">
                 <div>
                     Drag and drop linked lists
@@ -509,7 +509,7 @@ func (root *ComponentsPage) Render() []interface{} {
                     </div>
                 </div>
             </section>
-        </section>
+        </section>-->
         <section class="contentBlock">
             <header class="contentBlock-title">
                 Tree

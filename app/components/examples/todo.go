@@ -1,10 +1,6 @@
 package examples
 
-import (
-	"fmt"
-
-	"github.com/gascore/gas"
-)
+import "github.com/gascore/gas"
 
 // Example application #8
 //
@@ -248,7 +244,6 @@ func getNavEl(index, current int, name string, root interface{ ChangeCurrent(int
 			Tag: "button",
 			Handlers: map[string]gas.Handler{
 				"click": func(e gas.Event) {
-					fmt.Println(e.GetInt("x"), e.GetInt("y"))
 					root.ChangeCurrent(index)
 				},
 			},
