@@ -60,7 +60,7 @@ func InitRouter() {
 						Path:    "/components",
 						Exact:   true,
 						Before: func(info *router.MiddlewareInfo) (bool, error) {
-							fmt.Println("Before components", info)
+							fmt.Println("Router middleware: Before components", info)
 							return false, nil
 						},
 					},
@@ -71,7 +71,7 @@ func InitRouter() {
 					},
 				},
 				Before: func(info *router.MiddlewareInfo) (bool, error) {
-					fmt.Println("Before examples", info)
+					fmt.Println("Router middleware: Before examples", info)
 					return false, nil
 				},
 			},

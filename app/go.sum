@@ -55,6 +55,7 @@ github.com/gascore/gas v0.0.0-20190801114453-c0253f205cf4 h1:v8YP/czXx+yibIt6MhD
 github.com/gascore/gas v0.0.0-20190801114453-c0253f205cf4/go.mod h1:Ie9T1NhbD719W7WdsLryTZiC/LBZ+o6e3vsy5r8GH54=
 github.com/gascore/gas v0.0.0-20190802082728-6a523f3c2092 h1:/Y+vH7e+et7xpqeACmfegLeIHAqOf6w2JBg2/Pqu2dM=
 github.com/gascore/gas v0.0.0-20190802082728-6a523f3c2092/go.mod h1:Ie9T1NhbD719W7WdsLryTZiC/LBZ+o6e3vsy5r8GH54=
+github.com/gascore/gas v0.0.0-20190803110533-18b8d74d737f/go.mod h1:Ie9T1NhbD719W7WdsLryTZiC/LBZ+o6e3vsy5r8GH54=
 github.com/gascore/std v0.0.0-20190618063601-e7dee8fdb9e5/go.mod h1:HqD+yvU3BCT7kl6NHSe9wu/XhzSP7+hCeTsZrdcDqvE=
 github.com/gascore/std v0.0.0-20190702074601-22232cfa07a3 h1:d0AW3r82lHxBHBj3Xx5Xq7TeZxqlMdL5GQXyVjemrB0=
 github.com/gascore/std v0.0.0-20190702074601-22232cfa07a3/go.mod h1:wrowFAdlFnDb/F/llWjAxVM6oTXLd62zjtjRF5uRy2E=
@@ -82,6 +83,8 @@ github.com/gascore/std v0.0.0-20190730170306-fd0e800f883a h1:ohhawOk1yKCUilGMHwK
 github.com/gascore/std v0.0.0-20190730170306-fd0e800f883a/go.mod h1:oUpobIHpCiSCgVb+axW2lICSO6s8YBXbXVMo2yIS1Wc=
 github.com/gascore/std v0.0.0-20190801114545-1948159b689e h1:YXEPNpsJsF/6jVv5bxXPsBROU8DFW5a3+6xIq8eOERE=
 github.com/gascore/std v0.0.0-20190801114545-1948159b689e/go.mod h1:VRDDqbnWJdL38Ie4cX/gprLwDOXuAd5XmDOxNcINxZA=
+github.com/gascore/std v0.0.0-20190804120934-7d3b5dbb4310 h1:XYbXOaq5zNFHLpiS2gC+vOjsJcHf5P2vGBSS1MhO3Qk=
+github.com/gascore/std v0.0.0-20190804120934-7d3b5dbb4310/go.mod h1:Q8hkFDwhZWOY6Ziz7RQkVjcvigr9OOkcfbZ4WCVpDCw=
 github.com/gopherjs/gopherjs v0.0.0-20190430165422-3e4dfb77656c/go.mod h1:wJfORRmW1u3UXTncJ5qlYoELFm8eSnnEO6hX4iZ3EWY=
 github.com/gorilla/websocket v1.4.0/go.mod h1:E7qHFY5m1UJ88s3WnNqhKjPHQ0heANvMoAMk2YaljkQ=
 github.com/hashicorp/hcl v1.0.0/go.mod h1:E5yfLk+7swimpb2L/Alb/PJmXilQ/rhwaUYs4T20WEQ=

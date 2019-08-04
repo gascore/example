@@ -12,12 +12,12 @@ func FunctionalExample() *gas.E {
 	counter, setCounter := f.UseStateInt(0)
 	msg, setMsg := f.UseStateString("")
 
-	f.UseEffect(func() (func(), error) {
-		fmt.Println("UseEffect", counter(), msg())
-		return func() {
-			fmt.Println("cleaner")
-		}, nil
-	})
+	// f.UseEffect(func() (func(), error) {
+	// 	fmt.Println("UseEffect", counter(), msg())
+	// 	return func() {
+	// 		fmt.Println("cleaner")
+	// 	}, nil
+	// })
 
 	return f.Init(false, func() []interface{} {
 		return gas.CL(

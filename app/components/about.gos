@@ -36,7 +36,7 @@ func About(info *r.RouteInfo) *gas.E {
     f.UseEffect(func() (func(), error) {
         go updateFile()
         return func() {
-            fmt.Println("Bye-bye((")
+            fmt.Println("About page says: \"Bye-bye((\"")
         }, nil
     })
     

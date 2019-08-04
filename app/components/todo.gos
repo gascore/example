@@ -48,7 +48,7 @@ func (root *TodoPage) Render() []interface{} {
 				</button>
 			</div>
 			<ul class="todo-list" id="this-fucking-ul">
-				<li g-for="i, el := range root.list()" class="mt(0)">
+				<li g-for='i, el := range root.list()' class="mt(0)">
 					<e run="getLi(i, root.currentList, el, root)"></e>
 				</li>
 			</ul>

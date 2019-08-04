@@ -472,7 +472,7 @@ func (root *ComponentsPage) Render() []interface{} {
                             To do
                         </h3>  
                         <e run="root.dndLists1()">
-                            <div g-for="_, item := range root.dndTodo">
+                            <div g-for='_, item := range root.dndTodo">
                                 {{ item }}
                             </div>
                         </e>
@@ -482,7 +482,7 @@ func (root *ComponentsPage) Render() []interface{} {
                             In progress
                         </h3>
                         <e run="root.dndLists2()">
-                            <div g-for="_, item := range root.dndInProgress">
+                            <div g-for='_, item := range root.dndInProgress'>
                                 {{ item }}
                             </div>
                         </e>
@@ -492,7 +492,7 @@ func (root *ComponentsPage) Render() []interface{} {
                             Done
                         </h3>
                         <e run="root.dndLists3()">
-                            <div g-for="_, item := range root.dndDone">
+                            <div g-for='_, item := range root.dndDone'>
                                 {{ item }}
                             </div>
                         </e>
@@ -502,7 +502,7 @@ func (root *ComponentsPage) Render() []interface{} {
                             Lipsum
                         </h3>
                         <e run="root.dndListsA()">
-                            <div g-for="_, item := range root.dndA">
+                            <div g-for='_, item := range root.dndA'>
                                 {{ item }}
                             </div>
                         </e>
@@ -522,7 +522,7 @@ func (root *ComponentsPage) Render() []interface{} {
             </section>
         </section>
         <div class="d(flex) mb(.7rem)">
-            <e run="ctx.Link(`/examples`)" class="d(flex) m(0) pretty-btn">
+            <e run='ctx.Link("/examples")' class="d(flex) m(0) pretty-btn">
                 <i class="icon icon-back m(auto,0,auto,.4em) fz(12px)"></i>
                 <span class="fz(16px) d(block)">
                     Basic examples

@@ -35,29 +35,29 @@ func (root *App) Render() []interface{} {
                 <div class="centerizeContent">
                     <section class="navbar-section">
                         <span class="btn btn-link">
-                            <e run="ctx.Link(`/`)">
+                            <e run='ctx.Link("/")'>
                                 Home
                             </e>
                         </span>
                         <span class="btn btn-link">
-                            <e run="ctx.Link(`/examples`)">
+                            <e run='ctx.Link("/examples")'>
                                 Examples
                             </e>
                         </span>
                         <span class="btn btn-link">
-                            <e run="ctx.Link(`/todo`)">
+                            <e run='ctx.Link("/todo")'>
                                 TodoMVC
                             </e>
                         </span>
                         <span class="btn btn-link">
-                            <e run="ctx.Link(`/links`)">
+                            <e run='ctx.Link("/links")'>
                                 Links
                             </e>
                         </span>
                     </section>
                     <section class="navbar-section">
                         <span class="btn btn-link">
-                            <e run="ctx.Link(`/about`)">
+                            <e run='ctx.Link("/about")'>
                                 About
                             </e>
                         </span>

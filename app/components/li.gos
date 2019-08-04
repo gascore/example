@@ -28,7 +28,7 @@ func getLi(i int, listType string, el string, data dataForLi) *gas.E {
 
     return f.Init(true, $htmlF{
     <div class="li-body bdt(1px,solid,#e6e6e6) fz(18px)">
-        <div g-if="listType == `active`" class="d(flex) p(.3rem,.6rem)">
+        <div g-if='listType == "active"' class="d(flex) p(.3rem,.6rem)">
             <button @click="data.MarkAsDone(i)" class="no-btn m(0,.4rem,0,0)">
                 <i class="icon icon-check c(#009966):h:f m(auto,0) h(2rem)"></i>
             </button>

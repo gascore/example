@@ -26,7 +26,7 @@ func Examples(info *r.RouteInfo) *gas.E {
         
     return f.Init(false, $htmlF{
         <div id="examples" class="mini-block blocksList">
-            <section class="contentBlock" g-for="_, example := range examples">
+            <section class="contentBlock" g-for='_, example := range examples'>
                 <header class="contentBlock-title">
                     {{ example.name }}
                 </header>
@@ -35,7 +35,7 @@ func Examples(info *r.RouteInfo) *gas.E {
                 </section>
             </section>
             <div class="d(flex) mb(.7rem)">
-                <e run="ctx.Link(`/examples/components`)" class="d(flex) ml(auto) pretty-btn">
+                <e run='ctx.Link("/examples/components")' class="d(flex) ml(auto) pretty-btn">
                     <span class="fz(16px) d(block)">
                         Components examples
                     </span>

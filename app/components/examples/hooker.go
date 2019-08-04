@@ -15,28 +15,28 @@ func getHooker() *gas.E {
 		Root: root,
 		Hooks: gas.Hooks{
 			BeforeCreated: func() (bool, error) {
-				fmt.Println("BeforeCreated")
+				fmt.Println("Hooker: BeforeCreated")
 				return false, nil
 			},
 			Created: func() error {
-				fmt.Println("Created")
+				fmt.Println("Hooker: Created")
 				return nil
 			},
 			Mounted: func() error {
-				fmt.Println("Mounted")
+				fmt.Println("Hooker: Mounted")
 				return nil
 			},
 			BeforeUpdate: func() error {
-				fmt.Println("BeforeUpdate")
+				fmt.Println("Hooker: BeforeUpdate")
 				return nil
 			},
 			Updated: func() error {
 				root.Counter++
-				fmt.Println("Updated")
+				fmt.Println("Hooker: Updated")
 				return nil
 			},
 			BeforeDestroy: func() error {
-				fmt.Println("BeforeDestroy")
+				fmt.Println("Hooker: BeforeDestroy")
 				return nil
 			},
 		},

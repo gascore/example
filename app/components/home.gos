@@ -19,19 +19,19 @@ func Home(i *r.RouteInfo) *gas.E {
         <div id="home" class="mini-block">
             <img src="/logo.svg" class="d-block m(0,auto) w(256px)--sm w(512px)--md" />
             <div class="d(flex) fxw(wrap)">
-                <e run="ctx.Link(`/examples`)" class="pretty-btn">
+                <e run='ctx.Link("/examples")' class="pretty-btn">
                     Basic examples
                 </e>
-                <e run="ctx.Link(`/examples/components`)" class="pretty-btn">
+                <e run='ctx.Link("/examples/components")' class="pretty-btn">
                     Components examples
                 </e>
-                <e run="ctx.Link(`/links`)" class="pretty-btn">
+                <e run='ctx.Link("/links")' class="pretty-btn">
                     Links
                 </e>
-                <e run="ctx.Link(`/todo`)" class="pretty-btn">
+                <e run='ctx.Link("/todo")' class="pretty-btn">
                     TodoMVC
                 </e>
-                <e run="ctx.Link(`/about`)" class="pretty-btn">
+                <e run='ctx.Link("/about")' class="pretty-btn">
                     About
                 </e>
             </div>
