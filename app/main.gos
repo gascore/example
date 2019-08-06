@@ -69,9 +69,11 @@ func (root *App) Render() []interface{} {
                 <e run="ctx.GetRouter()"></e>
             </main>
 
+            <e run='components.ScrollTop()'></e>
+
             <footer id="main-footer" class="mt(auto) bdt(1px,solid,#e7e9f5) p(.2rem,0) b(inherit)">
                 <div class="centerizeContent d(flex)">
-                    <div>
+                    <section>
                         <div id="main-footer_createdBy">
                             Created by
                             <a href="https://noartem.github.io/" target="_blank">
@@ -95,14 +97,14 @@ func (root *App) Render() []interface{} {
                                 </svg>
                             </span>
                         </div>
-                    </div>
-                    <div class="ml(auto) fz(14px)">
+                    </section>
+                    <section class="ml(auto) fz(14px)">
                         <span>Released under the MIT License</span>
                         <br>
                         <span>Copyright © 2019</span>
                         <br>
                         <span>Noskov Artem</span>
-                    </div>
+                    </section>
                 </div>
             </footer>
         </div>

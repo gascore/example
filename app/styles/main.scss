@@ -67,3 +67,30 @@ footer#main-footer {
     stroke: #4691f6;
     stroke-width: 1;
 }
+
+#scrollTop {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 999;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    padding: .8em;
+    border-radius: 50%;
+    font-size: 18px;
+    width: 2.8rem;
+    height: 2.8rem;
+    color: rgba(85, 97, 125, .6);
+    background: rgba(93, 104, 156, .08);
+    transition: all .3s;
+    content: "\E80F";
+    &:hover,
+    &:focus-within {
+        background: rgba(93, 104, 156, .15);
+    }
+    i.icon {
+        vertical-align: -15%;
+    }
+}

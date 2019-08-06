@@ -55,7 +55,7 @@ type hooker struct {
 
 func (root *hooker) Render() []interface{} {
 	return gas.CL(
-		fmt.Sprintf("You have updated app state %dth times", root.Counter/3),
+		"You have updated app state ", root.Counter, "th times",
 		gas.NE(
 			&gas.E{
 				Handlers: map[string]gas.Handler{

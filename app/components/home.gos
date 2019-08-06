@@ -15,26 +15,54 @@ func InitComponents() {
 
 func Home(i *r.RouteInfo) *gas.E {
     f := &gas.F{}
+
     return f.Init(false, $htmlF{
-        <div id="home" class="mini-block">
-            <img src="/logo.svg" class="d-block m(0,auto) w(256px)--sm w(512px)--md" />
-            <div class="d(flex) fxw(wrap)">
-                <e run='ctx.Link("/examples")' class="pretty-btn">
-                    Basic examples
-                </e>
-                <e run='ctx.Link("/examples/components")' class="pretty-btn">
-                    Components examples
-                </e>
-                <e run='ctx.Link("/links")' class="pretty-btn">
-                    Links
-                </e>
-                <e run='ctx.Link("/todo")' class="pretty-btn">
-                    TodoMVC
-                </e>
-                <e run='ctx.Link("/about")' class="pretty-btn">
-                    About
-                </e>
-            </div>
+        <div id="home" class="mini-block blocksList">
+            <section>
+                <img src="/logo.svg" class="d-block m(0,auto) w(256px)--sm w(512px)--md" />
+            </section>
+            <section class="contentBlock">
+                <section class="contentBlock-title">
+                    Pages
+                </section>
+                <section class="contentBlock-body d(flex) fxw(wrap)" id="example-links">
+                    <e run='ctx.Link("/examples")' class="pretty-btn">
+                        Basic examples
+                    </e>
+                    <e run='ctx.Link("/examples/components")' class="pretty-btn">
+                        Components examples
+                    </e>
+                    <e run='ctx.Link("/links")' class="pretty-btn">
+                        Links
+                    </e>
+                    <e run='ctx.Link("/todo")' class="pretty-btn">
+                        TodoMVC
+                    </e>
+                    <e run='ctx.Link("/about")' class="pretty-btn">
+                        About
+                    </e>
+                </section>
+            </section>
+            <section class="contentBlock">
+                <section class="contentBlock-title">
+                    Last news
+                </section>
+                <section class="contentBlock-body">
+                    <ul>
+                        <li g-for='date, body := range gasNews'>
+                            <b>
+                                {{ date }}
+                            </b>
+                            <span class="m(0,.1em)">
+                            —
+                            </span>
+                            <span>
+                                {{ body }}
+                            </span>        
+                        </li>
+                    </ul>
+                </section>
+            </section>
         </div>
     }$)
 }

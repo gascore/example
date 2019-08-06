@@ -16,9 +16,7 @@ import (
 
 func Components(info *r.RouteInfo) *gas.E {
     root := &ComponentsPage{
-        i: info,
         vItems: generateItems(),
-        //vItemsHeight:  generateItemsHeights(),
 
         dndTodo:       []interface{}{"Pick up groceries", "Go home", "Fall asleep"},
         dndInProgress: []interface{}{"Get to work", "Check e-mail"},
@@ -320,7 +318,6 @@ func Components(info *r.RouteInfo) *gas.E {
 
 type ComponentsPage struct {
     c *gas.C
-    i *r.RouteInfo
 
     dndLists1 gas.DynamicElement
     dndLists2 gas.DynamicElement
@@ -449,7 +446,9 @@ func (root *ComponentsPage) Render() []interface{} {
                             </button>
                         </header>
                         <div class="modal-window_body">
-                            <p class="mb(0)">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt viverra vestibulum. Cras finibus convallis ipsum, sit amet finibus justo dapibus non. Maecenas ultrices velit ac nunc convallis pulvinar. In a hendrerit mi. Nulla orci nisi, tempus quis rhoncus vitae, ornare sit amet risus. Nullam eleifend velit tempor pharetra pretium. Fusce blandit felis a volutpat convallis. Nulla volutpat in purus nec luctus. Donec eget placerat purus, vel faucibus enim. Vivamus a posuere felis, eu sagittis eros.</p>
+                            <p class="mb(0)">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt viverra vestibulum. Cras finibus convallis ipsum, sit amet finibus justo dapibus non. Maecenas ultrices velit ac nunc convallis pulvinar. In a hendrerit mi. Nulla orci nisi, tempus quis rhoncus vitae, ornare sit amet risus. Nullam eleifend velit tempor pharetra pretium. Fusce blandit felis a volutpat convallis. Nulla volutpat in purus nec luctus. Donec eget placerat purus, vel faucibus enim. Vivamus a posuere felis, eu sagittis eros.
+                            </p>
                         </div>
                     </div>
                 </e>

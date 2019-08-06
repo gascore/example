@@ -77,6 +77,9 @@
         width: 62%;
     }
     @media (min-width: 1240px) {
+        width: 48%;
+    }
+    @media (min-width: 1800px) {
         width: 32%;
     }
     margin-left: auto;
@@ -91,6 +94,9 @@
         width: 48%;
     }
     @media (min-width: 1400px) {
+        width: 36%;
+    }
+    @media (min-width: 1800px) {
         width: 24%;
     }
     margin-left: auto;
@@ -138,5 +144,8 @@
     }
     &:visited {
         color: #fff;
+    }
+    &:active {
+        transform: translateY(3px);
     }
 }

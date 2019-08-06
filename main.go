@@ -1,14 +1,15 @@
 package main
 
 import (
-	"os"
-	"fmt"
+	"context"
 	"flag"
+	"fmt"
 	"net/http"
-    "context"
+	"os"
 	"strings"
-	"github.com/kouhin/envflag"
+
 	"github.com/fatih/color"
+	"github.com/kouhin/envflag"
 
 	"github.com/gascore/gasx"
 	"github.com/gascore/gasx/acss"
@@ -16,20 +17,20 @@ import (
 )
 
 var (
-	currentDir string
-	currentSrv *http.Server
+    currentDir string
+    currentSrv *http.Server
 )
 
 func main() {
-	var(
-		err error
+	var (
+		err            error
 		lockFileName   = flag.String("lockfile", ".gaslock", "Lock file name")
-		platform 	   = flag.String("platform", "wasm", "Platform")
+		platform       = flag.String("platform", "wasm", "Platform")
 		ignoreExternal = flag.Bool("ignoreExternal", true, "Ignore external *.gox files?")
-		watch		   = flag.Bool("watch", false, "Watch for file changings")
+		watch          = flag.Bool("watch", false, "Watch for file changings")
 	)
 	if err := envflag.Parse(); err != nil {
-	    panic(err)
+		panic(err)
 	}
 
 	currentDir, err = os.Getwd()
@@ -48,8 +49,8 @@ func main() {
 
 				serve()
 			},
-			[]string{"_gas.go"}, 
-			[]string{}, 
+			[]string{"_gas.go"},
+			[]string{},
 			[]string{"app/"},
 		))
 	}
@@ -120,7 +121,7 @@ func compileCode(builder *gasx.Builder, platform string) {
 }
 
 func serve() {
-	currentSrv = &http.Server{Addr: ":8080", Handler: http.FileServer(http.Dir(currentDir+"/dist"))}
+	currentSrv = &http.Server{Addr: ":8080", Handler: http.FileServer(http.Dir(currentDir + "/dist"))}
 	go func() {
 		currentSrv.ListenAndServe()
 	}()

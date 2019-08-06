@@ -1,0 +1,48 @@
+package components
+
+import (
+    "github.com/gascore/gas"
+    
+    "github.com/gascore/dom"
+    "github.com/gascore/dom/js"
+)
+
+func ScrollTop() *gas.E {
+    f := &gas.F{}
+
+    isVisible, setIsVisible := f.UseStateBool(false)
+
+    f.UseEffect(func() (func(), error) {
+        docEl  := dom.AsElement(js.Value{dom.Doc.JSValue().Get("documentElement")})
+        window := dom.GetWindow().JSValue()
+
+        onEvent := jsEvent(func(event dom.Event) {
+            setIsVisible(docEl.ScrollTop() > 100)
+        })
+
+        window.Call("addEventListener", "scroll", onEvent)
+
+        return func() {
+            window.Call("removeEventListener", "scroll", onEvent)
+        }, nil
+    })
+
+    return f.Init(false, $htmlF{
+        <button @click='ScrollToTopWithSmooth()' title="Go top top" g-if='isVisible()' class="btn" id="scrollTop">
+            <i class="icon icon-arrow-up"></i>
+        </button>
+    }$)
+}
+
+func ScrollToTopWithSmooth() {
+    obj := js.NewObject()
+    obj.Set("top", 0)
+    obj.Set("behavior", "smooth")
+    dom.GetWindow().JSValue().Call("scrollTo", obj)
+}
+
+func jsEvent(f func(event dom.Event)) js.Func {
+    return js.NewEventCallback(func(v js.Value) {
+        f(dom.ConvertEvent(v))
+    })
+}
