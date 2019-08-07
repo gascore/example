@@ -65,7 +65,7 @@ func (root *listItem) Render() []interface{} {
 								"value": root.value,
 							}
 						},
-						Handlers: map[string]gas.Handler {
+						Handlers: map[string]gas.Handler{
 							"input": func(event gas.Event) {
 								root.value = event.Value()
 								go root.c.Update()

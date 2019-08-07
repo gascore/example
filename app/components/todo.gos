@@ -35,15 +35,15 @@ func (root *TodoPage) Render() []interface{} {
 	return $html{
 	<div id="todo-page" class="nano-block">
 		<div id="todoList" class="boxShadow bg(#fff)">
-			<div id="new" class="w(100%) d(flex)">
+			<div id="new" class="w(100%) d(flex) bdrs(.6rem,.6rem,0,0)">
 				<input 
 					:value="root.currentText"
 					@input="root.currentText = e.Value(); go root.c.Update()"
 					@keyup.enter="root.createNewTask()" 
 					id="new"
 					placeholder="What needs to be done?" 
-					class="bd(none) w(90%) p(.8rem) bdrs(.4rem,0,0,0)" />
-				<button class="no-btn w(10%)" @click="root.createNewTask()">
+					class="bd(none) w(90%) p(.8rem) bdrs(.6rem,0,0,0)" />
+				<button class="no-btn w(10%) bdrs(0,.6rem,0,.6rem)" @click="root.createNewTask()">
 					<icon class="icon icon-arrow-right fz(1.1rem) c(mainColor):h"></i>
 				</button>
 			</div>
@@ -52,7 +52,7 @@ func (root *TodoPage) Render() []interface{} {
 					<e run="getLi(i, root.currentList, el, root)"></e>
 				</li>
 			</ul>
-			<div id="todo-footer" class="d(flex) p(.2rem,.6rem) fz(18px) bdt(1px,solid,#e6e6e6)">
+			<div id="todo-footer" class="d(flex) p(.2rem,.6rem) fz(18px) bdt(1px,solid,#e6e6e6) bdrs(0,0,.6rem,.6rem)">
 				<nav>
 					<a @click="root.changeList(`active`)" :class="root.isActive(`active`)">
 						Active
@@ -104,6 +104,10 @@ func (root *TodoPage) clear() {
 }
 
 func (root *TodoPage) createNewTask() {
+	if root.currentText == "" {
+		return
+	}
+	
 	root.active = append(root.active, root.currentText)
 	root.currentText = ""
 	root.changeList("active")

@@ -67,7 +67,8 @@ func (root *hooker) Render() []interface{} {
 				Tag: "button",
 				Attrs: func() map[string]string {
 					return map[string]string{
-						"id": "hooks__button",
+						"id":    "hooks__button",
+						"class": "btn",
 					}
 				},
 			},

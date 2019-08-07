@@ -59,7 +59,6 @@ const styles = `
 	padding: 6px 16px;
 	margin-bottom: 8px;
 	border-bottom: 1px solid #dedede;
-	background-color: #f1f1f1;
 }
 
 #todo-main nav button {
@@ -79,6 +78,25 @@ const styles = `
 
 #todo-main #todo-new {
 	margin: 0 16px;
+}
+
+.todo-input {
+	background: #fff;
+    border: .05rem solid #bcc3ce;
+    border-radius: .1rem;
+    color: #3b4351;
+    display: inline-block;
+    font-size: .8rem;
+    height: 1.8rem;
+    line-height: 1.2rem;
+    outline: 0;
+    padding: .25rem .4rem;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.todo-input:focus {
+	border: .05rem solid #5755d9;
 }
 
 #todo-wrap footer {

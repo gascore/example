@@ -129,7 +129,8 @@ func (root *TODORoot) Render() []interface{} {
 								return map[string]string{
 									"id":          "todo-new",
 									"placeholder": "New task",
-									"value": 	   root.CurrentText,
+									"value":       root.CurrentText,
+									"class":       "todo-input",
 								}
 							},
 						},
@@ -141,6 +142,11 @@ func (root *TODORoot) Render() []interface{} {
 								"click": func(event gas.Event) {
 									root.Add()
 								},
+							},
+							Attrs: func() map[string]string {
+								return map[string]string{
+									"class": "btn",
+								}
 							},
 						},
 						"Add",
@@ -159,7 +165,7 @@ func (root *TODORoot) Render() []interface{} {
 								"Double-click to edit a task",
 							)
 						}
-						
+
 						return nil
 					}(),
 				),
@@ -248,12 +254,12 @@ func getNavEl(index, current int, name string, root interface{ ChangeCurrent(int
 				},
 			},
 			Attrs: func() map[string]string {
-				return map[string]string {
+				return map[string]string{
 					"class": func() string {
 						if current == index {
-							return "active"
+							return "active btn"
 						}
-						return ""
+						return "btn"
 					}(),
 				}
 			},

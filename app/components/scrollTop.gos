@@ -38,7 +38,7 @@ func ScrollToTopWithSmooth() {
     obj := js.NewObject()
     obj.Set("top", 0)
     obj.Set("behavior", "smooth")
-    dom.GetWindow().JSValue().Call("scrollTo", obj)
+    dom.GetWindow().JSValue().Call("scrollTo", obj.JSValue())
 }
 
 func jsEvent(f func(event dom.Event)) js.Func {

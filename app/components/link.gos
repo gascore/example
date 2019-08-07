@@ -37,7 +37,7 @@ func Link(i *r.RouteInfo) *gas.E {
                         {{ text }}
                     </div>
                     <span class="m(0,.4rem)">
-                        <a :href='"https://github.com/gascore/%s" + name' class="pretty-btn" target="_blank">
+                        <a :href='"https://github.com/gascore/" + name' class="pretty-btn" target="_blank">
                             {{ name }}
                         </a>
                     </span>

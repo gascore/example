@@ -56,7 +56,8 @@ func (root *ClickerRoot) Render() []interface{} {
 				Tag: "button",
 				Attrs: func() map[string]string {
 					return map[string]string{
-						"id": "clicker__button", // I love BEM
+						"id":    "clicker__button",
+						"class": "btn",
 					}
 				},
 			},

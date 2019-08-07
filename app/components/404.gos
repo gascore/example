@@ -1,34 +1,40 @@
 package components
 
-import "github.com/gascore/gas"
+import(
+    "github.com/gascore/dom"
+    "github.com/gascore/gas"
+)
 
 func NotFound() *gas.E {
     f := &gas.F{}
+
+    goBack := func() {
+        dom.GetWindow().GetHistory().Call("back")
+    }
+
     return f.Init(false, $htmlF{
-        <div id="notFound" class="nano-block">
-            <h1>
-                <span class="td(underline)">Error 404</span>
-                Page not found
-            </h1>
-            <button class="pretty-btn" onclick="window.history.back()">
-                Go back
-            </button>
-            <!--<div class="notFoundPage">
-                <div>
-                    <h1>
-                        <span class="fz(10em) c(#004AB5)">
-                            404
-                        </span>
-                        Whoops..
-                    </h1>
+        <div id="notFound" class="centerizeContent">
+            <div class="d-flex fxw(wrap)">
+                <h1 class="fz(12em) p(.5rem) m(0,auto)" id="error-title">
+                    404
+                </h1>
+                <div class="m(auto)">
+                    <h2 class="mb(0)">
+                        Something's wrong here...
+                    </h2>
+                    <p class="fz(1.4em) mb(.5rem)">
+                        Page you're looking for is undefined.
+                    </p>
+                    <div class="d-flex">
+                        <button class="btn btn-lg mr(.4em)" @click="goBack()">
+                            Go back
+                        </button>
+                        <e run='ctx.Link("/")' class="btn btn-lg">
+                            Home page
+                        </e>
+                    </div>
                 </div>
-                <div>
-                    Something is wrong
-                    <button>
-                        Go back
-                    </button>
-                </div>
-            </div>-->
+            </div>
         </div>
     }$)
 }

@@ -48,7 +48,8 @@ func (root *IfAndForRoot) Render() []interface{} {
 					Tag: "button",
 					Attrs: func() map[string]string {
 						return map[string]string{
-							"id": "if__button",
+							"id":    "if__button",
+							"class": "btn",
 						}
 					},
 				},

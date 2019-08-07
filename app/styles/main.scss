@@ -1,11 +1,18 @@
 @import "styles.scss";
 @import "pages.scss";
 @import "components.scss";
+@import "dark.scss";
 *,
 *:before,
 *:after {
     box-sizing: inherit;
     font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --boxShadowBorder: none;
+    --boxShadowColor: rgba(125, 128, 147, 0.23);
+    --boxShadowColorHover: rgba(125, 128, 147, 0.46);
 }
 
 html,
@@ -27,13 +34,29 @@ body {
 a,
 b,
 strong,
-i {
+i,
+pre,
+code {
     display: inline-block;
+}
+
+a.btn:visited {
+    color: #5755d9 !important;
 }
 
 header#main-header {
     a {
         color: #2969b9;
+    }
+    #theme-toggle {
+        svg {
+            font-size: 1.2em;
+        }
+        .svg-icon path,
+        .svg-icon polygon,
+        .svg-icon rect {
+            fill: #9CAEC0;
+        }
     }
 }
 
@@ -92,5 +115,6 @@ footer#main-footer {
     }
     i.icon {
         vertical-align: -15%;
+        background: none !important;
     }
 }

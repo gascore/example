@@ -1,0 +1,21 @@
+html.dark {
+    --boxShadowBorder: rgb(103, 103, 107);
+    --boxShadowColor: none;
+    --boxShadowColorHover: none;
+    background-color: rgb(210, 212, 224);
+    filter: invert(100%) hue-rotate(180deg);
+    * {
+        background-color: inherit;
+    }
+    img:not([src*=".svg"]),
+    video {
+        filter: invert(100%) hue-rotate(180deg);
+    }
+    #main-footer {
+        background: inherit !important;
+    }
+    .pretty-btn {
+        filter: invert(100%) hue-rotate(180deg);
+        background: #388ffe;
+    }
+}

@@ -19,7 +19,9 @@ func Home(i *r.RouteInfo) *gas.E {
     return f.Init(false, $htmlF{
         <div id="home" class="mini-block blocksList">
             <section>
-                <img src="/logo.svg" class="d-block m(0,auto) w(256px)--sm w(512px)--md" />
+                <a href="https://github.com/gascore/gas" target="_blank" class="d-block m(0,auto)">
+                    <img src="/logo.svg" class="d-block m(0,auto) w(256px)--sm w(512px)--md" />
+                </a>
             </section>
             <section class="contentBlock">
                 <section class="contentBlock-title">
