@@ -2,6 +2,7 @@ package main
 
 import (
     "fmt"
+    "time"
     
     "github.com/gascore/dom"
 
@@ -41,60 +42,32 @@ func (root *App) Render() []interface{} {
     ctx := router.Ctx()
     return $html{
         <div id="app-wrap">
-            <header 
-                id="main-header" 
-                class="navbar centerizeContent-wrapper bdb(1px,solid,#e7e9f5) mih(8vh) mih(6vh)--sm mih(5vh)--md ovy(none) ovx(auto) whs(nowrap) bg(inherit)">
+            <nav id="main-header" class="nav centerizeContent-wrapper mih(min-content) bdb(1px,solid) whs(nowrap) bg(inherit)">
                 <div class="centerizeContent">
-                    <section class="navbar-section">
-                        <span class="btn btn-link">
-                            <e run='ctx.Link("/")'>
-                                Home
-                            </e>
-                        </span>
-                        <span class="btn btn-link">
-                            <e run='ctx.Link("/examples")'>
-                                Examples
-                            </e>
-                        </span>
-                        <span class="btn btn-link">
-                            <e run='ctx.Link("/todo")'>
-                                TodoMVC
-                            </e>
-                        </span>
-                        <span class="btn btn-link">
-                            <e run='ctx.Link("/links")'>
-                                Links
-                            </e>
-                        </span>
+                    <section class="nav-left">
+                        <e run='ctx.Link("/")'>
+                            Home
+                        </e>
+                        <e run='ctx.Link("/examples")'>
+                            Examples
+                        </e>
+                        <e run='ctx.Link("/todo")'>
+                            TodoMVC
+                        </e>
+                        <e run='ctx.Link("/links")'>
+                            Links
+                        </e>
                     </section>
-                    <section class="navbar-section">
-                        <span class="btn btn-link">
-                            <e run='ctx.Link("/about")'>
-                                About
-                            </e>
-                        </span>
-                        <span id="theme-toggle" class="d(flex) ai(center) ml(.2em)">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon mr(.2em)" viewBox="0 0 24 24">
-                                <g data-name="Layer 2">
-                                    <g data-name="sun">
-                                        <rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/>
-                                        <path d="M12 6a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v2a1 1 0 0 0 1 1z"/>
-                                        <path d="M21 11h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2z"/>
-                                        <path d="M6 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1z"/>
-                                        <path d="M6.22 5a1 1 0 0 0-1.39 1.47l1.44 1.39a1 1 0 0 0 .73.28 1 1 0 0 0 .72-.31 1 1 0 0 0 0-1.41z"/>
-                                        <path d="M17 8.14a1 1 0 0 0 .69-.28l1.44-1.39A1 1 0 0 0 17.78 5l-1.44 1.42a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.31z"/>
-                                        <path d="M12 18a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1z"/>
-                                        <path d="M17.73 16.14a1 1 0 0 0-1.39 1.44L17.78 19a1 1 0 0 0 .69.28 1 1 0 0 0 .72-.3 1 1 0 0 0 0-1.42z"/>
-                                        <path d="M6.27 16.14l-1.44 1.39a1 1 0 0 0 0 1.42 1 1 0 0 0 .72.3 1 1 0 0 0 .67-.25l1.44-1.39a1 1 0 0 0-1.39-1.44z"/>
-                                        <path d="M12 8a4 4 0 1 0 4 4 4 4 0 0 0-4-4z"/>
-                                    </g>
-                                </g>
-                            </svg>
+                    <section class="nav-right">
+                        <e run='ctx.Link("/about")'>
+                            About
+                        </e>
+                        <span id="theme-toggle" class="d(flex) ai(center) ml(.4em)">
                             <label class="form-switch p(.1rem,.4rem,.1rem,1.2rem)">
                                 <input type="checkbox" @change="root.toggleTheme()">
                                 <i class="form-icon"></i>
                             </label>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon ml(.2em)" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" viewBox="0 0 24 24">
                                 <g data-name="Layer 2">
                                     <g data-name="moon">
                                         <rect width="24" height="24" opacity="0"/>
@@ -105,15 +78,15 @@ func (root *App) Render() []interface{} {
                         </span>
                     </section>
                 </div>
-            </header>
+            </nav>
 
-            <main id="main-body" class="main-body p(.6rem,0)">
+            <main id="main-body" class="main-body p(1.4rem,0)">
                 <e run="ctx.GetRouter()"></e>
             </main>
 
             <e run='components.ScrollTop()'></e>
 
-            <footer id="main-footer" class="mt(auto) bdt(1px,solid,#e7e9f5) p(.2rem,0) b(inherit)">
+            <footer id="main-footer" class="mt(auto) bdt(1px,solid) bdc(color-lightGrey) p(.2rem,0) b(inherit) text-grey">
                 <div class="centerizeContent d(flex)">
                     <section>
                         <div id="main-footer_createdBy">
@@ -124,7 +97,7 @@ func (root *App) Render() []interface{} {
                         </div>
                         <div id="main-footer_createdWith">
                             With
-                            <a href="https://github.com/gascore/gas" target="_blank" class="c(#00cc99) td(underline)">
+                            <a href="https://github.com/gascore/gas" target="_blank">
                                 GAS
                             </a>
                             and 
@@ -154,13 +127,19 @@ func (root *App) Render() []interface{} {
 }
 
 func (root *App) toggleTheme() {
-    if root.isDark { // remove class
-        root.htmlEl.ClassList().Remove("dark")
-    }
-
     root.isDark = !root.isDark
 
-    if root.isDark { // add class
-        root.htmlEl.ClassList().Add("dark")
+    if root.isDark {
+        // add class
+        root.htmlEl.SetAttribute("data-theme", "dark")
+    } else { 
+        // remove class
+        root.htmlEl.ClassList().Add("theme-in-transition")
+        root.htmlEl.SetAttribute("data-theme", "light")
+
+        go func() {
+            time.Sleep(1 * time.Second)
+            root.htmlEl.ClassList().Remove("theme-in-transition")
+        }()
     }
 }

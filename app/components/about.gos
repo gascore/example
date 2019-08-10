@@ -55,7 +55,7 @@ func About(info *r.RouteInfo) *gas.E {
                             </g>
                         </svg>
                     </div>
-                    <input @input="setLink(e.Value())" :value="link()" class="w(92%) bd(none) p(.8rem) bdrs(.4rem,.4rem,0,0)" type="text">
+                    <input @input="setLink(e.Value())" :value="link()" class="form-input w(92%) bd(none) p(.8rem) bdrs(.8rem,.8rem,0,0)" type="text">
                 </header>
                 <div class="contentBlock-body ovx(auto)">
                     <div g-html="file()"></div>

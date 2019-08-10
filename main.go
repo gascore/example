@@ -17,8 +17,8 @@ import (
 )
 
 var (
-    currentDir string
-    currentSrv *http.Server
+	currentDir string
+	currentSrv *http.Server
 )
 
 func main() {
@@ -71,6 +71,21 @@ func build(lockFileName string, platform string, ignoreExternal bool) {
 		},
 		Custom: map[string]string{
 			"b": "1px solid #dedede",
+
+			// burn.css variables
+			"color-primary":         "var(--color-primary)",
+			"color-second-primary": "var(--color-second-primary)",
+			"color-lightGrey":       "var(--color-lightGrey)",
+			"color-grey":            "var(--color-grey)",
+			"color-darkGrey":        "var(--color-darkGrey)",
+			"color-error":           "var(--color-error)",
+			"color-success":         "var(--color-success)",
+			"main-bg":               "var(--main-bg)",
+			"gray-bg":               "var(--gray-bg)",
+			"grid-maxWidth":         "var(--grid-maxWidth)",
+			"grid-gutter":           "var(--grid-gutter)",
+			"font-size":             "var(--font-size)",
+			"-main-color":           "var(--main-color)",
 		},
 	}
 	htmlCompiler.AddOnAttribute(acssGen.OnAttribute())

@@ -428,7 +428,7 @@ func (root *ComponentsPage) Render() []interface{} {
             </header>
 
             <section class="contentBlock-body">
-                <button class="h(2.4rem) w(6rem) pretty-btn" @click="root.toggleModal()">
+                <button class="fz(1.8rem) pretty-btn" @click="root.toggleModal()">
                     <span g-if="root.isActiveModal">
                         Hide
                     </span>

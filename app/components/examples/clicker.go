@@ -57,7 +57,7 @@ func (root *ClickerRoot) Render() []interface{} {
 				Attrs: func() map[string]string {
 					return map[string]string{
 						"id":    "clicker__button",
-						"class": "btn",
+						"class": "button outline",
 					}
 				},
 			},

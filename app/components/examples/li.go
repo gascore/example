@@ -63,6 +63,7 @@ func (root *listItem) Render() []interface{} {
 							return map[string]string{
 								"style": "margin-right: 8px",
 								"value": root.value,
+								"class": "form-input",
 							}
 						},
 						Handlers: map[string]gas.Handler{

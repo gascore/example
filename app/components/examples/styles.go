@@ -3,7 +3,6 @@ package examples
 const styles = `
 #todo-main {
 	border: 1px solid #dedede;
-	border-radius: 4px;
 	padding: 0px 0px 4px 0px;
 }
 
@@ -81,22 +80,9 @@ const styles = `
 }
 
 .todo-input {
-	background: #fff;
-    border: .05rem solid #bcc3ce;
-    border-radius: .1rem;
-    color: #3b4351;
     display: inline-block;
-    font-size: .8rem;
-    height: 1.8rem;
-    line-height: 1.2rem;
-    outline: 0;
-    padding: .25rem .4rem;
-    text-decoration: none;
-    vertical-align: middle;
-    white-space: nowrap;
-}
-.todo-input:focus {
-	border: .05rem solid #5755d9;
+	height: 2em;
+	width: 40%;
 }
 
 #todo-wrap footer {

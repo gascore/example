@@ -130,7 +130,7 @@ func (root *TODORoot) Render() []interface{} {
 									"id":          "todo-new",
 									"placeholder": "New task",
 									"value":       root.CurrentText,
-									"class":       "todo-input",
+									"class":       "form-input todo-input",
 								}
 							},
 						},
@@ -145,7 +145,7 @@ func (root *TODORoot) Render() []interface{} {
 							},
 							Attrs: func() map[string]string {
 								return map[string]string{
-									"class": "btn",
+									"class": "button outline",
 								}
 							},
 						},
@@ -257,9 +257,9 @@ func getNavEl(index, current int, name string, root interface{ ChangeCurrent(int
 				return map[string]string{
 					"class": func() string {
 						if current == index {
-							return "active btn"
+							return "active button outline"
 						}
-						return "btn"
+						return "button outline"
 					}(),
 				}
 			},

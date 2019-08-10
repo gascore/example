@@ -26,10 +26,10 @@ func NotFound() *gas.E {
                         Page you're looking for is undefined.
                     </p>
                     <div class="d-flex">
-                        <button class="btn btn-lg mr(.4em)" @click="goBack()">
+                        <button class="button outline primary mr(.4em)" @click="goBack()">
                             Go back
                         </button>
-                        <e run='ctx.Link("/")' class="btn btn-lg">
+                        <e run='ctx.Link("/")' class="button outline dark">
                             Home page
                         </e>
                     </div>

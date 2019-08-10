@@ -13,8 +13,6 @@
                 padding: .1em .2em;
                 width: 128px;
                 height: 128px;
-                color: rgba(0, 0, 0, 0.87);
-                background: #fff;
                 font-size: 20px;
                 z-index: 1;
                 display: flex;
@@ -24,7 +22,7 @@
                 cursor: move;
                 user-select: none;
                 touch-action: none;
-                border-radius: .6rem;
+                border-radius: 1rem;
                 @include boxShadow();
                 @include boxShadowHover();
             }
@@ -40,7 +38,6 @@
                     position: absolute;
                     top: .6em;
                     right: .6em;
-                    color: #ccc;
                     font-size: .8em;
                     cursor: move;
                 }
@@ -52,14 +49,14 @@
             @include boxShadow();
             padding: 4px 8px;
             width: 100%;
-            border-radius: 0.08em;
+            border-radius: 0.14em;
             margin-bottom: 8px;
         }
     }
     // layout
     .layout-item-bd {
-        border: 1px solid #388ffe;
-        border-radius: 0.3rem;
+        border: 1px solid var(--color-primary);
+        border-radius: 0.6rem;
         padding: 4px 8px;
         padding: .5em .3em;
         overflow-x: hidden;
@@ -67,7 +64,7 @@
         height: 100%;
         width: 100%;
         font-size: 20px;
-        color: #2E75D6;
+        color: var(--color-second-primary);
     }
     .layout {
         height: 50vh;
@@ -94,18 +91,18 @@
     }
     // vlist
     .vlist {
-        border-radius: 0.3rem;
-        border: 1px solid #388ffe;
+        border-radius: 0.6rem;
+        border: 1px solid var(--color-primary);
         ul {
             padding: 0;
             margin: 0;
             list-style-type: none;
             li {
-                color: #2E75D6;
+                color: var(--color-second-primary);
                 margin: 0;
                 padding: .4rem;
                 border: 0;
-                border-bottom: 1px solid #388ffe;
+                border-bottom: 1px solid var(--color-primary);
                 height: 100%;
             }
         }
@@ -118,7 +115,7 @@
                 li {
                     padding: .8rem;
                     border: 0;
-                    border-right: 1px solid #388ffe;
+                    border-right: 1px solid var(--color-primary);
                 }
             }
         }

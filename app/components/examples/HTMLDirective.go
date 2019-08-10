@@ -31,7 +31,7 @@ func (root *HTMLRoot) Render() []interface{} {
 				Tag: "button",
 				Attrs: func() map[string]string {
 					return map[string]string{
-						"class": "btn",
+						"class": "button outline",
 					}
 				},
 			},

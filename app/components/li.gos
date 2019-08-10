@@ -27,14 +27,14 @@ func getLi(i int, listType string, el string, data dataForLi) *gas.E {
     }
 
     return f.Init(true, $htmlF{
-    <div class="li-body bdt(1px,solid,#e6e6e6) fz(18px)">
-        <div g-if='listType == "active"' class="d(flex) p(.3rem,.6rem)">
-            <button @click="data.MarkAsDone(i)" class="no-btn m(0,.4rem,0,0)">
-                <i class="icon icon-check c(#009966):h:f m(auto,0) h(2rem)"></i>
+    <div class="li-body bdt(1px,solid) bdc(color-lightGrey) fz(18px)">
+        <div g-if='listType == "active"' class="d(flex) p(.6rem,1.2rem)">
+            <button @click="data.MarkAsDone(i)" class="no-btn m(0,.8rem,0,0)">
+                <i class="icon icon-check c(#009966):h c(#009966):f fz(1.2em) m(auto,0) h(4rem)"></i>
             </button>
-            
-            <div class="li-body_data w(100%) m(auto,0)">
-                <span g-if="len(getValue()) == 0" @dblclick="goEdit()" class="w(100%)" id="some-lipsum">
+
+            <div class="li-body_data w(90%) m(auto,0)">
+                <span g-if="len(getValue()) == 0" @dblclick="goEdit()" class="w(90%) wow(break-word)" id="some-lipsum">
                     {{ el }}
                 </span>
                 <input
@@ -42,15 +42,15 @@ func getLi(i int, listType string, el string, data dataForLi) *gas.E {
                     @input="setValue(e.Value())"
                     :value="getValue()"
                     @keyup.enter="goCreate()" 
-                    class="c(#3b4351) w(100%) h(100%)"/>
+                    class="form-input c(#3b4351) w(100%) h(100%)"/>
             </div>
 
             <button g-if="len(getValue()) == 0" @click="data.Delete(i)" class="no-btn m(0,0,0,auto)">
-                <i class="icon icon-delete c(#ff0033):h:f m(auto 0)"></i>
+                <i class="icon icon-delete c(#ff0033):h c(#ff0033):f fz(1.2em) m(auto 0)"></i>
             </button>
         </div>
-        <div g-else class="p(.6rem,1.2rem)">
-            <span class="w(100%)">
+        <div g-else class="p(1.2rem,2.4rem)">
+            <span class="w(90%) wow(break-word)">
                 {{ el }}
             </span>
         </div>

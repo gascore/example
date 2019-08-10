@@ -2,13 +2,6 @@
 @import "pages.scss";
 @import "components.scss";
 @import "dark.scss";
-*,
-*:before,
-*:after {
-    box-sizing: inherit;
-    font-family: 'Roboto', sans-serif;
-}
-
 :root {
     --boxShadowBorder: none;
     --boxShadowColor: rgba(125, 128, 147, 0.23);
@@ -22,7 +15,7 @@ body {
 
 #app {
     height: 100%;
-    background-image: linear-gradient(180deg, #F0F8FF 0%, #fff 50%);
+    background: linear-gradient(180deg, #F0F8FF 0%, #fff 50%);
 }
 
 #app-wrap {
@@ -40,14 +33,20 @@ code {
     display: inline-block;
 }
 
-a.btn:visited {
-    color: #5755d9 !important;
+a {
+    color: var(--color-primary);
 }
 
-header#main-header {
-    a {
-        color: #2969b9;
-    }
+.light-bg {
+    background-color: #fff;
+}
+
+html[data-theme='dark'] .light-bg {
+    background: inherit;
+}
+
+#main-header {
+    border-color: var(--color-lightGrey);
     #theme-toggle {
         svg {
             font-size: 1.2em;
@@ -61,7 +60,6 @@ header#main-header {
 }
 
 footer#main-footer {
-    color: rgba(0, 0, 0, 0.54);
     background-image: linear-gradient(0deg, #DFF8FF 0%, #fff 65%);
     #main-footer_createdWith-love {
         .svg-icon path,
@@ -69,6 +67,36 @@ footer#main-footer {
         .svg-icon rect {
             fill: #ff0033;
         }
+    }
+}
+
+#scrollTop {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 999;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: .8em;
+    border-radius: 50%;
+    font-size: 18px;
+    width: 5.4rem;
+    height: 5.4rem;
+    color: rgba(85, 97, 125, .6);
+    background: rgba(93, 104, 156, .08);
+    transition: all .3s;
+    content: "\E80F";
+    &:hover,
+    &:focus-within {
+        background: rgba(93, 104, 156, .15);
+    }
+    i.icon {
+        vertical-align: -15%;
+        background: none !important;
+    }
+    &:active {
+        transform: scale(1.25);
     }
 }
 
@@ -83,38 +111,14 @@ footer#main-footer {
 .svg-icon path,
 .svg-icon polygon,
 .svg-icon rect {
-    fill: #4691f6;
+    fill: var(--main-color);
 }
 
 .svg-icon circle {
-    stroke: #4691f6;
+    stroke: var(--main-color);
     stroke-width: 1;
 }
 
-#scrollTop {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    z-index: 999;
-    border: none;
-    outline: none;
-    color: white;
-    cursor: pointer;
-    padding: .8em;
-    border-radius: 50%;
-    font-size: 18px;
-    width: 2.8rem;
-    height: 2.8rem;
-    color: rgba(85, 97, 125, .6);
-    background: rgba(93, 104, 156, .08);
-    transition: all .3s;
-    content: "\E80F";
-    &:hover,
-    &:focus-within {
-        background: rgba(93, 104, 156, .15);
-    }
-    i.icon {
-        vertical-align: -15%;
-        background: none !important;
-    }
+.icon {
+    color: var(--main-color);
 }

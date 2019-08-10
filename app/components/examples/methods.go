@@ -65,7 +65,7 @@ func getButton(show bool, root interface{ Toggle() }) *gas.Element {
 			Attrs: func() map[string]string {
 				return map[string]string{
 					"id":    "M&C__button",
-					"class": "btn",
+					"class": "button outline",
 				}
 			},
 		},

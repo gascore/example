@@ -31,7 +31,7 @@ func FunctionalExample() *gas.E {
 						},
 						Attrs: func() map[string]string {
 							return map[string]string{
-								"class": "btn",
+								"class": "button outline",
 							}
 						},
 					},
@@ -46,7 +46,7 @@ func FunctionalExample() *gas.E {
 						},
 						Attrs: func() map[string]string {
 							return map[string]string{
-								"class": "btn",
+								"class": "button outline",
 							}
 						},
 					},
@@ -65,7 +65,7 @@ func FunctionalExample() *gas.E {
 						},
 						Attrs: func() map[string]string {
 							return map[string]string{
-								"class": "btn",
+								"class": "button outline",
 							}
 						},
 					},

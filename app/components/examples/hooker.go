@@ -68,7 +68,8 @@ func (root *hooker) Render() []interface{} {
 				Attrs: func() map[string]string {
 					return map[string]string{
 						"id":    "hooks__button",
-						"class": "btn",
+						"class": "button outline",
+						"style": "margin: 0 .4em;",
 					}
 				},
 			},

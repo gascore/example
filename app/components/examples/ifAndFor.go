@@ -49,7 +49,8 @@ func (root *IfAndForRoot) Render() []interface{} {
 					Attrs: func() map[string]string {
 						return map[string]string{
 							"id":    "if__button",
-							"class": "btn",
+							"class": "button outline",
+							"style": "margin-right: .4em;",
 						}
 					},
 				},

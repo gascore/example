@@ -1,20 +1,24 @@
 .contentBlock {
-    border-radius: .4rem;
-    border: 1px solid #388ffe;
+    border-radius: .8rem;
+    border: 1px solid var(--color-primary);
     background: #fff;
     .contentBlock-title {
         font-family: 'Poppins', sans-serif;
-        border-radius: .4rem .4rem 0 0;
-        border-bottom: 1px solid #388ffe;
+        border-radius: .8rem .8rem 0 0;
+        border-bottom: 1px solid var(--color-primary);
         padding: .4rem .6rem;
-        color: #388ffe;
-        font-size: 1rem;
+        color: var(--color-primary);
+        font-size: 2rem;
     }
     .contentBlock-body {
         background: inherit;
-        padding: .8rem 1rem;
-        border-radius: .4rem;
+        padding: 1.2rem 1.6rem;
+        border-radius: .8rem;
     }
+}
+
+html[data-theme='dark'] .contentBlock {
+    background-color: inherit;
 }
 
 .blocksList>*+* {
@@ -23,7 +27,7 @@
 
 @mixin boxShadow() {
     border: 1px solid var(--boxShadowBorder);
-    border-radius: .6rem;
+    border-radius: 1.5rem;
     box-shadow: var(--boxShadowColor) 0px 3px 11px 0px;
     transition: box-shadow .5s;
 }
@@ -114,49 +118,11 @@
     margin-right: auto;
 }
 
-.no-btn {
-    box-shadow: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    background: inherit;
-    cursor: pointer;
-}
-
 .no-list {
     list-style-type: none;
     padding-left: 0;
     margin-left: 0;
     li {
         padding-left: 0;
-    }
-}
-
-.pretty-btn {
-    border: none;
-    display: inline-block;
-    padding: 13px 19px;
-    border-radius: 30px;
-    background: #388ffe;
-    cursor: pointer;
-    font-size: 16px;
-    color: #fff;
-    -webkit-transition: all .15s ease;
-    transition: all .15s ease;
-    -webkit-box-shadow: 0 9px 12px -6px rgba(11, 132, 242, .78);
-    box-shadow: 0 9px 12px -6px rgba(11, 132, 242, .78);
-    will-change: background-color, box-shadow;
-    &:hover {
-        text-decoration: none;
-        color: #fff;
-        background: #3684fe;
-        -webkit-box-shadow: 0 9px 16px -6px rgba(11, 132, 242, .78);
-        box-shadow: 0 9px 16px -6px rgba(11, 132, 242, .78);
-    }
-    &:visited {
-        color: #fff;
-    }
-    &:active {
-        transform: translateY(3px);
     }
 }
