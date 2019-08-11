@@ -24,7 +24,7 @@ func main() {
     c := &gas.C{Root: app}
     app.c = c
 
-    err := gas.Init(web.GetBackEnd(), "app", c)
+    err := web.Init(c, "app")
     if err != nil {
         panic(err)
     }
@@ -44,7 +44,7 @@ func (root *App) Render() []interface{} {
         <div id="app-wrap">
             <nav id="main-header" class="nav centerizeContent-wrapper mih(min-content) bdb(1px,solid) whs(nowrap) bg(inherit)">
                 <div class="centerizeContent">
-                    <section class="nav-left">
+                    <section class="nav-left ">
                         <e run='ctx.Link("/")'>
                             Home
                         </e>
@@ -57,11 +57,11 @@ func (root *App) Render() []interface{} {
                         <e run='ctx.Link("/links")'>
                             Links
                         </e>
-                    </section>
-                    <section class="nav-right">
                         <e run='ctx.Link("/about")'>
                             About
                         </e>
+                    </section>
+                    <section class="nav-right">
                         <span id="theme-toggle" class="d(flex) ai(center) ml(.4em)">
                             <label class="form-switch p(.1rem,.4rem,.1rem,1.2rem)">
                                 <input type="checkbox" @change="root.toggleTheme()">

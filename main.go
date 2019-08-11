@@ -81,7 +81,6 @@ func build(lockFileName string, platform string, ignoreExternal bool) {
 			"color-error":           "var(--color-error)",
 			"color-success":         "var(--color-success)",
 			"main-bg":               "var(--main-bg)",
-			"gray-bg":               "var(--gray-bg)",
 			"grid-maxWidth":         "var(--grid-maxWidth)",
 			"grid-gutter":           "var(--grid-gutter)",
 			"font-size":             "var(--font-size)",
