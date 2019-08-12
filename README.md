@@ -11,13 +11,15 @@
 
 ```bash
 // install nodejs, I recommend github.com/nvm-sh/nvm
-npi i -g sass
+npm i -g sass
 
 GO111MODULE=off go get github.com/gascore/example
 cd $GOPATH/src/github.com/gascore/example
 export GO111MODULE=on
 
-cd app && go get && cd ..
+cd app
+go get
+cd ..
 
 go run main.go -watch 
 ```
