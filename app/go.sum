@@ -92,6 +92,8 @@ github.com/gascore/std v0.0.0-20190804120934-7d3b5dbb4310 h1:XYbXOaq5zNFHLpiS2gC
 github.com/gascore/std v0.0.0-20190804120934-7d3b5dbb4310/go.mod h1:Q8hkFDwhZWOY6Ziz7RQkVjcvigr9OOkcfbZ4WCVpDCw=
 github.com/gascore/std v0.0.0-20190807091916-01d577d66be5 h1:q7n9gqptfTCs4v88hZBmOTs4X6vF6pz7TBEJtIxwaok=
 github.com/gascore/std v0.0.0-20190807091916-01d577d66be5/go.mod h1:QFoIB3Vh6iTFLMsUjcawsz+Qhw+mZA6IwyU+8UAM5Tc=
+github.com/gascore/std v0.0.0-20190812074654-e48bd8251416 h1:nCbRkbhsbLtnMRUbKWFQPlRq6XhUrXow9Iy1hgYnc5g=
+github.com/gascore/std v0.0.0-20190812074654-e48bd8251416/go.mod h1:nNnMhzX/CZahcHDeC3W34a6kuPls36IIGkEshlHi01w=
 github.com/gopherjs/gopherjs v0.0.0-20190430165422-3e4dfb77656c/go.mod h1:wJfORRmW1u3UXTncJ5qlYoELFm8eSnnEO6hX4iZ3EWY=
 github.com/gorilla/websocket v1.4.0/go.mod h1:E7qHFY5m1UJ88s3WnNqhKjPHQ0heANvMoAMk2YaljkQ=
 github.com/hashicorp/hcl v1.0.0/go.mod h1:E5yfLk+7swimpb2L/Alb/PJmXilQ/rhwaUYs4T20WEQ=

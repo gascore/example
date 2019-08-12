@@ -39,7 +39,7 @@ func Examples(info *r.RouteInfo) *gas.E {
                     <span class="fz(16px) d(block)">
                         Components examples
                     </span>
-                    <i class="icon icon-forward m(auto,0,auto,.4em) fz(12px)"></i>
+                    <i class="icon icon-forward m(auto,0,auto,.4em) fz(12px) c(#fff)"></i>
                 </e>
             </div>
         </div>
