@@ -4,13 +4,20 @@
 
 0. [gasocre/gas](https://github.com/gascore/gas)
 1. [gasocre/std](https://github.com/gascore/std)
-2. [sass](https://sass-lang.com) - I use sass JS implementation, for install it run `npm install -g sass` or see [another ways](https://sass-lang.com/install)
+2. [sass](https://sass-lang.com)
 3. [golang-commonmark/markdown](https://gitlab.com/golang-commonmark/markdown) - markdown parser
 
 ### Gettings started:
 
 ```bash
-go get github.com/gascore/example
+// install nodejs, I recommend github.com/nvm-sh/nvm
+npi i -g sass
+
+GO111MODULE=off go get github.com/gascore/example
 cd $GOPATH/src/github.com/gascore/example
-go run main.go
+export GO111MODULE=on
+
+cd app && go get && cd ..
+
+go run main.go -watch 
 ```
