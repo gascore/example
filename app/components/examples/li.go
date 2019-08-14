@@ -35,8 +35,8 @@ func (root *listItem) Render() []interface{} {
 							root.data.MarkAsDone(root.index)
 						},
 					},
-					Attrs: func() map[string]string {
-						return map[string]string{
+					Attrs: func() gas.Map {
+						return gas.Map{
 							"id": "submit",
 						}
 					},
@@ -44,8 +44,8 @@ func (root *listItem) Render() []interface{} {
 				gas.NE(
 					&gas.E{
 						Tag: "i",
-						Attrs: func() map[string]string {
-							return map[string]string{
+						Attrs: func() gas.Map {
+							return gas.Map{
 								"class": "icon icon-check",
 							}
 						},
@@ -59,8 +59,8 @@ func (root *listItem) Render() []interface{} {
 				return gas.NE(
 					&gas.E{
 						Tag: "input",
-						Attrs: func() map[string]string {
-							return map[string]string{
+						Attrs: func() gas.Map {
+							return gas.Map{
 								"style": "margin-right: 8px",
 								"value": root.value,
 								"class": "form-input",
@@ -111,8 +111,8 @@ func (root *listItem) Render() []interface{} {
 							root.data.Delete(root.index)
 						},
 					},
-					Attrs: func() map[string]string {
-						return map[string]string{
+					Attrs: func() gas.Map {
+						return gas.Map{
 							"id": "delete",
 						}
 					},
@@ -120,8 +120,8 @@ func (root *listItem) Render() []interface{} {
 				gas.NE(
 					&gas.E{
 						Tag: "i",
-						Attrs: func() map[string]string {
-							return map[string]string{
+						Attrs: func() gas.Map {
+							return gas.Map{
 								"class": "icon icon-delete",
 							}
 						},

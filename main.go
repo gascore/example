@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"flag"
 	"fmt"
 	"net/http"
@@ -16,43 +15,41 @@ import (
 	"github.com/gascore/gasx/html"
 )
 
-var (
-	currentDir string
-	currentSrv *http.Server
-)
+var currentDir = func() string {
+	dir, err := os.Getwd()
+	gasx.Must(err)
+	return dir
+}()
 
 func main() {
 	var (
-		err            error
 		lockFileName   = flag.String("lockfile", ".gaslock", "Lock file name")
 		platform       = flag.String("platform", "wasm", "Platform")
 		ignoreExternal = flag.Bool("ignoreExternal", true, "Ignore external *.gox files?")
 		watch          = flag.Bool("watch", false, "Watch for file changings")
+		serveDist      = flag.Bool("serve", true, "Serve ./dist directory")
 	)
 	if err := envflag.Parse(); err != nil {
 		panic(err)
 	}
 
-	currentDir, err = os.Getwd()
-	gasx.Must(err)
-
 	build(*lockFileName, *platform, *ignoreExternal)
 
 	if *watch {
-		serve()
+		go serve()
 		gasx.Must(gasx.StartWatcher(
 			func(path string) {
 				fmt.Println(color.GreenString("Triggered:"), strings.TrimPrefix(path, currentDir+"/app/"))
 				build(*lockFileName, *platform, *ignoreExternal)
-
-				currentSrv.Shutdown(context.TODO())
-
-				serve()
 			},
 			[]string{"_gas.go"},
 			[]string{},
 			[]string{"app/"},
 		))
+	}
+
+	if *serveDist {
+		serve()
 	}
 }
 
@@ -73,18 +70,18 @@ func build(lockFileName string, platform string, ignoreExternal bool) {
 			"b": "1px solid #dedede",
 
 			// burn.css variables
-			"color-primary":         "var(--color-primary)",
+			"color-primary":        "var(--color-primary)",
 			"color-second-primary": "var(--color-second-primary)",
-			"color-lightGrey":       "var(--color-lightGrey)",
-			"color-grey":            "var(--color-grey)",
-			"color-darkGrey":        "var(--color-darkGrey)",
-			"color-error":           "var(--color-error)",
-			"color-success":         "var(--color-success)",
-			"main-bg":               "var(--main-bg)",
-			"grid-maxWidth":         "var(--grid-maxWidth)",
-			"grid-gutter":           "var(--grid-gutter)",
-			"font-size":             "var(--font-size)",
-			"-main-color":           "var(--main-color)",
+			"color-lightGrey":      "var(--color-lightGrey)",
+			"color-grey":           "var(--color-grey)",
+			"color-darkGrey":       "var(--color-darkGrey)",
+			"color-error":          "var(--color-error)",
+			"color-success":        "var(--color-success)",
+			"main-bg":              "var(--main-bg)",
+			"grid-maxWidth":        "var(--grid-maxWidth)",
+			"grid-gutter":          "var(--grid-gutter)",
+			"font-size":            "var(--font-size)",
+			"-main-color":          "var(--main-color)",
 		},
 	}
 	htmlCompiler.AddOnAttribute(acssGen.OnAttribute())
@@ -105,7 +102,7 @@ func build(lockFileName string, platform string, ignoreExternal bool) {
 	gasx.RunCommand("sass app/styles/main.scss dist/main.css")
 
 	lockFile.Save()
-	gasx.Log("Builded successfully!")
+	gasx.Log("Building finished")
 }
 
 func compileFiles(builder *gasx.Builder, buildExternal bool) {
@@ -135,8 +132,7 @@ func compileCode(builder *gasx.Builder, platform string) {
 }
 
 func serve() {
-	currentSrv = &http.Server{Addr: ":8080", Handler: http.FileServer(http.Dir(currentDir + "/dist"))}
-	go func() {
-		currentSrv.ListenAndServe()
-	}()
+	gasx.Log("Starting static server")
+	currentSrv := &http.Server{Addr: ":8080", Handler: http.FileServer(http.Dir(currentDir + "/dist"))}
+	currentSrv.ListenAndServe()
 }

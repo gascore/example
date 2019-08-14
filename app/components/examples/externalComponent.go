@@ -12,8 +12,8 @@ func (data *clickerExternalComponent) Render() []interface{} {
 		gas.NE(
 			&gas.E{
 				Tag: "i",
-				Attrs: func() map[string]string {
-					return map[string]string{
+				Attrs: func() gas.Map {
+					return gas.Map{
 						"id": "number-viewer",
 					}
 				},

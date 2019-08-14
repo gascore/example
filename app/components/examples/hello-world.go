@@ -13,8 +13,8 @@ func (root *HelloRoot) Render() []interface{} {
 		gas.NE(
 			&gas.E{
 				Tag: "h1",
-				Attrs: func() map[string]string {
-					return map[string]string{
+				Attrs: func() gas.Map {
+					return gas.Map{
 						"id":    "hello-world",
 						"class": "greeting h1",
 					}
@@ -24,8 +24,8 @@ func (root *HelloRoot) Render() []interface{} {
 		gas.NE(
 			&gas.E{
 				Tag: "i",
-				Attrs: func() map[string]string {
-					return map[string]string{
+				Attrs: func() gas.Map {
+					return gas.Map{
 						"id":    "italiano",
 						"class": "greeting",
 						"style": "margin-right: 12px;",

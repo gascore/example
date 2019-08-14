@@ -2,6 +2,7 @@ package components
 
 import (
     "fmt"
+    "strings"
     "net/http"
     "bytes"
 
@@ -14,23 +15,32 @@ import (
 func About(info *r.RouteInfo) *gas.E {
     f := &gas.F{}
 
+    errorMsg := `<h1><span style="color: #ff0033">404</span> Page not found</h1>`
+
     link, setLink := f.UseStateString("gascore/gas/master/README.md")
     file, setFile := f.UseStateString("Loading, please wait...")
+    isRaw, setIsRaw := f.UseStateBool(false)
 
     updateFile := func() {
         resp, err := http.Get("https://raw.githubusercontent.com/"+link())
-        if err != nil {
-            f.C.WarnError(err)
-            setFile(`<h1><span style="color: #ff0033">404</span> Page not found</h1>`)
+        if err != nil || resp.StatusCode != 200 {
+            setFile(errorMsg)
+            setIsRaw(false)
             return
         }
-
         defer resp.Body.Close()
+
         buf := new(bytes.Buffer)
         buf.ReadFrom(resp.Body)
 
-        md := markdown.New(markdown.XHTMLOutput(true))
-        setFile(md.RenderToString(buf.Bytes()))
+        if strings.HasSuffix(link(), ".md") {
+            md := markdown.New(markdown.XHTMLOutput(true))
+            setFile(md.RenderToString(buf.Bytes()))
+            setIsRaw(false)
+        } else {
+            setFile(string(buf.Bytes()))
+            setIsRaw(true)
+        }
     }
 
     f.UseEffect(func() (func(), error) {
@@ -44,7 +54,7 @@ func About(info *r.RouteInfo) *gas.E {
         <div id="about" class="centerizeContent mini-block m(auto)">
             <div class="contentBlock m(0) p(0)">
                 <header class="contentBlock-title p(0,!important) m(0) w(100%) d(flex)">
-                    <div class="w(8%) d(flex) fz(28px) bdrs(.6rem)">
+                    <div class="w(8%) d(flex) fz(28px) bdrs(.8rem)">
                         <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon m(auto)" viewBox="0 0 24 24">
                             <g data-name="Layer 2">
                                 <g data-name="edit-2">
@@ -55,10 +65,11 @@ func About(info *r.RouteInfo) *gas.E {
                             </g>
                         </svg>
                     </div>
-                    <input @input="setLink(e.Value())" :value="link()" class="form-input w(92%) bd(none) p(.8rem) bdrs(.8rem,.8rem,0,0)" type="text">
+                    <input @input="setLink(e.Value())" :value="link()" class="form-input w(92%) bd(none) p(.8rem) bdrs(0,.8rem,0,0)" type="text">
                 </header>
                 <div class="contentBlock-body ovx(auto)">
-                    <div g-html="file()"></div>
+                    <p g-if="isRaw()" class="whs(pre-wrap)">{{ file() }}</p>
+                    <div g-else g-html="file()"></div>
                 </div>
             </div>
         </div>

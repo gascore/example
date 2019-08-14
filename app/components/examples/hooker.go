@@ -23,7 +23,7 @@ func getHooker() *gas.E {
 				return nil
 			},
 			Mounted: func() error {
-				fmt.Println("Hooker: Mounted")
+				// fmt.Println("Hooker: Mounted")
 				return nil
 			},
 			BeforeUpdate: func() error {
@@ -65,8 +65,8 @@ func (root *hooker) Render() []interface{} {
 					},
 				},
 				Tag: "button",
-				Attrs: func() map[string]string {
-					return map[string]string{
+				Attrs: func() gas.Map {
+					return gas.Map{
 						"id":    "hooks__button",
 						"class": "button outline",
 						"style": "margin: 0 .4em;",

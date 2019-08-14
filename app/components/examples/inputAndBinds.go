@@ -39,8 +39,8 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 	return gas.CL(
 		gas.NE(
 			&gas.E{
-				Attrs: func() map[string]string {
-					return map[string]string{
+				Attrs: func() gas.Map {
+					return gas.Map{
 						"id":    "model__text",
 						"style": "border: 1px solid #dedede; margin-bottom: 8px; padding: 4px 16px;",
 					}
@@ -56,8 +56,8 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 							go root.c.Update()
 						},
 					},
-					Attrs: func() map[string]string {
-						return map[string]string{"value": root.Text}
+					Attrs: func() gas.Map {
+						return gas.Map{"value": root.Text}
 					},
 					Tag:     "input",
 				},
@@ -65,8 +65,8 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 		),
 		gas.NE(
 			&gas.E{
-				Attrs: func() map[string]string {
-					return map[string]string{
+				Attrs: func() gas.Map {
+					return gas.Map{
 						"id":    "model__color",
 						"style": "border: 1px solid #dedede; margin-bottom: 8px; padding: 4px 16px;",
 					}
@@ -76,8 +76,8 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 			gas.NE(
 				&gas.E{
 					Tag: "span",
-					Attrs: func() map[string]string {
-						return map[string]string{
+					Attrs: func() gas.Map {
+						return gas.Map{
 							"style": "color:" + root.Color,
 						}
 					},
@@ -94,8 +94,8 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 							go root.c.Update()
 						},
 					},
-					Attrs: func() map[string]string {
-						return map[string]string{
+					Attrs: func() gas.Map {
+						return gas.Map{
 							"type": "color",
 							"value": root.Color,
 						}
@@ -105,8 +105,8 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 		),
 		gas.NE(
 			&gas.E{
-				Attrs: func() map[string]string {
-					return map[string]string{
+				Attrs: func() gas.Map {
+					return gas.Map{
 						"id":    "model__range",
 						"style": "border: 1px solid #dedede; margin-bottom: 8px; padding: 4px 16px;",
 					}
@@ -115,8 +115,8 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 			gas.NE(
 				&gas.E{
 					Tag: "span",
-					Attrs: func() map[string]string {
-						return map[string]string{
+					Attrs: func() gas.Map {
+						return gas.Map{
 							"style": "display: flex;",
 						}
 					},
@@ -125,8 +125,8 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 				gas.NE(
 					&gas.E{
 						Tag: "div",
-						Attrs: func() map[string]string {
-							return map[string]string{
+						Attrs: func() gas.Map {
+							return gas.Map{
 								"style": fmt.Sprintf("width: 24px; height: 18px; margin: 0 18px; border-radius: 4px; background-color: rgb(%d, %d, %d)", root.Range, 255-root.Range, root.Range),
 							}
 						},
@@ -144,8 +144,8 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 							go root.c.Update()
 						},
 					},
-					Attrs: func() map[string]string {
-						return map[string]string{
+					Attrs: func() gas.Map {
+						return gas.Map{
 							"type": "range",
 							"min":  "0",
 							"max":  "255",
@@ -157,8 +157,8 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 		),
 		gas.NE(
 			&gas.E{
-				Attrs: func() map[string]string {
-					return map[string]string{
+				Attrs: func() gas.Map {
+					return gas.Map{
 						"id":    "model__checkbox",
 						"style": "border: 1px solid #dedede; margin-bottom: 8px; padding: 4px 16px;",
 					}
@@ -175,8 +175,8 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 							go root.c.Update()
 						},
 					},
-					Attrs: func() map[string]string {
-						return map[string]string{
+					Attrs: func() gas.Map {
+						return gas.Map{
 							"type": "checkbox",
 							"value": func() string {
 								if root.CheckBox {

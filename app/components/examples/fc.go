@@ -29,8 +29,8 @@ func FunctionalExample() *gas.E {
 						Handlers: map[string]gas.Handler{
 							"click": func(e gas.Event) { setCounter(counter() + 1) },
 						},
-						Attrs: func() map[string]string {
-							return map[string]string{
+						Attrs: func() gas.Map {
+							return gas.Map{
 								"class": "button outline",
 							}
 						},
@@ -44,8 +44,8 @@ func FunctionalExample() *gas.E {
 						Handlers: map[string]gas.Handler{
 							"click": func(e gas.Event) { setCounter(counter() - 1) },
 						},
-						Attrs: func() map[string]string {
-							return map[string]string{
+						Attrs: func() gas.Map {
+							return gas.Map{
 								"class": "button outline",
 							}
 						},
@@ -63,8 +63,8 @@ func FunctionalExample() *gas.E {
 								setMsg(msg() + fmt.Sprintf("%d", counter()))
 							},
 						},
-						Attrs: func() map[string]string {
-							return map[string]string{
+						Attrs: func() gas.Map {
+							return gas.Map{
 								"class": "button outline",
 							}
 						},

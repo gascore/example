@@ -31,8 +31,8 @@ func (root *IfAndForRoot) Render() []interface{} {
 	return gas.CL(
 		gas.NE(
 			&gas.E{
-				Attrs: func() map[string]string {
-					return map[string]string{
+				Attrs: func() gas.Map {
+					return gas.Map{
 						"id": "block-if",
 					}
 				},
@@ -46,8 +46,8 @@ func (root *IfAndForRoot) Render() []interface{} {
 						},
 					},
 					Tag: "button",
-					Attrs: func() map[string]string {
-						return map[string]string{
+					Attrs: func() gas.Map {
+						return gas.Map{
 							"id":    "if__button",
 							"class": "button outline",
 							"style": "margin-right: .4em;",
@@ -83,8 +83,8 @@ func (root *IfAndForRoot) Render() []interface{} {
 		),
 		gas.NE(
 			&gas.E{
-				Attrs: func() map[string]string {
-					return map[string]string{
+				Attrs: func() gas.Map {
+					return gas.Map{
 						"id": "block-for",
 					}
 				},

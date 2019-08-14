@@ -29,8 +29,8 @@ func (root *HTMLRoot) Render() []interface{} {
 					},
 				},
 				Tag: "button",
-				Attrs: func() map[string]string {
-					return map[string]string{
+				Attrs: func() gas.Map {
+					return gas.Map{
 						"class": "button outline",
 					}
 				},
@@ -55,8 +55,8 @@ func (root *HTMLRoot) Render() []interface{} {
 					},
 				},
 				Tag: "article",
-				Attrs: func() map[string]string {
-					return map[string]string{
+				Attrs: func() gas.Map {
+					return gas.Map{
 						"id":    "article",
 						"style": `border: 1px solid #dedede;padding: 2px 4px;margin-top:12px;`,
 					}

@@ -76,8 +76,8 @@ func (root *TODORoot) Render() []interface{} {
 	return gas.CL(
 		gas.NE(
 			&gas.E{
-				Attrs: func() map[string]string {
-					return map[string]string{
+				Attrs: func() gas.Map {
+					return gas.Map{
 						"id": "todo-wrap",
 					}
 				},
@@ -85,8 +85,8 @@ func (root *TODORoot) Render() []interface{} {
 			gas.NE(
 				&gas.E{
 					Tag: "style",
-					Attrs: func() map[string]string {
-						return map[string]string{"type": "text/css"}
+					Attrs: func() gas.Map {
+						return gas.Map{"type": "text/css"}
 					},
 					HTML: gas.HTMLDirective{
 						Render: func() string {
@@ -97,8 +97,8 @@ func (root *TODORoot) Render() []interface{} {
 			),
 			gas.NE(
 				&gas.E{
-					Attrs: func() map[string]string {
-						return map[string]string{
+					Attrs: func() gas.Map {
+						return gas.Map{
 							"id": "todo-main",
 						}
 					},
@@ -125,8 +125,8 @@ func (root *TODORoot) Render() []interface{} {
 									go root.c.Update()
 								},
 							},
-							Attrs: func() map[string]string {
-								return map[string]string{
+							Attrs: func() gas.Map {
+								return gas.Map{
 									"id":          "todo-new",
 									"placeholder": "New task",
 									"value":       root.CurrentText,
@@ -143,8 +143,8 @@ func (root *TODORoot) Render() []interface{} {
 									root.Add()
 								},
 							},
-							Attrs: func() map[string]string {
-								return map[string]string{
+							Attrs: func() gas.Map {
+								return gas.Map{
 									"class": "button outline",
 								}
 							},
@@ -156,8 +156,8 @@ func (root *TODORoot) Render() []interface{} {
 							return gas.NE(
 								&gas.E{
 									Tag: "i",
-									Attrs: func() map[string]string {
-										return map[string]string{
+									Attrs: func() gas.Map {
+										return gas.Map{
 											"style": "color: gray;font-size: 12px;margin-left:6px;",
 										}
 									},
@@ -192,8 +192,8 @@ func (root *TODORoot) Render() []interface{} {
 					gas.NE(
 						&gas.E{
 							Tag: "a",
-							Attrs: func() map[string]string {
-								return map[string]string{
+							Attrs: func() gas.Map {
+								return gas.Map{
 									"href":   "https://noartem.github.io/",
 									"target": "_blank",
 								}
@@ -204,8 +204,8 @@ func (root *TODORoot) Render() []interface{} {
 					gas.NE(
 						&gas.E{
 							Tag: "a",
-							Attrs: func() map[string]string {
-								return map[string]string{
+							Attrs: func() gas.Map {
+								return gas.Map{
 									"href":   "https://gascore.github.io",
 									"target": "_blank",
 								}
@@ -223,8 +223,8 @@ func getList(index int, list []string, root dataForLi) interface{} {
 	return gas.NE(
 		&gas.E{
 			Tag: "ul",
-			Attrs: func() map[string]string {
-				return map[string]string{
+			Attrs: func() gas.Map {
+				return gas.Map{
 					"class": "list",
 				}
 			},
@@ -253,8 +253,8 @@ func getNavEl(index, current int, name string, root interface{ ChangeCurrent(int
 					root.ChangeCurrent(index)
 				},
 			},
-			Attrs: func() map[string]string {
-				return map[string]string{
+			Attrs: func() gas.Map {
+				return gas.Map{
 					"class": func() string {
 						if current == index {
 							return "active button outline"

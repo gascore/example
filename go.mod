@@ -5,7 +5,7 @@ go 1.12
 require (
 	github.com/fatih/color v1.7.0
 	github.com/gascore/example/app v0.0.0-20190810112213-7ead1d489522 // indirect
-	github.com/gascore/gasx v0.0.0-20190730170202-1b7e5600afab
+	github.com/gascore/gasx v0.0.0-20190814114534-9588309f61c2
 	github.com/gopherjs/gopherjs v0.0.0-20190812055157-5d271430af9f // indirect
 	github.com/kisielk/gotool v1.0.0 // indirect
 	github.com/kouhin/envflag v0.0.0-20150818174321-0e9a86061649

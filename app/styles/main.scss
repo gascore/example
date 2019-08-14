@@ -1,16 +1,16 @@
 @import "styles.scss";
 @import "pages.scss";
 @import "components.scss";
-@import "dark.scss";
-:root {
-    --boxShadowBorder: none;
-    --boxShadowColor: rgba(125, 128, 147, 0.23);
-    --boxShadowColorHover: rgba(125, 128, 147, 0.46);
-}
-
 html,
 body {
     height: 100%;
+}
+
+html[data-theme='dark'] {
+    #app,
+    #main-footer {
+        background: inherit !important;
+    }
 }
 
 #app {
