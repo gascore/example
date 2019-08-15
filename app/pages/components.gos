@@ -1,4 +1,4 @@
-package components
+package pages
 
 import (
     "fmt"
@@ -14,8 +14,9 @@ import (
     dndLists "github.com/gascore/std/components/dnd/lists"
 )
 
-func Components(info *r.RouteInfo) *gas.E {
+func (p *Pages) Components(info *r.RouteInfo) *gas.E {
     root := &ComponentsPage{
+        ctx : p.RCtx,
         vItems: generateItems(),
 
         dndTodo:       []interface{}{"Pick up groceries", "Go home", "Fall asleep"},
@@ -318,6 +319,7 @@ func Components(info *r.RouteInfo) *gas.E {
 
 type ComponentsPage struct {
     c *gas.C
+    ctx *r.Ctx
 
     dndLists1 gas.DynamicElement
     dndLists2 gas.DynamicElement
@@ -522,7 +524,7 @@ func (root *ComponentsPage) Render() []interface{} {
             </section>
         </section>
         <div class="d(flex) mb(.7rem)">
-            <e run='ctx.Link("/examples")' class="d(flex) m(0) pretty-btn">
+            <e run='root.ctx.Link("/examples")' class="d(flex) m(0) pretty-btn">
                 <i class="icon icon-back m(auto,0,auto,.4em) fz(12px) c(#fff)"></i>
                 <span class="fz(16px) d(block)">
                     Basic examples

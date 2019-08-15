@@ -1,4 +1,4 @@
-package components
+package pages
 
 import (
     "fmt"
@@ -12,7 +12,7 @@ import (
     "gitlab.com/golang-commonmark/markdown"
 )
 
-func About(info *r.RouteInfo) *gas.E {
+func (p *Pages) About(info *r.RouteInfo) *gas.E {
     f := &gas.F{}
 
     errorMsg := `<h1><span style="color: #ff0033">404</span> Page not found</h1>`

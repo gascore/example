@@ -1,4 +1,4 @@
-package components
+package pages
 
 var gasNews = map[string]string{
 	"08-10-2019": "Added dark theme",

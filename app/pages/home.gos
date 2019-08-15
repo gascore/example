@@ -1,19 +1,24 @@
-package components
+package pages
 
 import (
     "github.com/gascore/gas"
     r "github.com/gascore/std/router"
-
-    "github.com/gascore/example/app/router"
 )
 
-var ctx *r.Ctx
-
-func InitComponents() {
-    ctx = router.Ctx()
+type Pages struct {
+    RCtx *r.Ctx
+    // std/store
+    // custom http client
+    // e.t.c
 }
 
-func Home(i *r.RouteInfo) *gas.E {
+func NewPages() *Pages {
+    return &Pages{}
+}
+
+func (p *Pages) Home(i *r.RouteInfo) *gas.E {
+    ctx := p.RCtx
+
     f := &gas.F{}
 
     return f.Init(false, $htmlF{

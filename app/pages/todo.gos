@@ -1,13 +1,14 @@
-package components
+package pages
 
 import (
 	"github.com/gascore/gas"
 	r "github.com/gascore/std/router"
 )
 
-func TodoList(info *r.RouteInfo) *gas.E {
+func (p *Pages) TodoList(info *r.RouteInfo) *gas.E {
 	root := &TodoPage{
 		i: info,
+		ctx: p.RCtx,
 		currentList: info.Params["type"],
 	}
 
@@ -21,6 +22,7 @@ func TodoList(info *r.RouteInfo) *gas.E {
 
 type TodoPage struct {
 	c *gas.C
+	ctx *r.Ctx
 	i *r.RouteInfo
 
 	currentList string
@@ -144,7 +146,7 @@ func (root *TodoPage) Edit(i int, newValue string) {
 
 func (root *TodoPage) changeList(name string) {
 	root.currentList = name
-	ctx.ChangeRoute("/todo/"+name, false)
+	root.ctx.ChangeRoute("/todo/"+name, false)
 	go root.c.Update()
 }
 

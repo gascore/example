@@ -1,11 +1,11 @@
-package components
+package pages
 
 import (
     r "github.com/gascore/std/router"
     "github.com/gascore/gas"
 )
 
-func Links(i *r.RouteInfo) *gas.E {
+func (p *Pages) Links(i *r.RouteInfo) *gas.E {
     f := &gas.F{}
     links := []string{"gas","std","gasx","example"}
     
@@ -16,12 +16,12 @@ func Links(i *r.RouteInfo) *gas.E {
             </h1>
             <ul class="no-list d(flex) m(0) p(0) fxw(wrap)" id="links-list">
                 <li g-for='_, link := range links' class="m(.4rem,.4rem,0,0) p(0)">
-                    <e run='ctx.LinkWithParams("link", gas.Map{"name": link}, nil)' class="pretty-btn">
+                    <e run='p.RCtx.LinkWithParams("link", gas.Map{"name": link}, nil)' class="pretty-btn">
                         {{ link }}
                     </e>
                 </li>
                 <li class="m(.4rem,.4rem,0,0) p(0)">
-                    <e run='ctx.Link("404")' class="pretty-btn">
+                    <e run='p.RCtx.Link("404")' class="pretty-btn">
                         Undefined page
                     </e>
                 </li>

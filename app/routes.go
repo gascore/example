@@ -6,22 +6,23 @@ import (
 	"github.com/gascore/dom"
 	"github.com/gascore/std/router"
 	
-	c "github.com/gascore/example/app/components"
-	appRouter "github.com/gascore/example/app/router"
+	"github.com/gascore/example/app/pages"
 )
 
-func InitRouter() {
+func InitRouter() *router.Ctx {
+	p := pages.NewPages()
+	
 	ctx := &router.Ctx{
 		Routes: []router.Route{
 			{
 				Name:    "home",
-				Element: c.Home,
+				Element: p.Home,
 				Path:    "/",
 				Exact:   true,
 			},
 			{
 				Name:    "about",
-				Element: c.About,
+				Element: p.About,
 				Path:    "/about",
 				Exact:   true,
 			},
@@ -39,24 +40,24 @@ func InitRouter() {
 			},
 			{
 				Name:    "link",
-				Element: c.Link,
+				Element: p.Link,
 				Path:    "/links/:name",
 			},
 			{
 				Name:    "links",
-				Element: c.Links,
+				Element: p.Links,
 				Path:    "/links",
 				Exact:   true,
 			},
 			{
 				Name:    "examples",
-				Element: c.Examples,
+				Element: p.Examples,
 				Path:    "/examples",
 				Exact:   true,
 				Childes: []router.Route{
 					{
 						Name:    "components",
-						Element: c.Components,
+						Element: p.Components,
 						Path:    "/components",
 						Exact:   true,
 						Before: func(info *router.MiddlewareInfo) (bool, error) {
@@ -90,7 +91,7 @@ func InitRouter() {
 			},
 			{
 				Name:    "todo-list",
-				Element: c.TodoList,
+				Element: p.TodoList,
 				Path:    "/todo/:type",
 			},
 		},
@@ -101,7 +102,7 @@ func InitRouter() {
 		},
 	
 		Settings: router.Settings{
-			NotFound: c.NotFound,
+			NotFound: p.NotFound,
 			HashMode: true,
 			GetUserConfirmation: func() bool {
 				return false
@@ -110,5 +111,7 @@ func InitRouter() {
 		},
 	}
 	ctx.Init()
-	appRouter.SetCtx(ctx)
+	
+	p.RCtx = ctx
+	return ctx
 }

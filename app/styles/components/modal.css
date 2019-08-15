@@ -4,6 +4,17 @@
     background: rgba(0, 0, 0, 0);
 }
 
+.modal-window-hidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
 .modal-window-active {
     align-items: center;
     bottom: 0;

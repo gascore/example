@@ -1,11 +1,11 @@
-package components
+package pages
 
 import(
     "github.com/gascore/dom"
     "github.com/gascore/gas"
 )
 
-func NotFound() *gas.E {
+func (p *Pages) NotFound() *gas.E {
     f := &gas.F{}
 
     goBack := func() {
@@ -29,7 +29,7 @@ func NotFound() *gas.E {
                         <button class="button outline primary mr(.4em)" @click="goBack()">
                             Go back
                         </button>
-                        <e run='ctx.Link("/")' class="button outline dark">
+                        <e run='p.RCtx.Link("/")' class="button outline dark">
                             Home page
                         </e>
                     </div>

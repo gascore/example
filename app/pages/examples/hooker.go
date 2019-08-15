@@ -23,7 +23,7 @@ func getHooker() *gas.E {
 				return nil
 			},
 			Mounted: func() error {
-				// fmt.Println("Hooker: Mounted")
+				fmt.Println("Hooker: Mounted")
 				return nil
 			},
 			BeforeUpdate: func() error {

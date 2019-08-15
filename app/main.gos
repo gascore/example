@@ -8,18 +8,15 @@ import (
 
     "github.com/gascore/gas"
     "github.com/gascore/gas/web"
-    "github.com/gascore/example/app/router"
-    "github.com/gascore/example/app/components"
+    r "github.com/gascore/std/router"
 )
 
 func main() {
-    fmt.Println("Hello stranger!👋\n")
-    
-    InitRouter()
-    components.InitComponents()
+    fmt.Println("Hello stranger!👋")
 
     app := &App{
-        htmlEl: dom.Doc.GetElementsByTagName("html")[0],
+        rCtx: InitRouter(),
+        htmlEl: dom.Doc.GetElementsByTagName("html")[0], // save <html/> for change theme
     }
     c := &gas.C{Root: app}
     app.c = c
@@ -34,12 +31,13 @@ func main() {
 
 type App struct {
     c *gas.C
+    rCtx *r.Ctx
     isDark bool
     htmlEl *dom.Element
 }
 
 func (root *App) Render() []interface{} {
-    ctx := router.Ctx()
+    ctx := root.rCtx
     return $html{
         <div id="app-wrap">
             <nav id="main-header" class="nav centerizeContent-wrapper mih(min-content) bdb(1px,solid) whs(nowrap) bg(inherit)">
@@ -84,7 +82,7 @@ func (root *App) Render() []interface{} {
                 <e run="ctx.GetRouter()"></e>
             </main>
 
-            <e run='components.ScrollTop()'></e>
+            <e run='scrollTop()'></e>
 
             <footer id="main-footer" class="mt(auto) bdt(1px,solid) bdc(color-lightGrey) p(.2rem,0) b(inherit) text-grey">
                 <div class="centerizeContent d(flex)">
@@ -118,7 +116,9 @@ func (root *App) Render() []interface{} {
                         <br>
                         <span>Copyright © 2019</span>
                         <br>
-                        <span>Noskov Artem</span>
+                        <a href="https://github.com/noartem" class="text" target="_blank">Noskov Artem</a>
+                        <span> & </span>
+                        <a href="https://github.com/orgs/gascore/people" class="text" target="_blank">gas contributors</a>
                     </section>
                 </div>
             </footer>
