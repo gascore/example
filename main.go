@@ -15,12 +15,6 @@ import (
 	"github.com/gascore/gasx/html"
 )
 
-var currentDir = func() string {
-	dir, err := os.Getwd()
-	gasx.Must(err)
-	return dir
-}()
-
 func main() {
 	var (
 		lockFileName   = flag.String("lockfile", ".gaslock", "Lock file name")
@@ -35,8 +29,11 @@ func main() {
 
 	build(*lockFileName, *platform, *ignoreExternal)
 
+	currentDir, err := os.Getwd()
+	gasx.Must(err)
+
 	if *watch {
-		go serve()
+		go serve(currentDir)
 		gasx.Must(gasx.StartWatcher(
 			func(path string) {
 				fmt.Println(color.GreenString("Triggered:"), strings.TrimPrefix(path, currentDir+"/app/"))
@@ -49,7 +46,7 @@ func main() {
 	}
 
 	if *serveDist {
-		serve()
+		serve(currentDir)
 	}
 }
 
@@ -131,7 +128,7 @@ func compileCode(builder *gasx.Builder, platform string) {
 	}
 }
 
-func serve() {
+func serve(currentDir string) {
 	gasx.Log("Starting static server")
 	currentSrv := &http.Server{Addr: ":8080", Handler: http.FileServer(http.Dir(currentDir + "/dist"))}
 	currentSrv.ListenAndServe()

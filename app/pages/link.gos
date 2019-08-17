@@ -17,7 +17,7 @@ func (p *Pages) Link(i *r.RouteInfo) *gas.E {
     case "example":
         text = "Gas example application"
     case "gasx":
-        text = "CLI for gas apps"
+        text = "Library for creating gas applications builders"
     case "std":
         text = "Gas standard library"
     default:
@@ -27,19 +27,19 @@ func (p *Pages) Link(i *r.RouteInfo) *gas.E {
     return f.Init(false, $htmlF{
         <div id="link" class="nano-block">
             <div class="boxShadow light-bg page fz(22px) p(.8rem,1.2rem) bg(#fff)">
-                <div g-if="len(err) != 0">
-                    <span class="c(#ff0033)">
-                        {{ err }}
-                    </span>
-                </div>
-                <div g-else class="d(flex)">
+                <div g-if="len(err) == 0" class="d(flex)">
                     <div class="m(auto)">
                         {{ text }}
                     </div>
                     <span class="m(0,.4rem)">
-                        <a :href='"https://github.com/gascore/" + name' class="pretty-btn" target="_blank">
+                        <a :href='"https://github.com/gascore/" + name' class="pretty-btn fz(1em)" target="_blank">
                             {{ name }}
                         </a>
+                    </span>
+                </div>
+                <div g-else>
+                    <span class="c(#ff0033)">
+                        {{ err }}
                     </span>
                 </div>
             </div>
