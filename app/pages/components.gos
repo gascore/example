@@ -383,10 +383,10 @@ func (root *ComponentsPage) Render() []interface{} {
             </header>
 
             <section class="contentBlock-body">
-                <div class="vlist-contentBlock h(70vw) h(50vw)--sm h(25vw)--md mb(1em)">
+                <div class="vlist-contentBlock" acss="h(70vw) h(50vw)--sm h(25vw)--md mb(1em)">
                     <e run="root.vList1"></e>
                 </div>
-                <div class="vlist-contentBlock h(25vw) h(15vw)--sm h(5vw)--md w(100%)" id="vlist-vert">
+                <div class="vlist-contentBlock" acss="h(25vw) h(15vw)--sm h(5vw)--md w(100%)" id="vlist-vert">
                     <e run="root.vList2"></e>
                 </div>
             </section>
@@ -430,7 +430,7 @@ func (root *ComponentsPage) Render() []interface{} {
             </header>
 
             <section class="contentBlock-body">
-                <button class="fz(1.8rem) pretty-btn" @click="root.toggleModal()">
+                <button class="pretty-btn" acss="fz(1.8rem)" @click="root.toggleModal()">
                     <span g-if="root.isActiveModal">
                         Hide
                     </span>
@@ -439,17 +439,17 @@ func (root *ComponentsPage) Render() []interface{} {
                     </span>
                 </button>
                 <e run="root.modal()">
-                    <div class="p(.8rem)">
-                        <header class="modal-window_header d(flex) p(0) m(0,0,.5rem,0)">
-                            <h3 class="h3 m(0)">
+                    <div acss="p(.8rem)">
+                        <header class="modal-window_header" acss="d(flex) p(0) m(0,0,.5rem,0)">
+                            <h3 acss="m(0)">
                                 Header inside modal window
                             </h3>
-                            <button class="no-btn ml(auto,!important) fz(22px,!important) cur(pointer)" @click="root.toggleModal()">
+                            <button class="no-btn" acss="ml(auto,!important) fz(22px,!important) cur(pointer)" @click="root.toggleModal()">
                             	<svg xmlns="http://www.w3.org/2000/svg" class="svg-icon w(1.3em) h(1.3em)" viewBox="0 0 24 24"><g data-name="Layer 2"><g data-name="close"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"/></g></g></svg>
-			    </button>
+			                </button>
                         </header>
                         <div class="modal-window_body">
-                            <p class="mb(0)">
+                            <p acss="mb(0)">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt viverra vestibulum. Cras finibus convallis ipsum, sit amet finibus justo dapibus non. Maecenas ultrices velit ac nunc convallis pulvinar. In a hendrerit mi. Nulla orci nisi, tempus quis rhoncus vitae, ornare sit amet risus. Nullam eleifend velit tempor pharetra pretium. Fusce blandit felis a volutpat convallis. Nulla volutpat in purus nec luctus. Donec eget placerat purus, vel faucibus enim. Vivamus a posuere felis, eu sagittis eros.
                             </p>
                         </div>
@@ -462,13 +462,13 @@ func (root *ComponentsPage) Render() []interface{} {
                 <div>
                     Drag and drop linked lists
                 </dvi>
-                <div class="c(#ff0033) fz(.8rem)">
+                <div acss="c(#ff0033) fz(.8rem)">
                     Broken. Will fix soon
                 </div>
             </header>
             
             <section class="contentBlock-body">
-                <div id="dnds" class="d(flex) fxf(row,wrap) p(0)">
+                <div id="dnds" acss="d(flex) fxf(row,wrap) p(0)">
                     <div id="dnd1">
                         <h3>
                             To do
@@ -523,10 +523,10 @@ func (root *ComponentsPage) Render() []interface{} {
                 </div>
             </section>
         </section>
-        <div class="d(flex) mb(.7rem)">
-            <e run='root.ctx.Link("/examples")' class="d(flex) m(0) pretty-btn">
-                <i class="icon icon-back m(auto,0,auto,.4em) fz(12px) c(#fff)"></i>
-                <span class="fz(16px) d(block)">
+        <div acss="d(flex) mb(.7rem)">
+            <e run='root.ctx.Link("/examples")' class="pretty-btn" acss="d(flex) m(0)">
+                <i class="icon icon-back" acss="m(auto,0,auto,.4em) fz(12px) c(#fff)"></i>
+                <span acss="fz(16px) d(block)">
                     Basic examples
                 </span>
             </e>

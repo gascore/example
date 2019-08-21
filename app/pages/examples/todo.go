@@ -88,10 +88,8 @@ func (root *TODORoot) Render() []interface{} {
 					Attrs: func() gas.Map {
 						return gas.Map{"type": "text/css"}
 					},
-					HTML: gas.HTMLDirective{
-						Render: func() string {
-							return styles
-						},
+					HTML: func() string {
+						return styles
 					},
 				},
 			),

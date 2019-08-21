@@ -50,16 +50,23 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 			gas.NE(&gas.E{Tag: "br"}),
 			gas.NE(
 				&gas.E{
-					Handlers: map[string]gas.Handler {
+					Handlers: map[string]gas.Handler{
 						"input": func(event gas.Event) {
 							root.Text = event.Value()
+							
+							if root.Text == "true" {
+								root.CheckBox = true
+							} else if root.Text == "false" {
+								root.CheckBox = false
+							}
+
 							go root.c.Update()
 						},
 					},
 					Attrs: func() gas.Map {
 						return gas.Map{"value": root.Text}
 					},
-					Tag:     "input",
+					Tag: "input",
 				},
 			),
 		),
@@ -88,7 +95,7 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 			gas.NE(
 				&gas.E{
 					Tag: "input",
-					Handlers: map[string]gas.Handler {
+					Handlers: map[string]gas.Handler{
 						"input": func(event gas.Event) {
 							root.Color = event.Value()
 							go root.c.Update()
@@ -96,7 +103,7 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 					},
 					Attrs: func() gas.Map {
 						return gas.Map{
-							"type": "color",
+							"type":  "color",
 							"value": root.Color,
 						}
 					},
@@ -138,17 +145,17 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 			gas.NE(
 				&gas.E{
 					Tag: "input",
-					Handlers: map[string]gas.Handler {
+					Handlers: map[string]gas.Handler{
 						"input": func(event gas.Event) {
-							root.Range, _ = strconv.Atoi(event.Value())
+							root.Range = event.ValueInt()
 							go root.c.Update()
 						},
 					},
 					Attrs: func() gas.Map {
 						return gas.Map{
-							"type": "range",
-							"min":  "0",
-							"max":  "255",
+							"type":  "range",
+							"min":   "0",
+							"max":   "255",
 							"value": strconv.Itoa(root.Range),
 						}
 					},
@@ -169,20 +176,20 @@ func (root *InputAndBindsRoot) Render() []interface{} {
 			gas.NE(
 				&gas.E{
 					Tag: "input",
-					Handlers: map[string]gas.Handler {
+					Handlers: map[string]gas.Handler{
 						"change": func(event gas.Event) {
-							root.CheckBox = !root.CheckBox
+							root.CheckBox = event.ValueBool()
 							go root.c.Update()
 						},
 					},
 					Attrs: func() gas.Map {
 						return gas.Map{
 							"type": "checkbox",
-							"value": func() string {
+							"checked": func() string {
 								if root.CheckBox {
 									return "true"
 								}
-	
+
 								return "false"
 							}(),
 						}

@@ -45,14 +45,12 @@ func (root *HTMLRoot) Render() []interface{} {
 		),
 		gas.NE(
 			&gas.E{
-				HTML: gas.HTMLDirective{
-					Render: func() string {
-						if root.isArticleActive {
-							return articleText
-						} else {
-							return helloText
-						}
-					},
+				HTML: func() string {
+					if root.isArticleActive {
+						return articleText
+					} else {
+						return helloText
+					}
 				},
 				Tag: "article",
 				Attrs: func() gas.Map {

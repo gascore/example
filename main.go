@@ -57,7 +57,6 @@ func build(lockFileName string, platform string, ignoreExternal bool) {
 	htmlCompiler := html.NewCompiler()
 
 	acssGen := acss.Generator{
-		LockFile: lockFile,
 		BreakPoints: map[string]string{
 			"lg": "@media(min-width:1200px)",
 			"md": "@media(min-width:1000px)",
@@ -81,7 +80,7 @@ func build(lockFileName string, platform string, ignoreExternal bool) {
 			"-main-color":          "var(--main-color)",
 		},
 	}
-	htmlCompiler.AddOnAttribute(acssGen.OnAttribute())
+	htmlCompiler.AddOnElementInfo(acssGen.OnElementInfo())
 
 	builder := &gasx.Builder{
 		LockFile: lockFile,

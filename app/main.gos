@@ -40,7 +40,7 @@ func (root *App) Render() []interface{} {
     ctx := root.rCtx
     return $html{
         <div id="app-wrap">
-            <nav id="main-header" class="nav centerizeContent-wrapper mih(min-content) bdb(1px,solid) whs(nowrap) bg(inherit)">
+            <nav id="main-header" class="nav centerizeContent-wrapper" acss="mih(min-content) bdb(1px,solid) whs(nowrap) bg(inherit)">
                 <div class="centerizeContent">
                     <section class="nav-left ">
                         <e run='ctx.Link("/")'>
@@ -60,8 +60,8 @@ func (root *App) Render() []interface{} {
                         </e>
                     </section>
                     <section class="nav-right">
-                        <span id="theme-toggle" class="d(flex) ai(center) ml(.4em)">
-                            <label class="form-switch p(.1rem,.4rem,.1rem,1.2rem)">
+                        <span id="theme-toggle" acss="d(flex) ai(center) ml(.4em)">
+                            <label class="form-switch" acss="p(.1rem,.4rem,.1rem,1.2rem)">
                                 <input type="checkbox" @change="root.toggleTheme()">
                                 <i class="form-icon"></i>
                             </label>
@@ -78,14 +78,14 @@ func (root *App) Render() []interface{} {
                 </div>
             </nav>
 
-            <main id="main-body" class="main-body p(1.4rem,0)">
+            <main id="main-body" class="main-body" acss="p(1.4rem,0)">
                 <e run="ctx.GetRouter()"></e>
             </main>
 
             <e run='scrollTop()'></e>
 
-            <footer id="main-footer" class="mt(auto) bdt(1px,solid) bdc(color-lightGrey) p(.2rem,0) b(inherit) text-grey">
-                <div class="centerizeContent d(flex)">
+            <footer id="main-footer" class="text-gray" acss="mt(auto) bdt(1px,solid) bdc(color-lightGrey) p(.2rem,0) b(inherit)">
+                <div class="centerizeContent" acss="d(flex)">
                     <section>
                         <div id="main-footer_createdBy">
                             Created by
@@ -111,7 +111,7 @@ func (root *App) Render() []interface{} {
                             </span>
                         </div>
                     </section>
-                    <section class="ml(auto) fz(14px)">
+                    <section acss="ml(auto) fz(14px)">
                         <span>Released under the MIT License</span>
                         <br>
                         <span>Copyright © 2019</span>
