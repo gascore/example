@@ -3,4 +3,4 @@
 cd ..
 sh std.sh
 cd example
-go run main.go -watch
+go run main.go -w

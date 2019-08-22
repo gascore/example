@@ -11,7 +11,7 @@
 
 ```bash
 // install nodejs, I recommend github.com/nvm-sh/nvm
-npm i -g sass
+npm i -g sass csso-cli uglify-js
 
 GO111MODULE=off go get github.com/gascore/example
 cd $GOPATH/src/github.com/gascore/example
