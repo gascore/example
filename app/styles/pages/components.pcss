@@ -23,14 +23,14 @@
                 user-select: none;
                 touch-action: none;
                 border-radius: 1rem;
-                @include boxShadow();
-                @include boxShadowHover();
+                @mixin boxShadow;
+                @mixin boxShadowHover;
             }
             .dndFree-active,
             .dndFreeWithHandle-active {
                 touch-action: none;
                 user-select: none;
-                @include boxShadowHover();
+                @mixin boxShadowHover;
             }
             .dndFreeWithHandle {
                 cursor: default;
@@ -46,14 +46,14 @@
     }
     #trees {
         .tree {
-            @include boxShadow();
+            @mixin boxShadow;
             padding: 4px 8px;
             width: 100%;
             border-radius: 0.14em;
             margin-bottom: 8px;
         }
     }
-    // layout
+    /* layout */
     .layout-item-bd {
         border: 1px solid var(--color-primary);
         border-radius: 0.6rem;
@@ -89,7 +89,7 @@
             width: 100%;
         }
     }
-    // vlist
+    /* vlist */
     .vlist {
         border-radius: 0.6rem;
         border: 1px solid var(--color-primary);
@@ -120,7 +120,7 @@
             }
         }
     }
-    // dnd-lists
+    /* dnd-lists */
     .dnd-group {
         min-height: 96px;
         min-width: 192px;
@@ -186,6 +186,6 @@
         transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
     }
     .modal-window_container {
-        @include boxShadow();
+        @mixin boxShadow;
     }
 }

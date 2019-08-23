@@ -25,25 +25,25 @@ html[data-theme='dark'] .contentBlock {
     margin-top: 1rem;
 }
 
-@mixin boxShadow() {
+@define-mixin boxShadow {
     border: 1px solid var(--boxShadowBorder);
     border-radius: 1.5rem;
     box-shadow: var(--boxShadowColor) 0px 3px 11px 0px;
     transition: box-shadow .5s;
 }
 
-@mixin boxShadowHover() {
+@define-mixin boxShadowHover {
     &:hover {
         box-shadow: var(--boxShadowColorHover) 0px 3px 11px 0px;
     }
 }
 
 .boxShadow {
-    @include boxShadow()
+    @add-mixin boxShadow;
 }
 
 .boxShadow-hover {
-    @include boxShadowHover()
+    @add-mixin boxShadowHover;
 }
 
 .centerizeContent {
