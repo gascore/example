@@ -50,23 +50,23 @@ func getLi(i int, listType string, el string, data dataForLi) *gas.E {
     }
 
     return f.Init(true, $htmlF{
-    <div class="li-body" acss="bdt(1px,solid) bdc(color-lightGrey) fz(18px) d(flex) p(.6rem,1.2rem)">
-        <button g-if='listType == "active"' @click="complete()" class="no-btn" acss="m(0,.8rem,0,0)">
-            <i class="icon icon-check" acss="c(#009966):h c(#009966):f fz(1.2em) m(auto,0) h(4rem)"></i>
+    <div class="li-body" acss="bdt{1px solid var(--color-lightGrey)} fz{18px} d{flex} p{.6rem 1.2rem}">
+        <button g-if='listType == "active"' @click="complete()" class="no-btn" acss="m{0 .8rem 0 0}">
+            <i class="icon icon-check" acss="c{#009966}:h c{#009966}:f fz{1.2em} m{auto 0} h{4rem}"></i>
         </button>
-        <div acss="w(90%) m(auto,0)">
+        <div acss="w{90%} m{auto 0}">
             <input
                 g-if="getIsEditing()"
                 @input="setValue(e.Value())"
                 :value="getValue()"
                 @keyup.enter="goCreate()" 
-                class="form-input" acss="c(#3b4351) w(100%) h(100%)"/>
-            <span g-else @dblclick="goEdit()" acss="w(90%) wow(break-word)" id="some-lipsum">
+                class="form-input" acss="c{#3b4351} w{100%} h{100%}"/>
+            <span g-else @dblclick="goEdit()" acss="w{90%} wow{break-word}" id="some-lipsum">
                 {{ el }}
             </span>
         </div>
-        <button g-if='listType == "active"' @click="delete()" class="no-btn" acss="m(0,0,0,auto)">
-            <i class="icon icon-delete" acss="c(#ff0033):h c(#ff0033):f fz(1.2em) m(auto 0)"></i>
+        <button g-if='listType == "active"' @click="delete()" class="no-btn" acss="m{0 0 0 auto}">
+            <i class="icon icon-delete" acss="c{#ff0033}:h c{#ff0033}:f fz{1.2em} m{auto 0}"></i>
         </button>
     </div>
     }$)

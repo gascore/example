@@ -24,15 +24,15 @@ func (p *Pages) Home(i *r.RouteInfo) *gas.E {
     return f.Init(false, $htmlF{
         <div id="home" class="mini-block blocksList">
             <section>
-                <a href="https://github.com/gascore/gas" target="_blank" class="d-block m(0,auto)">
-                    <img src="/logo.svg" class="d-block" acss="m(0,auto) w(256px)--sm w(512px)--md" />
+                <a href="https://github.com/gascore/gas" target="_blank" acss="d{block} m{0 auto}">
+                    <img src="/logo.svg" class="d-block" acss="m{0 auto} w{256px}@sm w{512px}@md" />
                 </a>
             </section>
             <section class="contentBlock">
                 <section class="contentBlock-title">
                     Pages
                 </section>
-                <section class="contentBlock-body" acss="d(flex) fxw(wrap)" id="example-links">
+                <section class="contentBlock-body" acss="d{flex} fxw{wrap}" id="example-links">
                     <e run='ctx.Link("/examples")' class="pretty-btn">
                         Basic examples
                     </e>
@@ -60,7 +60,7 @@ func (p *Pages) Home(i *r.RouteInfo) *gas.E {
                             <b>
                                 {{ date }}
                             </b>
-                            <span acss="m(0,.1em)">
+                            <span acss="m{0 .1em}">
                             —
                             </span>
                             <span>

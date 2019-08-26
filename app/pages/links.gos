@@ -11,16 +11,16 @@ func (p *Pages) Links(i *r.RouteInfo) *gas.E {
     
     return f.Init(false, $htmlF{
         <div id="links" class="mini-block">
-            <h1 acss="m(auto,.6rem,auto,0) ff('Poppins', sans-serif)">
+            <h1 acss="m{auto .6rem auto 0} ff{'Poppins', sans-serif}">
                 Links
             </h1>
-            <ul class="no-list" acss="d(flex) m(0) p(0) fxw(wrap)" id="links-list">
-                <li g-for='_, link := range links' acss="m(.4rem,.4rem,0,0) p(0)">
+            <ul class="no-list" acss="d{flex} m{0} p{0} fxw{wrap}" id="links-list">
+                <li g-for='_, link := range links' acss="m{.4rem .4rem 0 0} p{0}">
                     <e run='p.RCtx.LinkWithParams("link", gas.Map{"name": link}, nil)' class="pretty-btn">
                         {{ link }}
                     </e>
                 </li>
-                <li acss="m(.4rem,.4rem,0,0) p(0)">
+                <li acss="m{.4rem .4rem 0 0} p{0}">
                     <e run='p.RCtx.Link("404")' class="pretty-btn">
                         Undefined page
                     </e>

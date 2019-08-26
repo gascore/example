@@ -34,12 +34,12 @@ func (p *Pages) Examples(info *r.RouteInfo) *gas.E {
                     <e run="example.element"></e>
                 </section>
             </section>
-            <div acss="d(flex) mb(.7rem)">
-                <e run='p.RCtx.Link("/examples/components")' class="pretty-btn" acss="d(flex) ml(auto)">
-                    <span acss="fz(16px) d(block)">
+            <div acss="d{flex} mb{.7rem}">
+                <e run='p.RCtx.Link("/examples/components")' class="pretty-btn" acss="d{flex} ml{auto}">
+                    <span acss="fz{16px} d{block}">
                         Components examples
                     </span>
-                    <i class="icon icon-forward" acss="m(auto,0,auto,.4em) fz(12px) c(#fff)"></i>
+                    <i class="icon icon-forward" acss="m{auto 0 auto .4em} fz{12px} c{#fff}"></i>
                 </e>
             </div>
         </div>

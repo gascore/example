@@ -26,27 +26,27 @@ func (p *Pages) Link(i *r.RouteInfo) *gas.E {
 
     return f.Init(false, $htmlF{
         <div id="link" class="nano-block">
-            <div class="boxShadow light-bg page" acss="fz(22px) p(.8rem,1.2rem) bg(#fff)">
-                <div g-if="len(err) == 0" acss="d(flex)">
-                    <div acss="m(auto)">
+            <div class="boxShadow light-bg page" acss="fz{22px} p{.8rem 1.2rem} bg{#fff}">
+                <div g-if="len(err) == 0" acss="d{flex}">
+                    <div acss="m{auto}">
                         {{ text }}
                     </div>
-                    <span acss="m(0,.4rem)">
+                    <span acss="m{0 .4rem}">
                         <a :href='"https://github.com/gascore/" + name' class="pretty-btn" target="_blank">
                             {{ name }}
                         </a>
                     </span>
                 </div>
                 <div g-else>
-                    <span acss="c(#ff0033)">
+                    <span acss="c{#ff0033}">
                         {{ err }}
                     </span>
                 </div>
             </div>
-            <div acss="c(dark-gray) fz(14px) m(.3rem,0,0,.4rem)">
-                <e run='p.RCtx.Link("/links")' acss="d(flex)">
-                    <i class="icon icon-back" acss="m(auto,.4em,auto,0) fz(12px)"></i>
-                    <span acss="fz(16px) d(block)">
+            <div acss="c{dark-gray} fz{14px} m{.3rem 0 0 .4rem}">
+                <e run='p.RCtx.Link("/links")' acss="d{flex}">
+                    <i class="icon icon-back" acss="m{auto .4em auto 0} fz{12px}"></i>
+                    <span acss="fz{16px} d{block}">
                         Back to all links
                     </span>
                 </e>
