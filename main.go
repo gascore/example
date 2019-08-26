@@ -119,6 +119,8 @@ func chooseIndexHTML(isDev bool) {
 }
 
 func compileStyles(builder *gasx.Builder, acssGen acss.Generator, isDev bool) {
+	gasx.Log("Compiling css")
+
 	depsPaths, err := gasx.GrepStyles()
 	depsFile, err := gasx.UniteFilesByPaths(depsPaths)
 	gasx.Must(err)
@@ -142,7 +144,9 @@ func compileCode(builder *gasx.Builder, platform string, isDev bool) {
 	switch platform {
 	case "gopherjs":
 		gasx.RunCommand(fmt.Sprintf("cd app; gopherjs build -m -o ../dist/index.js; cd .."))
-		gasx.RunCommand("uglifyjs dist/index.js -o dist/index.m.js")
+		if !isDev {
+			gasx.RunCommand("uglifyjs dist/index.js -o dist/index.m.js")
+		}
 	case "wasm":
 		gasx.RunCommand(fmt.Sprintf("cd app; GOOS=js GOARCH=wasm go build -o ../dist/main.wasm; cd .."))
 
