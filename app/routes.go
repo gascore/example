@@ -5,13 +5,13 @@ import (
 
 	"github.com/gascore/dom"
 	"github.com/gascore/std/router"
-	
+
 	"github.com/gascore/example/app/pages"
 )
 
 func InitRouter() *router.Ctx {
 	p := pages.NewPages()
-	
+
 	ctx := &router.Ctx{
 		Routes: []router.Route{
 			{
@@ -25,6 +25,18 @@ func InitRouter() *router.Ctx {
 				Element: p.About,
 				Path:    "/about",
 				Exact:   true,
+			},
+			{
+				Name:    "markdown",
+				Element: p.Markdown,
+				Path:    "/markdown",
+				Exact:   true,
+			},
+			{
+				Name:     "md-redirect",
+				Path:     "/md",
+				Exact:    true,
+				Redirect: "/markdown",
 			},
 			{
 				Name:     "links-redirect",
@@ -66,8 +78,8 @@ func InitRouter() *router.Ctx {
 						},
 					},
 					{
-						Name: "c",
-						Path: "/c",
+						Name:         "c",
+						Path:         "/c",
 						RedirectName: "components",
 					},
 				},
@@ -80,7 +92,7 @@ func InitRouter() *router.Ctx {
 				Name:           "todo-redirect",
 				Exact:          true,
 				Path:           "/todo",
-				RedirectName: 	"todo-list",
+				RedirectName:   "todo-list",
 				RedirectParams: map[string]string{"type": "active"},
 			},
 			{
@@ -100,7 +112,7 @@ func InitRouter() *router.Ctx {
 			dom.GetWindow().JSValue().Call("scrollTo", 0, 0)
 			return nil
 		},
-	
+
 		Settings: router.Settings{
 			NotFound: p.NotFound,
 			HashMode: true,
@@ -111,7 +123,7 @@ func InitRouter() *router.Ctx {
 		},
 	}
 	ctx.Init()
-	
+
 	p.RCtx = ctx
 	return ctx
 }

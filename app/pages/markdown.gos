@@ -1,0 +1,30 @@
+package pages
+
+import(
+    "github.com/gascore/gas"
+    "gitlab.com/golang-commonmark/markdown"
+    "github.com/gascore/std/router"
+)
+
+func (p *Pages) Markdown(i *router.RouteInfo) *gas.E {
+    f := &gas.F{}
+
+    getText, setText := f.UseStateString("Hello, *world*!")
+
+    renderText := func(text string) string {
+        if len(text) == 0 {
+            return "<b>Empty</b>"
+        }
+
+        return markdown.New(markdown.XHTMLOutput(true)).RenderToString([]byte(text))
+    }
+
+    return f.Init(false, $htmlF{
+        <div class="centerizeContent" acss="d{flex} fxw{wrap}" id="md_page">
+            <div class="light-bg" acss="w{100%} w{49%}@md m{0 auto 1em auto} mb{0}@md mih{30vh} mih{0}@md">
+                <textarea @input="setText(e.Value())" :value="getText()" class="form-input" acss="h{100%}"></textarea>
+            </div>
+            <div class="light-bg boxShadow" acss="w{100%} w{49%}@md m{0 auto} p{.6em} ovx{auto}" g-html="renderText(getText())"></div>
+        </div>
+    }$)
+}

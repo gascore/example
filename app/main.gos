@@ -2,7 +2,6 @@ package main
 
 import (
     "fmt"
-    "time"
     
     "github.com/gascore/dom"
 
@@ -55,17 +54,20 @@ func (root *App) Render() []interface{} {
                         <e run='ctx.Link("/links")'>
                             Links
                         </e>
+                        <e run='ctx.Link("/md")'>
+                            Markdown
+                        </e>
                         <e run='ctx.Link("/about")'>
                             About
                         </e>
                     </section>
                     <section class="nav-right">
                         <span id="theme-toggle" acss="d{flex} ai{center} ml{.4em}">
-                            <label class="form-switch" acss="p{.1rem .4rem .1rem 1.2rem}">
+                            <label class="form-switch">
                                 <input type="checkbox" @change="root.toggleTheme()">
                                 <i class="form-icon"></i>
                             </label>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" acss="ml{.2em}" class="svg-icon" viewBox="0 0 24 24">
                                 <g data-name="Layer 2">
                                     <g data-name="moon">
                                         <rect width="24" height="24" opacity="0"/>
@@ -129,17 +131,12 @@ func (root *App) Render() []interface{} {
 func (root *App) toggleTheme() {
     root.isDark = !root.isDark
 
+    var theme string
     if root.isDark {
-        // add class
-        root.htmlEl.SetAttribute("data-theme", "dark")
+        theme = "dark"
     } else { 
-        // remove class
-        root.htmlEl.ClassList().Add("theme-in-transition")
-        root.htmlEl.SetAttribute("data-theme", "light")
-
-        go func() {
-            time.Sleep(1 * time.Second)
-            root.htmlEl.ClassList().Remove("theme-in-transition")
-        }()
+        theme = "light"
     }
+
+    root.htmlEl.SetAttribute("data-theme", theme)
 }
