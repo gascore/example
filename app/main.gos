@@ -7,7 +7,7 @@ import (
 
     "github.com/gascore/gas"
     "github.com/gascore/gas/web"
-    r "github.com/gascore/std/router"
+    "github.com/gascore/std/router"
 )
 
 func main() {
@@ -30,16 +30,16 @@ func main() {
 
 type App struct {
     c *gas.C
-    rCtx *r.Ctx
+    rCtx *router.Ctx
     isDark bool
     htmlEl *dom.Element
 }
 
-func (root *App) Render() []interface{} {
+func (root *App) Render() *gas.Element {
     ctx := root.rCtx
     return $html{
         <div id="app-wrap">
-            <nav id="main-header" class="nav centerizeContent-wrapper" acss="mih{min-content} bdb{1px solid} whs{nowrap} bg{inherit}">
+            <nav id="main-header" class="nav centerizeContent-wrapper" acss="mih{min-content} bdb{1px solid var(--color-lightGrey)} whs{nowrap}">
                 <div class="centerizeContent">
                     <section class="nav-left ">
                         <e run='ctx.Link("/")'>

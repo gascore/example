@@ -5,7 +5,7 @@ import(
     "github.com/gascore/gas"
 )
 
-func (p *Pages) NotFound() *gas.E {
+func (p *Pages) NotFound() *gas.C {
     f := &gas.F{}
 
     goBack := func() {

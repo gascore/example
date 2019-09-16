@@ -5,15 +5,18 @@ import "github.com/gascore/gas"
 // Example application #3
 //
 // 'if-and-for-directive' shows how you can use component.Directive.If
-func IfAndFor() *gas.E {
+func IfAndFor() *gas.C {
 	root := &IfAndForRoot{
 		Show: false,
 		Arr:  []string{"click", "here", "if you want to see some magic"},
 	}
-	c := &gas.C{Root: root}
+	c := &gas.C{
+		Root: root,
+		NotPointer: true,
+	}
 	root.c = c
 
-	return c.Init()
+	return c
 }
 
 type IfAndForRoot struct {
@@ -27,8 +30,9 @@ func (root *IfAndForRoot) Add(el string) {
 	root.Arr = append(root.Arr, el)
 }
 
-func (root *IfAndForRoot) Render() []interface{} {
-	return gas.CL(
+func (root *IfAndForRoot) Render() *gas.E {
+	return gas.NE(
+		&gas.E{},
 		gas.NE(
 			&gas.E{
 				Attrs: func() gas.Map {

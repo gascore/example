@@ -2,10 +2,10 @@ package pages
 
 import (
 	"github.com/gascore/gas"
-	r "github.com/gascore/std/router"
+	"github.com/gascore/std/router"
 )
 
-func (p *Pages) TodoList(info *r.RouteInfo) *gas.E {
+func (p *Pages) TodoList(info *router.RouteInfo) *gas.C {
 	root := &TodoPage{
 		i: info,
 		ctx: p.RCtx,
@@ -17,13 +17,13 @@ func (p *Pages) TodoList(info *r.RouteInfo) *gas.E {
 	}
 	root.c = c
 
-	return c.Init()
+	return c
 }
 
 type TodoPage struct {
 	c *gas.C
-	ctx *r.Ctx
-	i *r.RouteInfo
+	ctx *router.Ctx
+	i *router.RouteInfo
 
 	currentList string
 	currentText string
@@ -33,7 +33,7 @@ type TodoPage struct {
 	deleted   []string
 }
 
-func (root *TodoPage) Render() []interface{} {
+func (root *TodoPage) Render() *gas.E {
 	return $html{
 	<div id="todo-page" class="nano-block">
 		<div id="todoList" class="boxShadow light-bg">

@@ -10,15 +10,18 @@ import (
 //
 // 'methods' shows how you can call methods from child components.
 // Just use interface{Functions} or pass function as argument
-func Methods() *gas.E {
+func Methods() *gas.C {
 	root := &MethodsRoot{
 		Show:  false,
 		Count: 0,
 	}
-	c := &gas.C{Root: root}
+	c := &gas.C{
+		Root: root,
+		NotPointer: true,
+	}
 	root.c = c
 
-	return c.Init()
+	return c
 }
 
 type MethodsRoot struct {
@@ -36,8 +39,9 @@ func (root *MethodsRoot) Toggle() {
 	root.c.Update()
 }
 
-func (root *MethodsRoot) Render() []interface{} {
-	return gas.CL(
+func (root *MethodsRoot) Render() *gas.E {
+	return gas.NE(
+		&gas.E{},
 		getButton(root.Show, root), // with interface{}
 		func() interface{} {
 			if root.Show {

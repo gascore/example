@@ -8,8 +8,9 @@ type HelloRoot struct {
 	Hello string
 }
 
-func (root *HelloRoot) Render() []interface{} {
-	return gas.CL(
+func (root *HelloRoot) Render() *gas.E {
+	return gas.NE(
+		&gas.E{},
 		gas.NE(
 			&gas.E{
 				Tag: "h1",
@@ -39,12 +40,13 @@ func (root *HelloRoot) Render() []interface{} {
 // Example application #1
 //
 // 'hello-world' shows how you can create components, component.Data and component.Attributes
-func Hello() *gas.E {
+func Hello() *gas.C {
 	c := &gas.C{
 		Root: &HelloRoot{
 			Hello: "Hello world!",
 		},
+		NotPointer: true,
 	}
 
-	return c.Init()
+	return c
 }

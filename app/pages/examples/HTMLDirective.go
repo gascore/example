@@ -5,12 +5,15 @@ import "github.com/gascore/gas"
 // Example application #6
 //
 // 'htmlDirective' shows how you can use component.Directive.HTML
-func HTMLDirective() *gas.E {
+func HTMLDirective() *gas.C {
 	root := &HTMLRoot{}
-	c := &gas.C{Root: root}
+	c := &gas.C{
+		Root: root,
+		NotPointer: true,
+	}
 	root.c = c
 
-	return c.Init()
+	return c
 }
 
 type HTMLRoot struct {
@@ -18,8 +21,9 @@ type HTMLRoot struct {
 	isArticleActive bool
 }
 
-func (root *HTMLRoot) Render() []interface{} {
-	return gas.CL(
+func (root *HTMLRoot) Render() *gas.Element {
+	return gas.NE(
+		&gas.E{},
 		gas.NE(
 			&gas.E{
 				Handlers: map[string]gas.Handler{

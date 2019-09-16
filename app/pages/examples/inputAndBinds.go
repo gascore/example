@@ -10,7 +10,7 @@ import (
 // Example application #5
 //
 // 'inputAndBinds' shows how you can use element Handlers and element.Binds for create forms
-func InputAndBinds() *gas.E {
+func InputAndBinds() *gas.C {
 	root := &InputAndBindsRoot{
 		Text:     "",
 		Color:    "#000",
@@ -20,10 +20,11 @@ func InputAndBinds() *gas.E {
 
 	c := &gas.C{
 		Root: root,
+		NotPointer: true,
 	}
 	root.c = c
 
-	return c.Init()
+	return c
 }
 
 type InputAndBindsRoot struct {
@@ -35,8 +36,9 @@ type InputAndBindsRoot struct {
 	CheckBox bool
 }
 
-func (root *InputAndBindsRoot) Render() []interface{} {
-	return gas.CL(
+func (root *InputAndBindsRoot) Render() *gas.E {
+	return gas.NE(
+		&gas.E{},
 		gas.NE(
 			&gas.E{
 				Attrs: func() gas.Map {

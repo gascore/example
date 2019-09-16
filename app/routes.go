@@ -15,22 +15,22 @@ func InitRouter() *router.Ctx {
 	ctx := &router.Ctx{
 		Routes: []router.Route{
 			{
-				Name:    "home",
-				Element: p.Home,
-				Path:    "/",
-				Exact:   true,
+				Name:      "home",
+				Component: p.Home,
+				Path:      "/",
+				Exact:     true,
 			},
 			{
-				Name:    "about",
-				Element: p.About,
-				Path:    "/about",
-				Exact:   true,
+				Name:      "about",
+				Component: p.About,
+				Path:      "/about",
+				Exact:     true,
 			},
 			{
-				Name:    "markdown",
-				Element: p.Markdown,
-				Path:    "/markdown",
-				Exact:   true,
+				Name:      "markdown",
+				Component: p.Markdown,
+				Path:      "/markdown",
+				Exact:     true,
 			},
 			{
 				Name:     "md-redirect",
@@ -51,27 +51,27 @@ func InitRouter() *router.Ctx {
 				Redirect: "/links",
 			},
 			{
-				Name:    "link",
-				Element: p.Link,
-				Path:    "/links/:name",
+				Name:      "link",
+				Component: p.Link,
+				Path:      "/links/:name",
 			},
 			{
-				Name:    "links",
-				Element: p.Links,
-				Path:    "/links",
-				Exact:   true,
+				Name:      "links",
+				Component: p.Links,
+				Path:      "/links",
+				Exact:     true,
 			},
 			{
-				Name:    "examples",
-				Element: p.Examples,
-				Path:    "/examples",
-				Exact:   true,
+				Name:      "examples",
+				Component: p.Examples,
+				Path:      "/examples",
+				Exact:     true,
 				Childes: []router.Route{
 					{
-						Name:    "components",
-						Element: p.Components,
-						Path:    "/components",
-						Exact:   true,
+						Name:      "components",
+						Component: p.Components,
+						Path:      "/components",
+						Exact:     true,
 						Before: func(info *router.MiddlewareInfo) (bool, error) {
 							fmt.Println("Router middleware: Before components", info)
 							return false, nil
@@ -102,9 +102,9 @@ func InitRouter() *router.Ctx {
 				Redirect: "/todo/active",
 			},
 			{
-				Name:    "todo-list",
-				Element: p.TodoList,
-				Path:    "/todo/:type",
+				Name:      "todo-list",
+				Component: p.TodoList,
+				Path:      "/todo/:type",
 			},
 		},
 

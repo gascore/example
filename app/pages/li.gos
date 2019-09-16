@@ -10,7 +10,7 @@ type dataForLi interface {
 	Edit(int, string)
 }
 
-func getLi(i int, listType string, el string, data dataForLi) *gas.E {
+func getLi(i int, listType string, el string, data dataForLi) *gas.C {
     f := &gas.F{}
 
     getValue, setValue := f.UseStateString("")

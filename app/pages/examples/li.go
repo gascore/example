@@ -21,8 +21,9 @@ type listItem struct {
 	value string
 }
 
-func (root *listItem) Render() []interface{} {
-	return gas.CL(
+func (root *listItem) Render() *gas.E {
+	return gas.NE(
+		&gas.E{},
 		func() interface{} {
 			if root.listIndex != 0 {
 				return nil
@@ -132,7 +133,7 @@ func (root *listItem) Render() []interface{} {
 	)
 }
 
-func getLi(listIndex, index int, el string, data dataForLi) *gas.E {
+func getLi(listIndex, index int, el string, data dataForLi) *gas.C {
 	root := &listItem{
 		listIndex: listIndex,
 
@@ -148,5 +149,5 @@ func getLi(listIndex, index int, el string, data dataForLi) *gas.E {
 	}
 	root.c = c
 
-	return c.Init()
+	return c
 }

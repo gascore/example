@@ -4,7 +4,7 @@ import (
     "fmt"
 
     "github.com/gascore/gas"
-    r "github.com/gascore/std/router"
+    "github.com/gascore/std/router"
 
     "github.com/gascore/std/components/modal"
     "github.com/gascore/std/components/tree"
@@ -14,7 +14,7 @@ import (
     dndLists "github.com/gascore/std/components/dnd/lists"
 )
 
-func (p *Pages) Components(info *r.RouteInfo) *gas.E {
+func (p *Pages) Components(info *router.RouteInfo) *gas.C {
     root := &ComponentsPage{
         ctx : p.RCtx,
         vItems: generateItems(),
@@ -223,7 +223,7 @@ func (p *Pages) Components(info *r.RouteInfo) *gas.E {
         },
     }.Init()
 
-    root.layout1 = layout.GetLayout(&layout.Config{
+    root.layout1 = layout.Config{
         Type:        false,
         LayoutClass: "layout",
         GutterSize:  9,
@@ -245,8 +245,8 @@ func (p *Pages) Components(info *r.RouteInfo) *gas.E {
                 Start: 30,
             },
         },
-    })
-    root.layout2 = layout.GetLayout(&layout.Config{
+    }.Init()
+    root.layout2 = layout.Config{
         Type:        true,
         LayoutClass: "layout2",
         GutterSize:  9,
@@ -268,8 +268,8 @@ func (p *Pages) Components(info *r.RouteInfo) *gas.E {
                 Start: 30,
             },
         },
-    })
-    root.layout3 = layout.GetLayout(&layout.Config{
+    }.Init()
+    root.layout3 = layout.Config{
         Type: false,
         LayoutClass: "layout3",
         GutterSize:  9,
@@ -285,7 +285,7 @@ func (p *Pages) Components(info *r.RouteInfo) *gas.E {
                 Start: 60,
             },
         },
-    })
+    }.Init()
 
     root.vList1 = vlist.GetList(&vlist.Config{
         Direction:   	 true,
@@ -314,44 +314,44 @@ func (p *Pages) Components(info *r.RouteInfo) *gas.E {
     }
     root.c = c
 
-    return c.Init()
+    return c
 }
 
 type ComponentsPage struct {
     c *gas.C
-    ctx *r.Ctx
+    ctx *router.Ctx
 
-    dndLists1 gas.DynamicElement
-    dndLists2 gas.DynamicElement
-    dndLists3 gas.DynamicElement
-    dndListsA gas.DynamicElement
+    dndLists1 gas.DynamicComponent
+    dndLists2 gas.DynamicComponent
+    dndLists3 gas.DynamicComponent
+    dndListsA gas.DynamicComponent
     dndTodo       []interface{}
     dndInProgress []interface{}
     dndDone       []interface{}
     dndA          []interface{}
 
-    dndFree1 gas.DynamicElement
-    dndFree2 gas.DynamicElement
-    dndFree3 gas.DynamicElement
-    dndFree4 gas.DynamicElement
-    dndFree5 gas.DynamicElement
+    dndFree1 gas.DynamicComponent
+    dndFree2 gas.DynamicComponent
+    dndFree3 gas.DynamicComponent
+    dndFree4 gas.DynamicComponent
+    dndFree5 gas.DynamicComponent
 
     isActiveModal bool
-    modal         gas.DynamicElement
+    modal         gas.DynamicComponent
 
-    tree1 *gas.E
-    tree2 *gas.E
+    tree1 *gas.C
+    tree2 *gas.C
 
-    layout1 gas.DynamicElement
-    layout2 gas.DynamicElement
-    layout3 gas.DynamicElement
+    layout1 gas.DynamicComponent
+    layout2 gas.DynamicComponent
+    layout3 gas.DynamicComponent
 
     vItems []interface{}
-    vList1 *gas.E
-    vList2 *gas.E
+    vList1 *gas.C
+    vList2 *gas.C
 }
 
-func (root *ComponentsPage) Render() []interface{} {
+func (root *ComponentsPage) Render() *gas.E {
     return $html{
     <div id="components" class="mini-block blocksList">
         <section class="contentBlock">
@@ -401,22 +401,26 @@ func (root *ComponentsPage) Render() []interface{} {
                         <div class="layout-item-bd">
                             Vanilla
                         </div>
-                        <e run="root.layout2()">
-                            <div class="layout-item-bd">
-                                GopherJS
-                            </div>
-                            <e run="root.layout3()">
+                        <div acss='w{100%} h{100%}'>
+                            <e run="root.layout2()">
                                 <div class="layout-item-bd">
-                                    WebAssembly
+                                    GopherJS
+                                </div>
+                                <div acss='w{100%} h{100%}'>
+                                    <e run="root.layout3()">
+                                        <div class="layout-item-bd">
+                                            WebAssembly
+                                        </div>
+                                        <div class="layout-item-bd">
+                                            TinyGo
+                                        </div>
+                                    </e>
                                 </div>
                                 <div class="layout-item-bd">
-                                    TinyGo
+                                    The Joy Compiler
                                 </div>
                             </e>
-                            <div class="layout-item-bd">
-                                The Joy Compiler
-                            </div>
-                        </e>
+                        </div>
                         <div class="layout-item-bd">
                             CGOC
                         </div>

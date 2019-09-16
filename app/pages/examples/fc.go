@@ -6,7 +6,7 @@ import (
 	"github.com/gascore/gas"
 )
 
-func FunctionalExample() *gas.E {
+func FunctionalExample() *gas.C {
 	f := &gas.F{}
 
 	counter, setCounter := f.UseStateInt(0)
@@ -19,8 +19,9 @@ func FunctionalExample() *gas.E {
 	// 	}, nil
 	// })
 
-	return f.Init(false, func() []interface{} {
-		return gas.CL(
+	return f.Init(true, func() *gas.E {
+		return gas.NE(
+			&gas.E{},
 			gas.NE(
 				&gas.E{},
 				gas.NE(

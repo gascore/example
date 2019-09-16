@@ -5,7 +5,7 @@ import "github.com/gascore/gas"
 // Example application #8
 //
 // 'to do' shows how you how to build basic to-do-mvc example
-func TODO() *gas.E {
+func TODO() *gas.C {
 	root := &TODORoot{
 		current: []string{},
 		done:    []string{},
@@ -14,10 +14,11 @@ func TODO() *gas.E {
 
 	c := &gas.C{
 		Root: root,
+		NotPointer: true,
 	}
 	root.c = c
 
-	return c.Init()
+	return c
 }
 
 type TODORoot struct {
@@ -72,8 +73,9 @@ func (root *TODORoot) ChangeCurrent(newCurrent int) {
 	go root.c.Update()
 }
 
-func (root *TODORoot) Render() []interface{} {
-	return gas.CL(
+func (root *TODORoot) Render() *gas.E {
+	return gas.NE(
+		&gas.E{},
 		gas.NE(
 			&gas.E{
 				Attrs: func() gas.Map {

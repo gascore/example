@@ -5,18 +5,19 @@ import "github.com/gascore/gas"
 // Example application #7
 //
 // 'hooks' shows how you can use component.Hooks
-func Hooks() *gas.E {
+func Hooks() *gas.C {
 	root := &HooksRoot{}
-	c := &gas.C{Root: root}
+	c := &gas.C{
+		NotPointer: true,
+		Root: root,
+	}
 
-	return c.Init()
+	return c
 }
 
 type HooksRoot struct {
 }
 
-func (root *HooksRoot) Render() []interface{} {
-	return gas.CL(
-		getHooker(),
-	)
+func (root *HooksRoot) Render() *gas.E {
+	return gas.NE(&gas.E{}, getHooker())
 }

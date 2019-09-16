@@ -6,7 +6,7 @@ import (
 	"github.com/gascore/gas"
 )
 
-func getHooker() *gas.E {
+func getHooker() *gas.C {
 	root := &hooker{
 		Show: true,
 	}
@@ -40,10 +40,11 @@ func getHooker() *gas.E {
 				return nil
 			},
 		},
+		NotPointer: true,
 	}
 
 	root.c = c
-	return c.Init()
+	return c
 }
 
 type hooker struct {
@@ -53,8 +54,9 @@ type hooker struct {
 	Counter int
 }
 
-func (root *hooker) Render() []interface{} {
-	return gas.CL(
+func (root *hooker) Render() *gas.E {
+	return gas.NE(
+		&gas.E{},
 		"You have updated app state ", root.Counter, "th times",
 		gas.NE(
 			&gas.E{

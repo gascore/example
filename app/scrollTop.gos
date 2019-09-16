@@ -7,7 +7,7 @@ import (
     "github.com/gascore/dom/js"
 )
 
-func scrollTop() *gas.E {
+func scrollTop() *gas.C {
     f := &gas.F{}
 
     isVisible, setIsVisible := f.UseStateBool(false)
@@ -17,7 +17,10 @@ func scrollTop() *gas.E {
         window := dom.GetWindow().JSValue()
 
         onEvent := jsEvent(func(event dom.Event) {
-            setIsVisible(docEl.ScrollTop() > 100)
+            newVal := docEl.ScrollTop() > 100
+            if newVal != isVisible() {
+                setIsVisible(newVal)
+            }
         })
 
         window.Call("addEventListener", "scroll", onEvent)
@@ -27,10 +30,12 @@ func scrollTop() *gas.E {
         }, nil
     })
 
-    return f.Init(false, $htmlF{
-        <button @click='ScrollToTopWithSmooth()' title="Go top top"  g-if='isVisible()'  class="btn" id="scrollTop">
-            <i class="icon icon-arrow-up"></i>
-        </button>
+    return f.Init(true, $htmlF{
+        <div>
+            <button @click='ScrollToTopWithSmooth()' title="Go top top"  g-if='isVisible()'  class="btn" id="scrollTop">
+                <i class="icon icon-arrow-up"></i>
+            </button>
+        </div>
     }$)
 }
 

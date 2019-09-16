@@ -5,18 +5,19 @@ import "github.com/gascore/gas"
 // Example application #2
 //
 // 'clicker' shows how you can add handlers and use external components
-func Clicker() *gas.E {
+func Clicker() *gas.C {
 	root := &ClickerRoot{
 		click: 0,
 	}
 
 	c := &gas.C{
+		NotPointer: true,
 		Root: root,
 	}
 
 	root.c = c
 
-	return c.Init()
+	return c
 }
 
 type ClickerRoot struct {
@@ -29,8 +30,9 @@ func (root *ClickerRoot) addClick() {
 	root.c.Update()
 }
 
-func (root *ClickerRoot) Render() []interface{} {
-	return gas.CL(
+func (root *ClickerRoot) Render() *gas.E {
+	return gas.NE(
+		&gas.E{},
 		gas.NE(
 			&gas.E{
 				Handlers: map[string]gas.Handler{

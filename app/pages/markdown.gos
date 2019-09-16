@@ -6,10 +6,15 @@ import(
     "github.com/gascore/std/router"
 )
 
-func (p *Pages) Markdown(i *router.RouteInfo) *gas.E {
+func (p *Pages) Markdown(i *router.RouteInfo) *gas.C {
     f := &gas.F{}
 
-    getText, setText := f.UseStateString("Hello, *world*!")
+    getText, setText := f.UseStateString(` # Hello, world!
+
+ ## Example markdown
+
+ Lorem markdownum periuria tamen; noctes saepe mergit ut inter vultus misero, quod virgine elisi fato auditaque? Flet sunt Pallas qui coniugis ibat data, aut iurare magnos orbae. Tractu est signa femina, est dolet rudem veniunt, mihi ore, crura quoque partique non. **Plena** quid quem fugam bacaque, si tactuque humus; fatebar, terrent tecto furoris Phrygia. Linigera Calydonia signum quoque cognoscendo superi; mihi caede.
+    `)
 
     renderText := func(text string) string {
         if len(text) == 0 {

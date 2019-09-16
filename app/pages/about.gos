@@ -7,12 +7,12 @@ import (
     "bytes"
 
     "github.com/gascore/gas"
-    r "github.com/gascore/std/router"
+    "github.com/gascore/std/router"
     
     "gitlab.com/golang-commonmark/markdown"
 )
 
-func (p *Pages) About(info *r.RouteInfo) *gas.E {
+func (p *Pages) About(info *router.RouteInfo) *gas.C {
     f := &gas.F{}
 
     errorMsg := `<h1><span style="color: #ff0033">404</span> Page not found</h1>`
@@ -54,7 +54,7 @@ func (p *Pages) About(info *r.RouteInfo) *gas.E {
         <div id="about" class="centerizeContent mini-block" acss="m{auto}">
             <div class="contentBlock" acss="m{0} p{0}">
                 <header class="contentBlock-title" acss="p{0 !important} m{0} w{100%} d{flex}">
-                    <div acss="w{8%} d{flex} fz{28px} bdrs{.8rem}">
+                    <div acss="w{10%} d{flex} fz{28px} bdrs{.8rem}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" acss="m{auto}" viewBox="0 0 24 24">
                             <g data-name="Layer 2">
                                 <g data-name="edit-2">
@@ -65,7 +65,7 @@ func (p *Pages) About(info *r.RouteInfo) *gas.E {
                             </g>
                         </svg>
                     </div>
-                    <input @input="setLink(e.Value())" :value="link()" class="form-input text-dark" acss="w{92%} bd{none} p{.8rem} bdrs{0 .8rem 0 0}" type="text">
+                    <input @input="setLink(e.Value())" :value="link()" class="form-input text-dark" acss="w{90%} bd{none} p{.8rem} bdrs{0 .8rem 0 0}" type="text">
                 </header>
                 <div class="contentBlock-body" acss="ovx{auto}">
                     <p g-if="isRaw()" class="whs(pre-wrap)">{{ file() }}</p>

@@ -1,17 +1,18 @@
 package pages
 
 import (
-    r "github.com/gascore/std/router"
     "github.com/gascore/gas"
+    "github.com/gascore/std/router"
+
     "github.com/gascore/example/app/pages/examples"
 )
 
-func (p *Pages) Examples(info *r.RouteInfo) *gas.E {
+func (p *Pages) Examples(info *router.RouteInfo) *gas.C {
     f := &gas.F{}
-    
+
     examples := []struct{
         name string
-        element *gas.E
+        element *gas.C
     }{
         {"Hello world",examples.Hello()},
         {"Clicker",examples.Clicker()},

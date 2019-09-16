@@ -6,8 +6,9 @@ type clickerExternalComponent struct {
 	click int
 }
 
-func (data *clickerExternalComponent) Render() []interface{} {
-	return gas.CL(
+func (data *clickerExternalComponent) Render() *gas.E {
+	return gas.NE(
+		&gas.E{},
 		"You've clicked button: ",
 		gas.NE(
 			&gas.E{
@@ -23,7 +24,7 @@ func (data *clickerExternalComponent) Render() []interface{} {
 	)
 }
 
-func newNumberViewer(click int) interface{} {
+func newNumberViewer(click int) *gas.C {
 	ec := &clickerExternalComponent{
 		click: click,
 	}
@@ -33,5 +34,5 @@ func newNumberViewer(click int) interface{} {
 		Root:       ec,
 	}
 
-	return c.Init()
+	return c
 }

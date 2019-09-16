@@ -2,11 +2,11 @@ package pages
 
 import (
     "github.com/gascore/gas"
-    r "github.com/gascore/std/router"
+    "github.com/gascore/std/router"
 )
 
 type Pages struct {
-    RCtx *r.Ctx
+    RCtx *router.Ctx
     // std/store
     // custom http client
     // e.t.c
@@ -16,7 +16,7 @@ func NewPages() *Pages {
     return &Pages{}
 }
 
-func (p *Pages) Home(i *r.RouteInfo) *gas.E {
+func (p *Pages) Home(i *router.RouteInfo) *gas.C {
     ctx := p.RCtx
 
     f := &gas.F{}
