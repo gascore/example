@@ -130,7 +130,7 @@ func compileStyles(builder *gasx.Builder, acssGen acss.Generator, isDev bool) {
 
 	var isProd string
 	if !isDev {
-		isProd = "--env production"
+		isProd = "--env production "
 	}
 
 	gasx.RunCommand("postcss " + isProd + "app/styles/main.pcss -o dist/main.css")
