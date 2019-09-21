@@ -529,7 +529,7 @@ func (root *ComponentsPage) Render() *gas.E {
         </section>
         <div acss="d{flex} mb{.7rem}">
             <e run='root.ctx.Link("/examples")' class="pretty-btn" acss="d{flex} m{0}">
-                <i class="icon icon-back" acss="m{auto 0 auto .4em} fz{12px} c{#fff}"></i>
+                <i class="icon icon-white icon-back" acss="m{auto .4em auto 0} fz{12px}"></i>
                 <span acss="fz{16px} d{block}">
                     Basic examples
                 </span>

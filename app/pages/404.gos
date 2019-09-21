@@ -13,8 +13,8 @@ func (p *Pages) NotFound() *gas.C {
     }
 
     return f.Init(false, $htmlF{
-        <div id="notFound" class="centerizeContent"> <!-- acss='ff("Poppins", sans-serif)' -->
-            <div acss="d{flex} fxw{wrap}">
+        <div id="notFound" class="centerizeContent">
+            <div acss='d{flex} fxw{wrap} ff{"Poppins", sans-serif}'>
                 <h1 acss="fz{12em} p{.5rem} m{0 auto}" id="error-title">
                     404
                 </h1>

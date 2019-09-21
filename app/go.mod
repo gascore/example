@@ -6,8 +6,8 @@ require (
 	github.com/cheekybits/genny v1.0.0 // indirect
 	github.com/eapache/queue v1.1.0 // indirect
 	github.com/gascore/dom v0.2.3
-	github.com/gascore/gas v0.0.0-20190916044441-c1c77108fd3e
-	github.com/gascore/std v0.0.0-20190916044651-9c302cac0ac4
+	github.com/gascore/gas v0.0.0-20190921130912-7d74b66fccce
+	github.com/gascore/std v0.0.0-20190921131019-0b64d3e2c808
 	gitlab.com/golang-commonmark/html v0.0.0-20180917080848-cfaf75183c4a // indirect
 	gitlab.com/golang-commonmark/linkify v0.0.0-20180917065525-c22b7bdb1179 // indirect
 	gitlab.com/golang-commonmark/markdown v0.0.0-20181102083822-772775880e1f

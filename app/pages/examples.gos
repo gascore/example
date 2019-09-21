@@ -40,7 +40,7 @@ func (p *Pages) Examples(info *router.RouteInfo) *gas.C {
                     <span acss="fz{16px} d{block}">
                         Components examples
                     </span>
-                    <i class="icon icon-forward" acss="m{auto 0 auto .4em} fz{12px} c{#fff}"></i>
+                    <i class="icon icon-white  icon-forward" acss="m{auto 0 auto .4em} fz{12px}"></i>
                 </e>
             </div>
         </div>
