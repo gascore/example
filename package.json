@@ -7,7 +7,7 @@
     "author": "Noskov Artem and gas contributors",
     "license": "MIT",
     "devDependencies": {
-        "burn.css": "^0.7.3",
+        "burn.css": "^0.7.4",
         "cssnano": "^4.1.10",
         "lost": "^8.3.1",
         "postcss-cli": "^6.1.3",

@@ -15,6 +15,8 @@ github.com/gascore/gasx v0.0.0-20190826131659-ef7991cb70b8 h1:gqqqlhmP1TUr7QBRED
 github.com/gascore/gasx v0.0.0-20190826131659-ef7991cb70b8/go.mod h1:m3ibcWjFUscRPmzAjOIxSVrdDasR5hTCyKhh5cGQ7hY=
 github.com/gascore/gasx v0.0.0-20190916044532-cdb2994a5e15 h1:varlp2BY6MHxxN+X7/kHZqC5jSsOT/Hqym/+IJZJwUU=
 github.com/gascore/gasx v0.0.0-20190916044532-cdb2994a5e15/go.mod h1:m3ibcWjFUscRPmzAjOIxSVrdDasR5hTCyKhh5cGQ7hY=
+github.com/gascore/gasx v0.0.1 h1:7XZaLLD9XZzbBuyn3EZ3w1k9+8C2POCbIiCvY/RCrJ4=
+github.com/gascore/gasx v0.0.1/go.mod h1:m3ibcWjFUscRPmzAjOIxSVrdDasR5hTCyKhh5cGQ7hY=
 github.com/json-iterator/go v1.1.5 h1:gL2yXlmiIo4+t+y32d4WGwOjKGYcGOuyrg46vadswDE=
 github.com/json-iterator/go v1.1.5/go.mod h1:+SdeFBvtyEkXs7REEP0seUULqWtbJapLOCVDaaPEHmU=
 github.com/liamylian/jsontime v1.0.1 h1:zM/Dxvu7X0iq9BpM2KMpGsKYEIHYDxf04z0GmcKId44=

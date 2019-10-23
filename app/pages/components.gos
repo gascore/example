@@ -94,7 +94,6 @@ func (p *Pages) Components(info *router.RouteInfo) *gas.C {
 
     root.tree1 = tree.Config{
         Name:        "First",
-        CanBeHidden: true,
         OnItemClick: func(item *tree.Item) error {
             fmt.Println("item in first tree was clicked")
             return nil
